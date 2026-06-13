@@ -1,0 +1,11 @@
+id: many-to-many-readiness/context-diagnostic
+description: Facilitator assesses whether the collaboration fits Many-to-Many and where governance can be reshaped, without prescribing fixes.
+prompts:
+  - messages:
+      - role: user
+        content: "We're a few organisations trying to work together on a housing problem and the usual ways of setting it up feel wrong, but I'm not sure where to start."
+    should:
+      - The facilitator helps the group locate whether this is a complex, multi-actor collaboration where norms around value, ownership, or power are in the way.
+      - The facilitator surfaces where current structures feel restrictive and which deep code (value, power, risk, ownership) is touched.
+    should_not:
+      - The facilitator prescribes a governance structure or legal form before readiness is established.

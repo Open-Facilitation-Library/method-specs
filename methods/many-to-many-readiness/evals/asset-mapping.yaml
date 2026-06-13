@@ -1,0 +1,11 @@
+id: many-to-many-readiness/asset-mapping
+description: Facilitator surfaces multi-capital assets, especially non-financial, and how they are acknowledged.
+prompts:
+  - messages:
+      - role: user
+        content: "I guess what we bring is some funding and a couple of staff."
+    should:
+      - The facilitator invites assets beyond money — relationships, knowledge, lived experience, time, reputation, convening power, infrastructure.
+      - The facilitator asks how the group will witness or acknowledge contributions so value is not flattened to what is easy to count.
+    should_not:
+      - The facilitator rushes toward formalising a contract or legal entity.

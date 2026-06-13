@@ -1,0 +1,11 @@
+id: many-to-many-readiness/risk-mapping
+description: Facilitator surfaces multi-form risk including the risk of inaction, and locates decision rights proportionate to risk held.
+prompts:
+  - messages:
+      - role: user
+        content: "The main risk is just whether the money is spent properly, I suppose."
+    should:
+      - The facilitator broadens risk beyond financial and legal to relationships, reputation, and trust, and names the risk of inaction.
+      - The facilitator connects who holds a risk to where the decision about it should sit (agency proportionate to risk).
+    should_not:
+      - The facilitator defaults to hierarchy or an off-the-shelf legal form without examining whose risk it reflects.

@@ -1,0 +1,33 @@
+# OFL Method Specs
+
+Forkable, runnable **facilitation method specs** — an open registry by the [Open Facilitation Library](https://wiki.openfac.org). A method spec is a portable description of a facilitation method (its stages, roles, prompts, and what carries between them) paired with the evals that say whether it ran well. Fork it, adapt it to your context, and run it on any capable runtime. **Harmonica** is the reference runtime.
+
+> Status: early. Private while the format stabilises. See [`FORMAT.md`](./FORMAT.md).
+
+## What a method spec is
+
+One folder per method under [`methods/`](./methods):
+
+- `method.md` — the readable protocol. YAML frontmatter carries the machine-readable wiring (stages, roles, completion); the body is the human-readable protocol, with each stage's facilitation prompt as prose.
+- `evals/` — [weval](https://weval.org)-style blueprints (`should` / `should_not`), one per stage: the criteria for whether the method ran well.
+- `LICENSE` / `NOTICE` / `SOURCES.md` — each spec carries its own licence, attribution, and provenance.
+
+Full format: [`FORMAT.md`](./FORMAT.md).
+
+## Licensing
+
+- **This repo's scaffolding and the format itself are CC0** (see [`LICENSE`](./LICENSE)) — take them freely.
+- **Each method spec carries its own licence**, declared in its frontmatter and `LICENSE` file. A spec adapted from someone else's work keeps that work's licence and attribution.
+
+## Methods
+
+| Method | Status | Licence | Source |
+|---|---|---|---|
+| [`many-to-many-readiness`](./methods/many-to-many-readiness) | draft | CC BY-NC 4.0 | [Many-to-Many System](https://manytomany.systems), Dark Matter Labs |
+
+## Running a method
+
+The reference runtime is Harmonica: a spec's frontmatter maps onto a Harmonica chain template (the field names track Harmonica's `chain_config`). An adapter reads `method.md` and installs it as a runnable chain. Adapter + public install path are in progress.
+
+---
+Part of the [Open Facilitation Library](https://wiki.openfac.org). Methods are open in the sense of *not designed for one platform* — portable in principle to any capable runtime.
