@@ -4,7 +4,7 @@ import { parseFrontmatter } from './lib/parseFrontmatter.mjs';
 import { validateSpec } from './lib/validate.mjs';
 import { listMethodDirs, evalsInfo, registryRoot } from './lib/walk.mjs';
 
-const ROOT = registryRoot(import.meta.url);
+const ROOT = registryRoot();
 const methodsRoot = path.join(ROOT, 'methods');
 let errorCount = 0;
 const ids = new Map();

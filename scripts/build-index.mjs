@@ -5,7 +5,7 @@ import { validateSpec } from './lib/validate.mjs';
 import { buildIndexJson, buildReadmeTable } from './lib/buildIndex.mjs';
 import { listMethodDirs, evalsInfo, registryRoot } from './lib/walk.mjs';
 
-const ROOT = registryRoot(import.meta.url);
+const ROOT = registryRoot();
 const methodsRoot = path.join(ROOT, 'methods');
 const indexPath = path.join(ROOT, 'index.json');
 const readmePath = path.join(ROOT, 'README.md');

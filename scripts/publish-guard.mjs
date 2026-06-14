@@ -4,7 +4,7 @@ import { parseFrontmatter } from './lib/parseFrontmatter.mjs';
 import { publishGuard } from './lib/publishGuard.mjs';
 import { listMethodDirs, registryRoot } from './lib/walk.mjs';
 
-const ROOT = registryRoot(import.meta.url);
+const ROOT = registryRoot();
 const methodsRoot = path.join(ROOT, 'methods');
 let blocked = 0;
 

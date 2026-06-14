@@ -24,9 +24,10 @@ export function evalsInfo(dir) {
   return { evalsPresent: true, presentEvalStages };
 }
 
-export function registryRoot(importMetaUrl) {
+export function registryRoot() {
   if (process.env.REGISTRY_ROOT) return path.resolve(process.env.REGISTRY_ROOT);
-  const here = path.dirname(fileURLToPath(importMetaUrl));
-  // scripts/lib/walk.mjs -> repo root is two levels up
+  // Anchored to THIS module's location (scripts/lib/walk.mjs), not the caller's,
+  // so callers at any depth get the right answer: repo root is two levels up.
+  const here = path.dirname(fileURLToPath(import.meta.url));
   return path.resolve(here, '..', '..');
 }
