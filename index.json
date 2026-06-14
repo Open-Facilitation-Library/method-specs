@@ -1,26 +1,4 @@
 {
   "schema_version": 1,
-  "methods": [
-    {
-      "id": "many-to-many-readiness",
-      "title": "Many-to-Many Collaboration Readiness",
-      "version": "0.1.0",
-      "status": "draft",
-      "summary": "A staged sensemaking process that walks a multi-actor collaboration to the point where it can make governance and contracting choices.",
-      "license": "CC-BY-NC-4.0",
-      "runtime": {
-        "artifact": "chain"
-      },
-      "roles_count": 3,
-      "stages_count": 5,
-      "has_evals": true,
-      "source_method": "Many-to-Many System (Dark Matter Labs, Beyond the Rules Lab)",
-      "lenses": [
-        "value",
-        "power",
-        "risk",
-        "ownership"
-      ]
-    }
-  ]
+  "methods": []
 }
