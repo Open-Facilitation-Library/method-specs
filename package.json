@@ -1,0 +1,20 @@
+{
+  "name": "method-specs-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Validation + index tooling for the OFL method-specs registry.",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build-index": "node scripts/build-index.mjs",
+    "check": "node scripts/build-index.mjs --check",
+    "guard": "node scripts/publish-guard.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "js-yaml": "^4.2.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}
