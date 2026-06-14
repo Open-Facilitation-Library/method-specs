@@ -26,6 +26,8 @@ methods/<method-id>/
 | `lenses[]` | optional cross-cutting lenses applied at every stage |
 | `stages[]` | `id`, `title`, `roles`, `assignment_strategy`, `context_mode`, `completion`, `output` |
 | `evals` | path to the `evals/` folder |
+| `tags[]` | optional free tags for catalog filtering (group size, divergent/convergent, time-box, domain) |
+| `hold` | optional; a non-empty reason string. Presence keeps the spec out of the public repo (it lives in the private staging repo until cleared). |
 
 `context_mode` is one of `none` / `previous_summary` / `all_summaries` / `custom` — how much prior-stage context carries into a stage (Harmonica's terms).
 
@@ -45,3 +47,24 @@ One `## Stage: <id>` section per stage; the id matches a frontmatter `stages[].i
 ## Running it
 
 The frontmatter `stages[]` plus the matching body sections map onto a Harmonica chain template (the reference runtime). An adapter generates the machine form from this single source; a derived `method.yaml` may be emitted for a pure-YAML runtime, but is never hand-maintained in parallel.
+
+## Versioning
+
+`version` is semver. One version per method folder (latest-in-folder); git history is the version log. Bump patch/minor for prompt-wording refinements, major for stage restructuring (adding, removing, or reordering stages, or changing roles/completion). There is no multi-version coexistence — pinning an old version means checking out an earlier commit.
+
+## Publishing
+
+The registry is two repos: the public `method-specs` and a private `method-specs-staging`. A spec may live in the public repo only if its `license` is in the publishable allowlist and it has no `hold` flag.
+
+- **Publishable licences:** `CC0-1.0`, `CC-BY-4.0`, `CC-BY-SA-4.0`, `CC-BY-NC-4.0`, `CC-BY-NC-SA-4.0`. Public-domain methods use `CC0-1.0`.
+- **Excluded:** any `-ND` (NoDerivatives) variant — a forkable registry cannot host no-derivatives works — and proprietary/unknown licences.
+- **`hold`** keeps a spec back for provenance/relationship reasons (e.g. a third party must sign off) even when its licence is fine.
+
+`status` (`draft | tested | stable`) is maturity, not a publish gate: a new method may be public as `draft`.
+
+## Tooling
+
+- `npm run validate` — format-correctness across all specs.
+- `npm run build-index` — regenerate `index.json` + the README table.
+- `npm run check` — verify both are in sync (CI).
+- `npm run guard` — publish-guard (public repo only).
