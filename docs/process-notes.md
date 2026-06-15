@@ -7,3 +7,9 @@ Append-only per-session log. Format: `## YYYY-MM-DD — [topic]` + Done / Decisi
 - **Decisions:** Adapter home = harmonica-mcp (an agent installs a spec via the MCP, passing the `method.md` text inline), not a CLI here. M2M stays `draft` + CC BY-NC until Dark Matter Labs signs off; installs stay private.
 - **State:** registry v0.1 scaffolding + the M2M spec on `main`; adapter published + verified end-to-end.
 - **Next:** loop Dark Matter Labs in before promoting M2M past `draft` or making any install public; HAR-1065 (registry indexing / versioning / peer-review / public flip) + HAR-1068 (CC0 eval publish) still open.
+
+## 2026-06-14 — registry index/versioning/publish design + plan (HAR-1065)
+- **Done:** Brainstormed → designed → wrote the implementation plan for the registry index + versioning + per-spec publish model (`docs/plans/2026-06-14-registry-index-design.md` + `-plan.md`, on `main`). NOT built yet. Covers: two-repo topology (public `method-specs` + private `method-specs-staging`), licence-allowlist + `hold`-flag publish gate, generated `index.json` + README "Methods" table, semver convention, CI.
+- **Decisions:** Index = repo build artifact now (humans + CI), NOT a served/fetchable manifest (runtime-fetch deferred, gated on public-flip + DML). Maturity (`status`) is NOT a publish gate; the licence allowlist + `hold` are. ND licences excluded (a forkable registry can't host no-derivatives works).
+- **State:** design + plan committed to `main`; build not started.
+- **Next:** execute the index plan (HAR-1065). M2M public-flip still blocked on Dark Matter Labs.
