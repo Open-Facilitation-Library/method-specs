@@ -4,6 +4,7 @@ import { parseFrontmatter } from './lib/parseFrontmatter.mjs';
 import { validateSpec } from './lib/validate.mjs';
 import { buildIndexJson, buildReadmeTable } from './lib/buildIndex.mjs';
 import { listMethodDirs, evalsInfo, registryRoot } from './lib/walk.mjs';
+import { validateComposition } from './lib/composition.mjs';
 
 const ROOT = registryRoot();
 const methodsRoot = path.join(ROOT, 'methods');
@@ -40,6 +41,13 @@ for (const m of listMethodDirs(methodsRoot)) {
 }
 if (errorCount > 0) {
   console.error(`\nrefusing to build index: ${errorCount} validation error(s). Run "npm run validate".`);
+  process.exit(1);
+}
+
+const comp = validateComposition(specs.map(({ fm }) => ({ id: fm.id, version: fm.version, composes: fm.composes })));
+if (comp.errors.length) {
+  comp.errors.forEach((e) => console.error(`✗ composition: ${e}`));
+  console.error(`\nrefusing to build index: ${comp.errors.length} composition error(s). Run "npm run validate".`);
   process.exit(1);
 }
 

@@ -78,4 +78,36 @@ describe('validateSpec', () => {
     expect(errors).toEqual([]);
     expect(warnings).toContainEqual(expect.stringMatching(/no eval for stage "two"/));
   });
+
+  it('accepts a valid composes list', () => {
+    expect(run(good({ composes: ['orid', 'five-l@1.0.0'] })).errors).toEqual([]);
+  });
+
+  it('rejects a malformed composes ref', () => {
+    expect(run(good({ composes: ['Bad_Ref'] })).errors).toContainEqual(
+      expect.stringMatching(/not a valid spec reference/),
+    );
+  });
+
+  it('rejects self-composition', () => {
+    expect(run(good({ composes: ['demo'] })).errors).toContainEqual(
+      expect.stringMatching(/cannot compose itself/),
+    );
+  });
+
+  it('rejects duplicate composes entries', () => {
+    expect(run(good({ composes: ['orid', 'orid'] })).errors).toContainEqual(
+      expect.stringMatching(/duplicate composes/),
+    );
+  });
+
+  it('requires a stage `uses` target to be listed in composes', () => {
+    const g = good({ composes: ['orid'], stages: [{ id: 'one', uses: 'clustering' }, { id: 'two' }] });
+    expect(run(g).errors).toContainEqual(expect.stringMatching(/not listed in composes/));
+  });
+
+  it('accepts a stage `uses` that is in composes', () => {
+    const g = good({ composes: ['orid'], stages: [{ id: 'one', uses: 'orid' }, { id: 'two' }] });
+    expect(run(g).errors).toEqual([]);
+  });
 });

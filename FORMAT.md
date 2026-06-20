@@ -1,4 +1,4 @@
-# Method-spec format v0.1
+# Method-spec format v0.2
 
 A method spec is **one `method.md`**: YAML frontmatter (machine-readable wiring) plus a markdown body (the human-readable protocol). Field names track Harmonica's `chain_config` so a spec maps onto the runtime with no translation, while staying portable in principle.
 
@@ -24,9 +24,10 @@ methods/<method-id>/
 | `runtime.reference`, `runtime.artifact` | reference runtime (`harmonica`) + artifact type (`chain` / `single`) |
 | `roles[]` | `slug` + `label` (map to runtime roles) |
 | `lenses[]` | optional cross-cutting lenses applied at every stage |
-| `stages[]` | `id`, `title`, `roles`, `assignment_strategy`, `context_mode`, `completion`, `output` |
+| `stages[]` | `id`, `title`, `roles`, `assignment_strategy`, `context_mode`, `completion`, `output`, optional `uses` (compose a building block into the stage) |
 | `evals` | path to the `evals/` folder |
 | `tags[]` | optional free tags for catalog filtering (group size, divergent/convergent, time-box, domain) |
+| `composes[]` | optional; building-block specs this one is built from (`id` or `id@version`). See [Composition](#composition). |
 | `hold` | optional; a non-empty reason string. Presence keeps the spec out of the public repo (it lives in the private staging repo until cleared). |
 
 `context_mode` is one of `none` / `previous_summary` / `all_summaries` / `custom` — how much prior-stage context carries into a stage (Harmonica's terms).
@@ -47,6 +48,21 @@ One `## Stage: <id>` section per stage; the id matches a frontmatter `stages[].i
 ## Running it
 
 The frontmatter `stages[]` plus the matching body sections map onto a Harmonica chain template (the reference runtime). An adapter generates the machine form from this single source; a derived `method.yaml` may be emitted for a pure-YAML runtime, but is never hand-maintained in parallel.
+
+## Composition
+
+A spec can be built from other specs (reusable building blocks), so a larger method is assembled from smaller, independently forkable ones.
+
+- **`composes: [<ref>, ...]`** (spec level): the building-block specs this one is built from. Each `<ref>` is a spec `id`, optionally version-pinned as `id@version`.
+- **`uses: <ref>`** (stage level, optional): marks a stage as running one of the composed sub-methods. The referenced id must appear in the spec's `composes`.
+
+Validation:
+
+- Each ref must be well-formed (a kebab `id`, optional `@semver`); a spec cannot compose itself; no duplicate entries.
+- Every composed id must exist in the registry; a pinned version that differs from the registry's current version is a warning.
+- The composition graph must be acyclic (a cycle is an error).
+
+The index records both directions: a consuming spec carries `composes`, and each building block carries `used_by` (the specs that compose it), so the catalog shows what builds on what. Expanding a composed spec into a runnable runtime template is the adapter's job, not part of this format.
 
 ## Versioning
 
