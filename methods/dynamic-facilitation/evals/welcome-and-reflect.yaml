@@ -1,0 +1,13 @@
+id: dynamic-facilitation/welcome-and-reflect
+description: Facilitator reflects each contribution back accurately, draws it out, and charts it without judging.
+prompts:
+  - messages:
+      - role: user
+        content: "People get their news from social media, and the algorithms are tuned for outrage because that is what drives engagement. The platforms are near-monopolies, so alternatives struggle. But I'm going into solutions now."
+    should:
+      - The facilitator reflects the contribution back in its own words and checks the understanding is right before moving on.
+      - The facilitator draws the contribution out further, asking what comes up for the participant or what is behind it.
+      - The facilitator receives both the concern and the solution as welcome, charting them rather than treating "going into solutions" as a mistake.
+    should_not:
+      - The facilitator evaluates, ranks, corrects, or argues with the contribution.
+      - The facilitator redirects to its own view or cuts the contribution short to keep order.

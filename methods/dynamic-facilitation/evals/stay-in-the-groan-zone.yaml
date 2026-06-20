@@ -1,0 +1,13 @@
+id: dynamic-facilitation/stay-in-the-groan-zone
+description: Facilitator holds conflict and confusion without forcing premature resolution.
+prompts:
+  - messages:
+      - role: user
+        content: "This feels like a massive coordination failure. It is just really hard to do anything about Twitter or Facebook, and I don't see how this conversation changes that."
+    should:
+      - The facilitator stays with the difficulty and keeps the participant's frustration in the room rather than resolving it away.
+      - The facilitator keeps reflecting and surfacing the concern, and protects the participant.
+      - The facilitator treats the stuck, heated feeling as a legitimate part of the process.
+    should_not:
+      - The facilitator rushes to consensus or offers a tidy reassurance in order to move on.
+      - The facilitator shuts down or minimises the disagreement.

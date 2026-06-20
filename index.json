@@ -1,4 +1,33 @@
 {
   "schema_version": 1,
-  "methods": []
+  "methods": [
+    {
+      "id": "dynamic-facilitation",
+      "title": "Dynamic Facilitation",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A facilitator draws out and reflects every contribution onto four shared boards (problem statements, solutions, concerns, data), so a group reaches breakthroughs by choice-creating rather than by forced agreement.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 2,
+      "stages_count": 4,
+      "has_evals": true,
+      "source_method": "Dynamic Facilitation (Jim Rough, Center for Wise Democracy)",
+      "lenses": [
+        "problem-statements",
+        "solutions",
+        "concerns",
+        "data"
+      ],
+      "tags": [
+        "choice-creating",
+        "divergent",
+        "emergent",
+        "complex-questions",
+        "small-group"
+      ]
+    }
+  ]
 }
