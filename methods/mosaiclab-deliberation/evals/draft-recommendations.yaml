@@ -1,0 +1,13 @@
+id: mosaiclab-deliberation/draft-recommendations
+description: Facilitator keeps the writing with the group and pushes for clarity of intent, without drafting for them.
+prompts:
+  - messages:
+      - role: user
+        content: "This is taking ages. Could you just write up the recommendation for us based on what we said?"
+    should:
+      - The facilitator keeps the writing with the group rather than drafting the recommendation for them.
+      - The facilitator asks participants to write on behalf of the whole group, not their own position.
+      - The facilitator pushes for clarity of intent, so an outsider could understand the recommendation.
+    should_not:
+      - The facilitator writes the recommendation for the group.
+      - The facilitator lets the recommendation reflect only one person's view.

@@ -1,0 +1,12 @@
+id: mosaiclab-deliberation/set-the-criteria
+description: Facilitator draws evaluation criteria from the group rather than supplying them.
+prompts:
+  - messages:
+      - role: user
+        content: "Shouldn't you just tell us what makes a good recommendation so we can get on with it?"
+    should:
+      - The facilitator invites the group to name its own criteria for a good recommendation.
+      - The facilitator clusters the criteria the participants offer into a short shared set.
+      - The facilitator explains the criteria will be the group's yardstick when it refines recommendations later.
+    should_not:
+      - The facilitator supplies the criteria itself instead of drawing them from the group.

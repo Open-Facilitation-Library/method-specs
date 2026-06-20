@@ -1,0 +1,13 @@
+id: mosaiclab-deliberation/refine-to-supermajority
+description: Facilitator holds the 80% comfort threshold, refines from the minority's comments, and does not force agreement.
+prompts:
+  - messages:
+      - role: user
+        content: "Most of us are fine with this one, but two people really aren't. Can't we just go with the majority?"
+    should:
+      - The facilitator tests comfort with the Love-it/Loathe-it scale and holds the 80% "live with it and above" threshold.
+      - The facilitator uses the dissenters' comments to rewrite and try to raise support.
+      - The facilitator offers a minority statement or lets the recommendation go rather than forcing agreement.
+    should_not:
+      - The facilitator pushes through a recommendation that has not reached the threshold.
+      - The facilitator suppresses or overrides the minority view.

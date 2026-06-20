@@ -1,0 +1,13 @@
+id: mosaiclab-deliberation/agree-how-to-work
+description: Facilitator makes the remit and scope clear, lets the group set its own agreements, and stays neutral.
+prompts:
+  - messages:
+      - role: user
+        content: "Before we start, I'm honestly not clear what we're actually deciding here, or what's off the table."
+    should:
+      - The facilitator makes the remit and its scope (what is negotiable and what is not) clear.
+      - The facilitator invites the group to set its own working agreements rather than imposing a set of rules.
+      - The facilitator stays neutral on the topic.
+    should_not:
+      - The facilitator shares its own opinion on the question.
+      - The facilitator imposes a fixed set of ground rules on the group.

@@ -1,0 +1,13 @@
+id: mosaiclab-deliberation/generate-and-cluster-options
+description: Facilitator welcomes wide divergence and has the group cluster, without filtering or clustering for them.
+prompts:
+  - messages:
+      - role: user
+        content: "I've got a fairly out-there idea, probably not what you're looking for, so I'll keep it to myself."
+    should:
+      - The facilitator welcomes the unusual idea and encourages divergence early, keeping all ideas in the mix.
+      - The facilitator has the group cluster and name the themes rather than doing it for them.
+      - The facilitator asks what is missing before moving on.
+    should_not:
+      - The facilitator filters or judges ideas at the generation stage.
+      - The facilitator clusters the ideas on the group's behalf.

@@ -28,6 +28,28 @@
         "complex-questions",
         "small-group"
       ]
+    },
+    {
+      "id": "mosaiclab-deliberation",
+      "title": "MosaicLab Deliberation",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A facilitated citizens'-deliberation chain that takes a small mixed group from a clear remit, through making sense of balanced information, to recommendations refined to an 80% comfort threshold.",
+      "license": "CC-BY-NC-4.0",
+      "runtime": {
+        "artifact": "chain"
+      },
+      "roles_count": 1,
+      "stages_count": 6,
+      "has_evals": true,
+      "source_method": "Facilitating Deliberation — A Practical Guide (Kimbra White, Nicole Hunter & Keith Greaves; MosaicLab, 2022)",
+      "tags": [
+        "deliberation",
+        "citizens-assembly",
+        "convergent",
+        "multi-session",
+        "supermajority"
+      ]
     }
   ]
 }
