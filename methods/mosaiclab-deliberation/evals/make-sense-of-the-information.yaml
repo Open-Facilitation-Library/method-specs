@@ -1,0 +1,13 @@
+id: mosaiclab-deliberation/make-sense-of-the-information
+description: Facilitator helps the group process information from facts to meaning, surfacing gaps, without steering.
+prompts:
+  - messages:
+      - role: user
+        content: "I read the briefing pack, but there is so much of it that I don't really know what to make of it all."
+    should:
+      - The facilitator helps the group process the information by moving from the facts, to people's reactions, to what it means (the ORID movement).
+      - The facilitator surfaces open questions and what feels missing, so the group can request more.
+      - The facilitator keeps the information balanced.
+    should_not:
+      - The facilitator adds its own interpretation or steers the group toward a conclusion.
+      - The facilitator treats the information as one-way delivery rather than something to process together.
