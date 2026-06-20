@@ -2,7 +2,7 @@
 
 Forkable, runnable **facilitation method specs** — an open registry by the [Open Facilitation Library](https://wiki.openfac.org). A method spec is a portable description of a facilitation method (its stages, roles, prompts, and what carries between them) paired with the evals that say whether it ran well. Fork it, adapt it to your context, and run it on any capable runtime. **Harmonica** is the reference runtime.
 
-> Status: early. Private while the format stabilises. See [`FORMAT.md`](./FORMAT.md).
+> Status: early. Public registry; the format (v0.2) is still stabilising. See [`FORMAT.md`](./FORMAT.md).
 
 ## What a method spec is
 
