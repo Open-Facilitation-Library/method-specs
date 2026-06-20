@@ -1,4 +1,5 @@
 import { KNOWN_LICENSES, ATTRIBUTION_LICENSES } from './licenses.mjs';
+import { parseRef } from './composition.mjs';
 
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.]+)?$/;
@@ -87,6 +88,39 @@ export function validateSpec(fm, bodyStageIds, ctx) {
         }
       }
     }
+  }
+
+  // composition: spec-level `composes` + stage-level `uses`. Format only here
+  // (each ref well-formed, no self-reference, no duplicates, every `uses` is
+  // listed in `composes`). Existence + cycles are a cross-spec check, in
+  // composition.validateComposition.
+  const composedIds = new Set();
+  if ('composes' in fm) {
+    if (!Array.isArray(fm.composes)) {
+      errors.push('composes, if present, must be an array of spec references');
+    } else {
+      for (const ref of fm.composes) {
+        const parsed = parseRef(ref);
+        if (!parsed) {
+          errors.push(`composes entry "${ref}" is not a valid spec reference (id or id@version)`);
+          continue;
+        }
+        if (parsed.id === fm.id) errors.push(`a spec cannot compose itself ("${ref}")`);
+        if (composedIds.has(parsed.id)) errors.push(`duplicate composes entry for "${parsed.id}"`);
+        composedIds.add(parsed.id);
+      }
+    }
+  }
+  if (Array.isArray(fm.stages)) {
+    fm.stages.forEach((s, i) => {
+      if (!s || !('uses' in s)) return;
+      const parsed = parseRef(s.uses);
+      if (!parsed) {
+        errors.push(`stages[${i}].uses "${s.uses}" is not a valid spec reference`);
+      } else if (!composedIds.has(parsed.id)) {
+        errors.push(`stage "${s.id ?? i}" uses "${parsed.id}", which is not listed in composes`);
+      }
+    });
   }
 
   return { errors, warnings };

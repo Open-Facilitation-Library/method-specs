@@ -52,3 +52,33 @@ describe('buildReadmeTable', () => {
     expect(lines[3]).toContain('retro');
   });
 });
+
+describe('buildIndexJson composition edges', () => {
+  const specs = [
+    {
+      fm: {
+        id: 'orid', title: 'ORID', version: '1.0.0', status: 'stable',
+        summary: 'O.', license: 'CC0-1.0', runtime: { artifact: 'single' }, stages: [{ id: 's1' }],
+      },
+      has_evals: false,
+    },
+    {
+      fm: {
+        id: 'deliberation', title: 'Delib', version: '0.1.0', status: 'draft',
+        summary: 'D.', license: 'CC0-1.0', runtime: { artifact: 'chain' }, stages: [{ id: 's1' }],
+        composes: ['orid'],
+      },
+      has_evals: false,
+    },
+  ];
+
+  it('records composes on the consumer and used_by on the building block', () => {
+    const idx = buildIndexJson(specs);
+    const orid = idx.methods.find((m) => m.id === 'orid');
+    const delib = idx.methods.find((m) => m.id === 'deliberation');
+    expect(delib.composes).toEqual(['orid']);
+    expect(orid.used_by).toEqual(['deliberation']);
+    expect(orid).not.toHaveProperty('composes');
+    expect(delib).not.toHaveProperty('used_by');
+  });
+});
