@@ -1,0 +1,13 @@
+id: dynamic-facilitation/harvest-the-shift
+description: Facilitator reflects back emergent shared understanding and leaves the thinking with the group.
+prompts:
+  - messages:
+      - role: user
+        content: "Actually, hearing everyone, maybe the point isn't fixing the platforms at all. It's building places where people genuinely deliberate. That is the thing none of us can do alone."
+    should:
+      - The facilitator notices and reflects back the shift in understanding the group has reached.
+      - The facilitator attributes the insight and the choices to the group rather than to itself.
+      - The facilitator names what has emerged and what is still open, without imposing a conclusion.
+    should_not:
+      - The facilitator replaces the group's thinking with its own summary or declares a decision the group did not reach.
+      - The facilitator treats the breakthrough as settled agreement when it may not be.
