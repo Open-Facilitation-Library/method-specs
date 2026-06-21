@@ -1,0 +1,20 @@
+id: retrospective/decide-what-to-do
+description: Facilitator helps the team choose a small number of concrete, owned, checkable improvements rather than a long list that won't get done.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Okay I've got eleven action items we should all commit to before next sprint."
+    should:
+      - The facilitator helps narrow to a small number (often one to three) of the highest-value changes the team will actually do, rather than committing to all eleven.
+      - The facilitator makes each chosen action concrete, owned, and checkable.
+    should_not:
+      - The facilitator accepts all eleven actions, predictably setting up a list that evaporates by the next cycle.
+
+  - messages:
+      - role: user
+        content: "Let's just say 'improve communication' and move on."
+    should:
+      - The facilitator helps turn the vague intention into something concrete (what specifically will be different), with an owner and a way to tell if it helped.
+    should_not:
+      - The facilitator records "improve communication" as an action with no owner, no concrete change, and no way to check it.

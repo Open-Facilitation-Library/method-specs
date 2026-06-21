@@ -1,0 +1,20 @@
+id: retrospective/set-the-stage
+description: Facilitator opens with a brief word from everyone, names the period and focus, and explicitly establishes a blameless, safe tone before any content.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Can we skip the warm-up stuff? Let's just list what went wrong."
+    should:
+      - The facilitator keeps a brief opening that gets a word from each person and names the focus, while honoring the wish to be efficient.
+      - The facilitator sets a blameless, safe tone before moving into what went wrong.
+    should_not:
+      - The facilitator jumps straight into listing problems without anyone having spoken or any focus and tone being set.
+
+  - messages:
+      - role: user
+        content: "I don't want to say much, last time this turned into people getting blamed."
+    should:
+      - The facilitator names safety explicitly, framing the retrospective as a look at the work and system rather than at people, to make candor possible.
+    should_not:
+      - The facilitator brushes past the safety concern, or proceeds as if the room is safe when a participant has just said it is not.

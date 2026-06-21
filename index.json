@@ -2,6 +2,32 @@
   "schema_version": 1,
   "methods": [
     {
+      "id": "consent-decision-making",
+      "title": "Consent Decision-Making",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A group decides on a proposal by intentionally seeking objections, integrating only the arguments that qualify, and adopting what is good enough for now and safe enough to try until the next review.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 2,
+      "stages_count": 5,
+      "has_evals": true,
+      "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "tags": [
+        "decision-making",
+        "consent",
+        "convergent",
+        "governance",
+        "objections",
+        "small-group"
+      ],
+      "used_by": [
+        "governance-meeting"
+      ]
+    },
+    {
       "id": "dynamic-facilitation",
       "title": "Dynamic Facilitation",
       "version": "0.1.0",
@@ -30,6 +56,34 @@
       ]
     },
     {
+      "id": "governance-meeting",
+      "title": "Governance Meeting",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A regular, facilitated meeting where a team governs its own work — opening together, surfacing what needs deciding, forming proposals, and deciding by consent — assembled from the Sociocracy 3.0 building blocks.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "chain"
+      },
+      "roles_count": 1,
+      "stages_count": 6,
+      "has_evals": true,
+      "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "tags": [
+        "governance",
+        "meeting",
+        "decision-making",
+        "consent",
+        "composed",
+        "recurring"
+      ],
+      "composes": [
+        "navigate-via-tension",
+        "proposal-forming",
+        "consent-decision-making"
+      ]
+    },
+    {
       "id": "mosaiclab-deliberation",
       "title": "MosaicLab Deliberation",
       "version": "0.1.0",
@@ -49,6 +103,81 @@
         "convergent",
         "multi-session",
         "supermajority"
+      ]
+    },
+    {
+      "id": "navigate-via-tension",
+      "title": "Navigate via Tension",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "People surface the tensions they feel in relation to the organization, investigate what sits behind each one, and name the ones that point to a real driver worth responding to.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 2,
+      "stages_count": 4,
+      "has_evals": true,
+      "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "tags": [
+        "sense-making",
+        "drivers",
+        "surfacing",
+        "divergent",
+        "governance",
+        "small-group"
+      ],
+      "used_by": [
+        "governance-meeting"
+      ]
+    },
+    {
+      "id": "proposal-forming",
+      "title": "Proposal Forming",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A group designs a proposal to fulfil a purpose through a structured divergent-then-convergent sequence — understand the driver, gather constraints and resources, surface requirements, generate ideas, and have a small group tune them into one coherent draft.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 2,
+      "stages_count": 5,
+      "has_evals": true,
+      "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "tags": [
+        "proposal-design",
+        "divergent",
+        "convergent",
+        "co-creation",
+        "governance",
+        "small-group"
+      ],
+      "used_by": [
+        "governance-meeting"
+      ]
+    },
+    {
+      "id": "retrospective",
+      "title": "Retrospective",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A team sets aside regular time to look back over a period of work, make sense of what happened, and decide a small number of concrete improvements to try next.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 2,
+      "stages_count": 5,
+      "has_evals": true,
+      "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest), adopting the five-phase structure of Agile Retrospectives (Esther Derby & Diana Larsen)",
+      "tags": [
+        "retrospective",
+        "reflection",
+        "continuous-improvement",
+        "learning",
+        "team",
+        "recurring"
       ]
     }
   ]
