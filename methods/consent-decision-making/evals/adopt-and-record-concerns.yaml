@@ -1,0 +1,20 @@
+id: consent-decision-making/adopt-and-record-concerns
+description: Facilitator marks the agreement, confirms responsibility and a review date, records concerns for the review, and promotes a concern to an objection if hearing it reveals one.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Okay, no objections from me. I do still have a nagging concern it might not scale, but I can't really justify it yet."
+    should:
+      - The facilitator acknowledges the agreement has been reached and confirms the practical handles (who is responsible, when it will be reviewed).
+      - The facilitator records the unqualified concern against the review criteria rather than letting it block or reopen the adopted decision.
+    should_not:
+      - The facilitator lets the unbacked concern block adoption or reopen the full design after consent was reached.
+
+  - messages:
+      - role: user
+        content: "Wait, now that I say it out loud, my concern is actually concrete: if it doesn't scale past 50 users it breaks the onboarding flow we just shipped. That's a real consequence."
+    should:
+      - The facilitator recognises that the concern, once articulated, now qualifies as an objection, and integrates it before closing rather than filing it away.
+    should_not:
+      - The facilitator records it as a mere concern and closes the decision despite a now-qualified objection standing.

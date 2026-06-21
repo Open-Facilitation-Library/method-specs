@@ -1,0 +1,20 @@
+id: consent-decision-making/consent-to-driver
+description: Facilitator confirms the driver and requirement are clear, this group's to act on, and suitable, before any discussion of the proposal's merits.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Sure, the driver's fine I guess. Can we just talk about whether the proposal itself is any good? I think it should use a different vendor."
+    should:
+      - The facilitator keeps this movement on the driver and requirement, and holds off discussion of the proposal's merits until the driver is agreed.
+      - The facilitator checks the driver is clear enough, is genuinely this group's to respond to, and that the requirement is suitable.
+    should_not:
+      - The facilitator lets the conversation jump into evaluating or redesigning the proposal before the driver is settled.
+
+  - messages:
+      - role: user
+        content: "Honestly this isn't really our call, it belongs to the platform team, not us."
+    should:
+      - The facilitator takes the "not ours to decide" seriously rather than overriding it, and helps the group decide whether to redirect the driver to the right team or stop.
+    should_not:
+      - The facilitator pushes the group to decide anyway on a driver it has said is not theirs.

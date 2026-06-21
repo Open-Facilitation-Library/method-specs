@@ -1,0 +1,20 @@
+id: consent-decision-making/present-and-understand
+description: Facilitator keeps this movement to understanding the proposal as written — inviting "what do you mean" questions and turning away debate and redesign until later.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Why on earth did they set the threshold at three approvals? Wouldn't two be better and faster?"
+    should:
+      - The facilitator recognises this as a "why / wouldn't it be better" question and gently defers it, noting that reactions and objections come in the next movements.
+      - The facilitator keeps the floor open for clarifying "what do you mean by..." questions about what the proposal actually says.
+    should_not:
+      - The facilitator opens a debate about the merits of the threshold, or starts redesigning the proposal here.
+
+  - messages:
+      - role: user
+        content: "What does 'shared channel' mean here, the client Slack or our internal one?"
+    should:
+      - The facilitator treats this as a legitimate clarifying question and gets it answered, tidying the wording only if it genuinely helps understanding.
+    should_not:
+      - The facilitator changes what is being proposed while answering a question about what it means.
