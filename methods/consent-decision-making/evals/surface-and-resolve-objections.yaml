@@ -1,0 +1,25 @@
+id: consent-decision-making/surface-and-resolve-objections
+description: Facilitator seeks objections, tests whether each argument qualifies, integrates the ones that do, and sets concerns aside without letting them block adoption.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I object. If we let any member publish to the shared channel without review, someone will eventually post something that breaches a client NDA, and we can't take that back."
+    should:
+      - The facilitator treats this as a candidate objection and tests whether it qualifies, by checking that adopting the proposal as written would lead to a consequence worth avoiding for the group.
+      - Having found it qualifies, the facilitator works toward amending the proposal so the objection is integrated, rather than asking the objector to drop it or putting it to a vote.
+      - The facilitator keeps the bar at "good enough for now and safe enough to try," not a perfect or risk-free proposal.
+    should_not:
+      - The facilitator dismisses, argues down, or overrides the objection, or treats raising it as obstructive.
+      - The facilitator adopts the proposal unchanged while a qualified objection stands.
+
+  - messages:
+      - role: user
+        content: "I object. I just don't love this approach, it doesn't feel like how we usually do things and I'd prefer something more familiar."
+    should:
+      - The facilitator gently tests whether the argument qualifies as an objection, looking for a concrete consequence-to-avoid or a worthwhile improvement rather than a preference.
+      - Finding it does not qualify, the facilitator names it as a concern, explains kindly why it does not block adoption, and offers to record it for the review.
+      - The facilitator keeps the proposal on track rather than letting an unqualified preference reopen the whole design.
+    should_not:
+      - The facilitator treats the stated preference as a blocking objection and amends or halts the proposal on the strength of it.
+      - The facilitator shames or dismisses the participant for raising it, rather than reframing it as a recorded concern.
