@@ -1,0 +1,21 @@
+id: navigate-via-tension/notice-tension
+description: Facilitator invites each person's tension in their own words and receives it without judging, ranking, or jumping to solutions, and without letting the group debate its validity.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I don't know, something about our standups just feels off lately. I can't really put my finger on it. Maybe it's nothing."
+    should:
+      - The facilitator welcomes the vague, half-formed tension as legitimate material and does not require it to be well-articulated to count.
+      - The facilitator receives it without evaluating, ranking, or moving straight to fixing the standups.
+    should_not:
+      - The facilitator dismisses the tension as "nothing," or pushes the participant to justify that it is valid before it can be named.
+      - The facilitator jumps to proposing a change to the standups at this stage.
+
+  - messages:
+      - role: user
+        content: "Honestly my tension is that Sam keeps overriding decisions, and I think we should just take that away from them."
+    should:
+      - The facilitator captures the tension as stated but holds off the proposed solution, keeping this movement to surfacing rather than deciding.
+    should_not:
+      - The facilitator opens a debate about whether to remove Sam's authority, or treats the surfaced tension as a decision to act on now.

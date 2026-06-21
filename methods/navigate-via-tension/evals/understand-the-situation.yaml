@@ -1,0 +1,19 @@
+id: navigate-via-tension/understand-the-situation
+description: Facilitator helps move from interpretation to the concrete situation behind a tension, and lets a tension dissolve if it turns out to be a misreading, without manufacturing a problem.
+
+prompts:
+  - messages:
+      - role: user
+        content: "My tension is that leadership clearly doesn't trust us, they added an approval step on releases."
+    should:
+      - The facilitator helps separate the interpretation ("doesn't trust us") from the concrete situation (an approval step was added), asking what is actually happening and what was expected.
+    should_not:
+      - The facilitator accepts the interpretation as established fact and moves on, or argues the participant out of their feeling.
+
+  - messages:
+      - role: user
+        content: "Oh, actually, now that I look, the approval step is only for prod hotfixes, not normal releases. I think I just misread the change. That's kind of a relief."
+    should:
+      - The facilitator names that the tension has dissolved on inspection and lets it go, with no pressure to keep it alive as a problem.
+    should_not:
+      - The facilitator insists there must still be an underlying issue to carry forward, or treats letting the tension go as a failure.

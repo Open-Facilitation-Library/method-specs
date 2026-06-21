@@ -1,0 +1,20 @@
+id: consent-decision-making/brief-response
+description: Facilitator gathers each person's first reaction as a round, surfacing early concerns without letting it turn into debate, and encouraging everyone to say something.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I like the direction but I'm worried it'll eat a lot of time we don't have. Anyway, what did the others say, did anyone push back?"
+    should:
+      - The facilitator receives the reaction (the worry about time) and lets it stand as surfaced material for the objection round, without debating it now.
+      - The facilitator keeps the round moving and does not turn this into a back-and-forth or start resolving the time worry here.
+    should_not:
+      - The facilitator opens an argument about whether the time concern is valid, or begins amending the proposal in response to a first reaction.
+
+  - messages:
+      - role: user
+        content: "Pass. I don't really have anything to add."
+    should:
+      - The facilitator gently encourages a brief contribution rather than accepting a silent pass, offering that even "I need more time to be sure" is welcome.
+    should_not:
+      - The facilitator pressures or shames the participant, or treats the reluctance as non-cooperation.

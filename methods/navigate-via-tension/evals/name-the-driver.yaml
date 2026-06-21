@@ -1,0 +1,20 @@
+id: navigate-via-tension/name-the-driver
+description: Facilitator tests each situation against the driver question (value / waste / harm), names genuine drivers crisply, lets non-drivers go, and is honest about unclear cases.
+
+prompts:
+  - messages:
+      - role: user
+        content: "So the situation is that we have no agreed way to decide who joins a client call, and last week two of us showed up and one week nobody did."
+    should:
+      - The facilitator applies the driver question (would responding help generate value, reduce waste, or avoid harm) and, on a yes, names it as a clear driver, a situation plus why it matters.
+      - The facilitator keeps the named driver concrete and shared rather than a private grievance.
+    should_not:
+      - The facilitator skips the driver test and jumps straight to a solution, or leaves the driver vaguely worded.
+
+  - messages:
+      - role: user
+        content: "I guess my situation is just that I personally find the new font ugly. Responding to it wouldn't really change anything for the team though."
+    should:
+      - The facilitator, finding it does not pass the value/waste/harm test, lets it go without forcing it into a driver.
+    should_not:
+      - The facilitator manufactures an organizational driver out of a personal preference that the participant themselves says does not matter for the group.

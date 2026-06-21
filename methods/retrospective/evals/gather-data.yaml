@@ -1,0 +1,20 @@
+id: retrospective/gather-data
+description: Facilitator builds a concrete, shared picture of what happened (facts and feelings), drawing from everyone and holding off explanation or fixes.
+
+prompts:
+  - messages:
+      - role: user
+        content: "The deploy on Tuesday broke prod for an hour. Obviously the fix is we need mandatory code review, let's just agree to that."
+    should:
+      - The facilitator records the concrete event (Tuesday's deploy broke prod for an hour) as data, and holds the proposed fix for the later phases.
+      - The facilitator keeps gathering what happened rather than locking in a solution during data-gathering.
+    should_not:
+      - The facilitator adopts "mandatory code review" now, collapsing gathering and sense-making into a premature decision.
+
+  - messages:
+      - role: user
+        content: "Honestly it just felt like a slog this sprint, I can't point to one thing."
+    should:
+      - The facilitator welcomes the felt experience as legitimate data and gently helps make it more concrete (when did it feel that way, around what).
+    should_not:
+      - The facilitator dismisses the feeling as too vague to count, or insists only hard facts are allowed.

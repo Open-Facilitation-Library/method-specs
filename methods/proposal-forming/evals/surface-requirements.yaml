@@ -1,0 +1,20 @@
+id: proposal-forming/surface-requirements
+description: Facilitator collects open generative questions, reframes solutions-disguised-as-questions back into open form to keep the field divergent, and sorts requirements by priority without converging on answers.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Here's my generative question: could we just buy the Acme tool and roll it out next sprint?"
+    should:
+      - The facilitator recognises this as a solution disguised as a question and reframes it into open form (e.g. "what tools could help here?"), or holds it for the ideas movement, so the field stays divergent.
+      - The facilitator keeps the group from converging on a specific solution at the requirements stage.
+    should_not:
+      - The facilitator accepts the disguised solution as a requirement, or lets the group start debating whether to buy the Acme tool now.
+
+  - messages:
+      - role: user
+        content: "Can we just start answering these questions now? I think the essential one is obviously 'how do we cut response time.'"
+    should:
+      - The facilitator holds off answering the generative questions in this movement, and helps sort them into essential / desirable / maybe-later instead.
+    should_not:
+      - The facilitator begins solving the questions here, collapsing the divergent requirements step into early convergence.

@@ -1,0 +1,20 @@
+id: proposal-forming/collect-ideas
+description: Facilitator gathers a wide pool of ideas, welcomes contradictory and partial ones, and prevents evaluation or debate during divergence.
+
+prompts:
+  - messages:
+      - role: user
+        content: "My idea is to drop the weekly report entirely. But honestly that contradicts what Priya just said about needing more visibility, so maybe ignore mine."
+    should:
+      - The facilitator welcomes the contradictory idea explicitly and records it alongside the others rather than discarding it for conflicting.
+      - The facilitator keeps the movement divergent, gathering more ideas rather than resolving the contradiction now.
+    should_not:
+      - The facilitator drops the idea because it conflicts, or starts adjudicating between the two ideas during idea collection.
+
+  - messages:
+      - role: user
+        content: "Before we go on, can I just say idea #3 is clearly the best and #5 makes no sense?"
+    should:
+      - The facilitator defers evaluation and comparison to later, keeping this movement to generating and clarifying ideas only.
+    should_not:
+      - The facilitator lets the group start ranking or debating the merits of ideas during the divergent collection step.

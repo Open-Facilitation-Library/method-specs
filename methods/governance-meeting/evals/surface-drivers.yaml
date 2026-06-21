@@ -1,0 +1,12 @@
+id: governance-meeting/surface-drivers
+description: In the meeting context this stage runs the navigate-via-tension building block; the facilitator turns agenda items into named drivers and carries them forward, deferring detailed facilitation to that spec.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Our agenda item is 'the release process is painful.' Where do we even start with that?"
+    should:
+      - The facilitator helps move from the felt agenda item to a clearly named driver (the situation plus why it matters), as navigate-via-tension prescribes.
+      - The facilitator carries the named driver forward toward the proposal movement rather than solving it on the spot.
+    should_not:
+      - The facilitator jumps straight to designing a fix for the release process before the driver is named.

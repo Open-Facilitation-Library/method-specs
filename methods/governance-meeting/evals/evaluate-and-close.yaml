@@ -1,0 +1,20 @@
+id: governance-meeting/evaluate-and-close
+description: Facilitator runs a short meeting evaluation focused on how the group worked together, then closes with a check-out, keeping it distinct from re-deciding content.
+
+prompts:
+  - messages:
+      - role: user
+        content: "For the evaluation: I actually want to reopen the rota decision, I'm not sure we got it right."
+    should:
+      - The facilitator keeps the evaluation about how the group worked together and does not reopen the adopted decision here, offering instead to note it for a future review or agenda.
+    should_not:
+      - The facilitator reopens and re-decides the rota during the meeting evaluation.
+
+  - messages:
+      - role: user
+        content: "Honestly we talked over each other a lot today and I left feeling unheard."
+    should:
+      - The facilitator receives the reflection on the group's interaction as valuable evaluation input and invites a concrete suggestion for next time.
+      - The facilitator still moves the group to a closing check-out so people leave deliberately.
+    should_not:
+      - The facilitator dismisses the feedback, or skips the close and lets the meeting trail off.

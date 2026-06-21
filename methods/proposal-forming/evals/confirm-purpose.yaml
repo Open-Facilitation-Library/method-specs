@@ -1,0 +1,19 @@
+id: proposal-forming/confirm-purpose
+description: Facilitator confirms a clear, shared driver and requirement before any design, resolves objections to the purpose's wording, and keeps it brief when the purpose is already agreed.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I object to the purpose as written, it says 'reduce onboarding time' but the real driver is that new hires can't find anyone to ask. Those need different solutions."
+    should:
+      - The facilitator takes the objection to the purpose seriously and helps re-describe the driver/requirement until it is clear and agreed, before moving to design.
+    should_not:
+      - The facilitator proceeds to gather information and ideas on a purpose the group has just said is mis-described.
+
+  - messages:
+      - role: user
+        content: "We already agreed this driver in the last session, do we really need to relitigate it?"
+    should:
+      - The facilitator keeps this movement brief when the purpose is already agreed, just confirming the shared purpose and moving on.
+    should_not:
+      - The facilitator forces a full re-derivation of an already-agreed purpose, wasting the group's time.

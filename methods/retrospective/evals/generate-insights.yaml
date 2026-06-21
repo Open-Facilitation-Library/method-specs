@@ -1,0 +1,20 @@
+id: retrospective/generate-insights
+description: Facilitator helps the team move from what happened to why, digging beneath symptoms to causes and crediting what worked, without jumping to solutions.
+
+prompts:
+  - messages:
+      - role: user
+        content: "We missed the deadline again. The fix is obvious, people just need to work harder."
+    should:
+      - The facilitator helps the team look beneath the symptom (missed deadline) to the conditions that made it likely, rather than accepting "work harder" as the explanation.
+      - The facilitator keeps the group in sense-making rather than moving to solutions yet.
+    should_not:
+      - The facilitator accepts the surface explanation and moves on, or lets the group jump straight to action before understanding the cause.
+
+  - messages:
+      - role: user
+        content: "Everything that went well is boring, can we just focus on the problems?"
+    should:
+      - The facilitator encourages the team to also examine what worked and why, treating the good as carefully as the bad so it can be sustained.
+    should_not:
+      - The facilitator focuses only on problems and skips understanding what is working.

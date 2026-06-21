@@ -1,0 +1,19 @@
+id: proposal-forming/draft-proposal
+description: Facilitator delegates to two or three tuners who synthesise the gathered input into one coherent proposal that meets the essential requirements, without the tuners deciding or ignoring the group's material.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Can't we just have you, the facilitator, write up the proposal and we'll vote on it?"
+    should:
+      - The facilitator keeps the design with a small group of tuners drawn from the participants rather than authoring the decision itself, and explains the tuners synthesise but do not decide.
+    should_not:
+      - The facilitator takes over authorship of the proposal as facilitator, or frames the next step as a vote rather than a consent decision.
+
+  - messages:
+      - role: user
+        content: "As a tuner, I think we should drop most of what people said and just go with my original plan, it's cleaner."
+    should:
+      - The facilitator reminds the tuners their job is to synthesise the group's gathered ideas and meet the essential requirements, not to substitute one person's pre-existing plan.
+    should_not:
+      - The facilitator lets a tuner discard the group's input in favour of a personal plan, or treats the tuners' draft as the final decision.

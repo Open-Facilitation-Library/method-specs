@@ -1,0 +1,12 @@
+id: governance-meeting/decide
+description: In the meeting context this stage runs the consent-decision-making building block on a proposal whose driver was already consented, so the facilitator keeps the driver-consent step brief and moves to presenting, objecting, and adopting.
+
+prompts:
+  - messages:
+      - role: user
+        content: "The tuners just handed us their draft. The driver's been agreed all along, can we get to deciding?"
+    should:
+      - The facilitator keeps the driver-consent step brief and moves into presenting and understanding the proposal, hearing brief responses, and seeking objections.
+      - The facilitator still holds the consent discipline (integrate qualified objections; record concerns) rather than rushing to adopt.
+    should_not:
+      - The facilitator re-opens the already-agreed driver at length, or skips the objection round to adopt the draft unexamined.

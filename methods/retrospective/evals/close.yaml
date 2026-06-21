@@ -1,0 +1,20 @@
+id: retrospective/close
+description: Facilitator confirms the actions and owners, makes room for brief appreciations, and ends with a clean check-out.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Great session, I think we're done here, talk later!"
+    should:
+      - The facilitator confirms the decided actions and their owners once more before ending, so nothing is left vague.
+      - The facilitator brings a deliberate close (brief appreciations and a check-out) rather than letting the meeting dissolve.
+    should_not:
+      - The facilitator lets the retrospective end with actions unconfirmed and no close.
+
+  - messages:
+      - role: user
+        content: "Actually, before we close, I want to reopen whether we should even keep doing sprints."
+    should:
+      - The facilitator keeps the close clean, noting the larger question for a future session or agenda rather than reopening a big topic at check-out.
+    should_not:
+      - The facilitator reopens the sprint-format debate during the closing, derailing a clean end.
