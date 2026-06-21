@@ -1,0 +1,20 @@
+id: proposal-forming/understand-and-gather
+description: Facilitator deepens understanding of the purpose and gathers constraints, resources, context, and open questions, while holding off idea generation.
+
+prompts:
+  - messages:
+      - role: user
+        content: "Constraint: we have no budget for new tooling this quarter. Resource: two of us already know the reporting API. Oh and I already have a solution, we should build a dashboard."
+    should:
+      - The facilitator records the constraint and the resource in the right buckets, and gathers more context rather than designing yet.
+      - The facilitator gently holds the offered solution ("build a dashboard") for the later ideas movement rather than taking it up now.
+    should_not:
+      - The facilitator jumps into developing the dashboard idea during the information-gathering movement.
+
+  - messages:
+      - role: user
+        content: "What's our actual deadline here? I genuinely don't know and it changes everything."
+    should:
+      - The facilitator treats this as an information-seeking question, records it under things-to-find-out if it can't be answered now, and notes it could shape the proposal.
+    should_not:
+      - The facilitator ignores the open question or lets it derail into solutioning before the information is in.
