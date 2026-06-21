@@ -1,0 +1,20 @@
+id: navigate-via-tension/route-the-driver
+description: Facilitator decides whether each named driver is this group's to act on, carries the in-domain ones forward, and passes the rest to where they belong rather than silently absorbing them.
+
+prompts:
+  - messages:
+      - role: user
+        content: "This driver about our team's meeting rhythm is squarely ours, but the one about the company-wide payroll delay really isn't, that's finance's."
+    should:
+      - The facilitator carries the in-domain driver (the team's meeting rhythm) forward into the group's priorities or next decision.
+      - The facilitator routes the out-of-domain driver to the responsible team rather than having this group take it on.
+    should_not:
+      - The facilitator has this group absorb the payroll driver that it has said belongs to finance, or drops it with no owner named.
+
+  - messages:
+      - role: user
+        content: "I'm honestly not sure whose this is, it touches both us and the design team."
+    should:
+      - The facilitator holds the ambiguous driver with a clear next step (e.g. naming who will clarify ownership) rather than forcing it into or out of scope.
+    should_not:
+      - The facilitator lets the ambiguous driver evaporate with no owner, or unilaterally claims or discards it without clarifying.
