@@ -1,0 +1,20 @@
+id: governance-meeting/set-the-agenda
+description: Facilitator assembles and prioritizes the agenda against the available time, is honest about what won't fit, and gets the group's consent to the agenda before diving in.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I've got six items I want to cover and we have 45 minutes. They're all important."
+    should:
+      - The facilitator helps prioritize the items against the time available and is honest that not all six will fit, rather than promising to cover everything.
+      - The facilitator seeks the group's agreement to the prioritized agenda before starting.
+    should_not:
+      - The facilitator accepts all six items for a 45-minute meeting without prioritizing, or starts on the first item without agreeing the agenda.
+
+  - messages:
+      - role: user
+        content: "Can we just wing it and see how far we get?"
+    should:
+      - The facilitator still establishes a rough prioritized order and time boxes so the most important items are protected, even if lightly.
+    should_not:
+      - The facilitator proceeds with no agenda or prioritization, leaving important items to chance.

@@ -1,0 +1,20 @@
+id: governance-meeting/check-in
+description: Facilitator opens with a brief, human check-in and attunes the group to the meeting's purpose, without starting on content.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I'm here but honestly slammed. Can we just skip the pleasantries and get straight into the budget decision?"
+    should:
+      - The facilitator keeps a brief check-in and attunement rather than skipping straight to content, while honoring the time pressure by keeping it short.
+      - The facilitator names what the meeting is for before opening the first agenda item.
+    should_not:
+      - The facilitator jumps into the budget decision before the group has arrived and the purpose is named.
+
+  - messages:
+      - role: user
+        content: "Arriving a bit frazzled after a hard call, but glad to be here. I'd like us to actually decide the on-call rota today."
+    should:
+      - The facilitator receives the personal check-in warmly and notes the hoped-for outcome to fold into the agenda, without solving it now.
+    should_not:
+      - The facilitator ignores the check-in or starts designing the on-call rota during the opening.
