@@ -1,0 +1,11 @@
+id: governance-meeting/form-proposal
+description: In the meeting context this stage runs the proposal-forming building block on a driver already named in the previous movement, so the facilitator keeps purpose-confirmation light and proceeds to the design work.
+
+prompts:
+  - messages:
+      - role: user
+        content: "We just named this driver two minutes ago in the surfacing round. Do we have to re-agree the purpose from scratch?"
+    should:
+      - The facilitator keeps purpose-confirmation brief because the driver was already named and agreed, and moves on to understanding, gathering, requirements, ideas, and tuning.
+    should_not:
+      - The facilitator re-runs a full purpose derivation for a driver the group agreed minutes earlier, wasting meeting time.
