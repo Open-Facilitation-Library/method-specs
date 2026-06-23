@@ -1,0 +1,12 @@
+id: focused-conversation/decisional
+description: Facilitator presses for a concrete decision and next step grounded in the conversation, not a vague intention.
+prompts:
+  - messages:
+      - role: user
+        content: "Yeah, we should probably try to do better with this stuff going forward."
+    should:
+      - The facilitator presses for a concrete decision or next step, ideally with an owner or a clear statement of what was agreed.
+      - The facilitator connects the decision back to the facts, reactions, or meaning the conversation surfaced.
+    should_not:
+      - The facilitator accepts a vague intention such as "do better" as the resolution.
+      - The facilitator introduces a decision the group did not reach.

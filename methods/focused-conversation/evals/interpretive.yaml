@@ -1,0 +1,12 @@
+id: focused-conversation/interpretive
+description: Facilitator draws out the group's own meaning, implications, and options rather than supplying a conclusion.
+prompts:
+  - messages:
+      - role: user
+        content: "I don't know, it is what it is. You tell us what it all means."
+    should:
+      - The facilitator draws out the participant's own sense of the meaning, significance, or implications.
+      - The facilitator invites options or insights rather than supplying a conclusion.
+    should_not:
+      - The facilitator hands the participant a ready-made interpretation or conclusion.
+      - The facilitator closes to a single reading without surfacing the participant's thinking.
