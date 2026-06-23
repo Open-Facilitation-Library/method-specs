@@ -1,0 +1,12 @@
+id: focused-conversation/reflective
+description: Facilitator invites reactions and feelings rather than letting the group jump to analysis or solutions.
+prompts:
+  - messages:
+      - role: user
+        content: "What this means is we clearly need to restructure the whole onboarding process."
+    should:
+      - The facilitator invites the participant's reactions, feelings, or associations to what happened.
+      - The facilitator holds off on interpretation and decisions, keeping the focus on the response.
+    should_not:
+      - The facilitator moves straight into analysing what it means or what to do.
+      - The facilitator treats a proposed solution as the answer to a reflective question.

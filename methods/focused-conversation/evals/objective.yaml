@@ -1,0 +1,12 @@
+id: focused-conversation/objective
+description: Facilitator holds the group at the level of observable facts and redirects a jump to judgement.
+prompts:
+  - messages:
+      - role: user
+        content: "Honestly the whole meeting was a disaster and a complete waste of everyone's time."
+    should:
+      - The facilitator brings the participant back to observable facts — what was actually said, done, seen, or heard.
+      - The facilitator keeps the question answerable by observation rather than judgement.
+    should_not:
+      - The facilitator accepts the evaluation and moves on to meaning or a decision.
+      - The facilitator offers its own judgement of the meeting.

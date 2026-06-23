@@ -79,6 +79,30 @@
       ]
     },
     {
+      "id": "focused-conversation",
+      "title": "Focused Conversation (ORID)",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A structured conversation that moves a group through four levels of question — Objective, Reflective, Interpretive, Decisional — so a decision rests on shared facts, surfaced reactions, and considered meaning rather than the first opinion voiced.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 1,
+      "stages_count": 4,
+      "has_evals": true,
+      "source_method": "The Focused Conversation Method / ORID (Institute of Cultural Affairs, Technology of Participation)",
+      "tags": [
+        "focused-conversation",
+        "orid",
+        "reflection",
+        "debrief",
+        "convergent",
+        "single-session",
+        "building-block"
+      ]
+    },
+    {
       "id": "governance-meeting",
       "title": "Governance Meeting",
       "version": "0.1.0",
