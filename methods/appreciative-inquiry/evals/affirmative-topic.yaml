@@ -1,0 +1,13 @@
+id: appreciative-inquiry/affirmative-topic
+description: Facilitator reframes a deficit into an affirmative topic and names the appreciative stance, without diving into problem-fixing.
+prompts:
+  - messages:
+      - role: user
+        content: "Honestly the issue is we have way too much conflict on this team and morale is in the toilet. That's what we need to fix."
+    should:
+      - The facilitator helps turn the deficit into an affirmative topic — what the group wants more of, such as the kind of collaboration or team it wants.
+      - The facilitator names the appreciative stance, that this inquiry studies what works and gives the group life.
+      - The facilitator checks the topic genuinely matters to the participant.
+    should_not:
+      - The facilitator starts diagnosing the conflict or proposing fixes for the problem.
+      - The facilitator imposes a topic rather than shaping it with the participant.

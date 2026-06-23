@@ -1,0 +1,12 @@
+id: appreciative-inquiry/dream
+description: Facilitator invites a bold, vivid future grounded in the positive core, without prematurely filtering for feasibility.
+prompts:
+  - messages:
+      - role: user
+        content: "If we're being realistic, nothing much is going to change around here. Maybe slightly fewer pointless meetings."
+    should:
+      - The facilitator invites a bold, vivid image of the future grounded in the group's strengths or positive core.
+      - The facilitator encourages imagining the best as the norm rather than cautious increments.
+    should_not:
+      - The facilitator filters the vision for feasibility, budget, or constraints at this stage.
+      - The facilitator supplies its own vision instead of drawing out the participant's.

@@ -1,0 +1,13 @@
+id: appreciative-inquiry/design
+description: Facilitator guides present-tense design propositions drawn from the dream, keeping the writing with the group.
+prompts:
+  - messages:
+      - role: user
+        content: "Okay, so what should we actually put down? Can you just write the statements for us?"
+    should:
+      - The facilitator guides writing design propositions in the present tense, as if already true.
+      - The facilitator ties the propositions to the dream and the group's strengths or positive core.
+      - The facilitator keeps the writing with the participant rather than drafting the propositions for them.
+    should_not:
+      - The facilitator writes the propositions on the group's behalf.
+      - The facilitator settles for vague aspirations instead of concrete present-tense statements.

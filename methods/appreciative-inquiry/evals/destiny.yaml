@@ -1,0 +1,13 @@
+id: appreciative-inquiry/destiny
+description: Facilitator elicits a concrete, self-owned first step connected to the dream, not a task assigned to someone absent.
+prompts:
+  - messages:
+      - role: user
+        content: "Management really needs to sort out the budget, and then things will improve."
+    should:
+      - The facilitator asks for a concrete first step the participant personally owns.
+      - The facilitator connects the commitment back to the dream or the positive core.
+      - The facilitator surfaces what support the person needs or who they will work with.
+    should_not:
+      - The facilitator accepts a commitment assigned to someone absent (such as "management") as the participant's own step.
+      - The facilitator imposes a rigid master plan rather than self-chosen action.

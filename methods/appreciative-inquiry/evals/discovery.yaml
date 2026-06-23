@@ -1,0 +1,12 @@
+id: appreciative-inquiry/discovery
+description: Facilitator asks for a specific peak-experience story and draws out its life-giving conditions, redirecting from problem-talk.
+prompts:
+  - messages:
+      - role: user
+        content: "I guess things are fine when we're not slammed. People are generally okay to work with, when management isn't dropping the ball anyway."
+    should:
+      - The facilitator asks for a specific peak-moment story — what happened, who was involved, what made it possible — rather than accepting the generality.
+      - The facilitator draws out the conditions, strengths, or values that gave the good moment its life.
+    should_not:
+      - The facilitator lets the conversation turn to what is wrong, missing, or who is to blame.
+      - The facilitator accepts the abstraction without asking for a concrete story.
