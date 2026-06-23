@@ -24,6 +24,7 @@ Full format: [`FORMAT.md`](./FORMAT.md).
 <!-- METHODS:START -->
 | Method | Status | Licence | Tags | Stages | Source |
 |---|---|---|---|---|---|
+| [`appreciative-inquiry`](./methods/appreciative-inquiry) | draft | CC0-1.0 | appreciative-inquiry, strengths-based, generative, divergent, multi-session, organizational-change | 5 | Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987) |
 | [`consent-decision-making`](./methods/consent-decision-making) | draft | CC0-1.0 | decision-making, consent, convergent, governance, objections, small-group | 5 | Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest) |
 | [`dynamic-facilitation`](./methods/dynamic-facilitation) | draft | CC0-1.0 | choice-creating, divergent, emergent, complex-questions, small-group | 4 | Dynamic Facilitation (Jim Rough, Center for Wise Democracy) |
 | [`governance-meeting`](./methods/governance-meeting) | draft | CC0-1.0 | governance, meeting, decision-making, consent, composed, recurring | 6 | Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest) |

@@ -2,6 +2,29 @@
   "schema_version": 1,
   "methods": [
     {
+      "id": "appreciative-inquiry",
+      "title": "Appreciative Inquiry",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A strengths-based inquiry chain that moves a group through the 5-D cycle — affirmative topic, discovery of the positive core, a shared dream, design propositions, and committed action — so change grows from what already gives the group life.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "chain"
+      },
+      "roles_count": 1,
+      "stages_count": 5,
+      "has_evals": true,
+      "source_method": "Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987)",
+      "tags": [
+        "appreciative-inquiry",
+        "strengths-based",
+        "generative",
+        "divergent",
+        "multi-session",
+        "organizational-change"
+      ]
+    },
+    {
       "id": "consent-decision-making",
       "title": "Consent Decision-Making",
       "version": "0.1.0",
