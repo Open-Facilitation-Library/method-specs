@@ -2,7 +2,7 @@
 
 **Source:** YouTube https://www.youtube.com/watch?v=Ol37-FfWKck — Dark Matter Labs, Beyond the Rules Lab launch webinar (~300 registrants). Presenters: Michelle + Annette (initiative leads); Ariana + Gordane (built the system/site/tech); case studies from James, Kathleen, Annette.
 
-**Why captured:** ground the OFL "method spec" decision (M2M as the first spec) in how M2M actually works, beyond the thin README + tool cards. Feeds the brainstorming for HAR-1064 (method-spec format) / HAR-1065 (registry repo) and the forkable-specs memo (`claude-config/docs/plans/2026-06-07-methods-as-forkable-specs.md`).
+**Why captured:** ground the OFL "method spec" decision (M2M as the first spec) in how M2M actually works, beyond the thin README + tool cards. Feeds the method-spec format and registry design.
 
 ## What M2M actually is
 - A "living library" for **complex collaborations** (cross-disciplinary / cross-sector / cross-jurisdictional; public + private + civic) tackling entangled challenges (climate, housing, health) where disrupting norms around **value, ownership, power** is essential.

@@ -2,8 +2,8 @@
 
 **Date:** 2026-06-14
 **Status:** designed (approved). Next: implementation plan via `superpowers:writing-plans`.
-**Ticket:** HAR-1065 (this design covers the **index + versioning + publish/visibility** sub-scope; it defers serving infrastructure, peer-review, and the public-flip *mechanics* beyond the per-spec gate).
-**Related:** HAR-1064 (`install_method_spec`, shipped), HAR-1098 (v1 chain CRUD, shipped). Strategy memo: `claude-config/docs/plans/2026-06-07-methods-as-forkable-specs.md`. Format: this repo's `FORMAT.md`.
+**Scope:** This design covers the **index + versioning + publish/visibility** layer; it defers serving infrastructure, peer review, and the public-flip *mechanics* beyond the per-spec gate.
+**Dependencies:** `install_method_spec` and v1 chain CRUD are shipped. Format: this repo's `FORMAT.md`.
 
 ## Goal
 
@@ -20,7 +20,7 @@ Turn the registry from a hand-maintained README table into a self-describing, va
 
 **Out (deferred, with reason):**
 - **Dedicated serving infra** (a Harmonica endpoint, authed fetch, runtime "install-by-id" in the MCP tool). A public repo + a committed `index.json` already delivers discovery + fork + raw-GitHub fetch; an endpoint is a later, optional convenience, and serving the *open* registry from one runtime would cut against its runtime-neutral positioning.
-- **Peer-review process** (a separate HAR-1065 sub-scope) — layered onto status progression later; not a gate to basic publication of a freely-licensed method.
+- **Peer-review process** — layered onto status progression later; not a gate to basic publication of a freely-licensed method.
 - **Multi-version coexistence** (pinning old versions) — YAGNI until someone needs it.
 
 ## Architecture

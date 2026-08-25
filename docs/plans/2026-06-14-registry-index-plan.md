@@ -1090,7 +1090,7 @@ Expected: all three exit 0 (no specs to block now), `index + README in sync`, `a
 
 ```bash
 git add -A
-git commit -m "chore: relocate M2M to staging; generate empty public index (HAR-1065)"
+git commit -m "chore: relocate M2M to staging; generate empty public index"
 ```
 
 - [ ] **Step 8: [USER] Seed + push staging, then flip public**

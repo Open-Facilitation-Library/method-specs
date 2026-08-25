@@ -1,9 +1,10 @@
-# Runtime adapter — build handoff (HAR-1064)
+# Runtime adapter — build handoff
 
 **Status (2026-06-13): brainstormed + designed.** The adapter is an MCP tool,
 `install_method_spec`, built in the **harmonica-mcp** repo — *not* a CLI in this
-repo (the original plan). HAR-1098 shipped, so `POST/PATCH /api/v1/templates`
-accept chain templates in production (app.harmonica.chat).
+repo (the original plan). The v1 template API is shipped, so
+`POST/PATCH /api/v1/templates` accept chain templates in production
+(app.harmonica.chat).
 
 **Authoritative design — read this; it supersedes the detail below:**
 `harmonica-mcp/docs/plans/2026-06-13-install-method-spec-tool-design.md`
@@ -40,12 +41,12 @@ First target: `methods/many-to-many-readiness` (5 stages).
 - Body: `{ title, template_type: 'chain', chain_config: {…} }`. The response
   returns `chain_config` back (so you can round-trip / diff after install).
 - `chain_config` is validated server-side by `chainConfigSchema`
-  (Pro `src/app/api/admin/templates/chainConfigSchema.ts`, HAR-915) — match its
+  (Pro `src/app/api/admin/templates/chainConfigSchema.ts`) — match its
   shape exactly. OpenAPI `ChainConfig` schema is in Pro `docs/api-spec.yaml` and
   harmonica-docs `api-reference/openapi.yaml` (both on main).
 - **Auth:** `Authorization: Bearer hm_live_…` (the MCP reads `HARMONICA_API_KEY`).
 - **Paywall:** chains are step-capped — Free up to 3 steps, paid unlimited; over
-  the cap returns **403** (HAR-1062). M2M is **5 steps**, so install with a
+  the cap returns **403**. M2M is **5 steps**, so install with a
   **Pro/LTD-tier** key. A `chain_config` without `template_type:'chain'` is
   rejected (400).
 - Error taxonomy (`unauthorized|forbidden|validation_error|payment_required|…`):

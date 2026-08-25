@@ -1,4 +1,4 @@
-# Day-One Synthetic Evals for Method Specs (HAR-1470) — Implementation Plan
+# Day-One Synthetic Evals for Method Specs — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,18 +8,18 @@
 
 **Tech Stack:** Node 20 ESM, `js-yaml` (already a dep), built-in `fetch` for OpenAI (no SDK), vitest (already configured), OpenAI `gpt-4o-mini` pinned snapshot for generation + judging (configurable).
 
-## Decision record (settles the issue's open question)
+## Decision record (settles the open design question)
 
 Findings from 2026-08-05 exploration, recorded so the tasks below make sense:
 
 1. **The registry has 9 public specs, all first-party, all `has_evals: true`.** Every spec already ships weval-grammar blueprints (`evals/<stage-id>.yaml`, `should`/`should_not`) — but with roughly **one hand-written scenario per stage**.
 2. **Nothing can execute those blueprints.** `install_method_spec` (harmonica-mcp `src/methodSpec.ts`) converts `method.md` → chain template and ignores `evals/` entirely. Pro's eval harness (`src/lib/prompt-evals/`) is per-system-prompt, not per-method-spec. There is no weval runner anywhere in the ecosystem.
-3. So the day-one gap is **executability + input coverage**, not criteria. Consequence: **criteria stay human-authored** — the synthetic generator produces only new participant *inputs* and copies `should`/`should_not` from the curated blueprint. This kills most of the circularity risk the issue flags (a spec generating both its inputs AND its criteria would only confirm it agrees with itself).
+3. So the day-one gap is **executability + input coverage**, not criteria. Consequence: **criteria stay human-authored** — the synthetic generator produces only new participant *inputs* and copies `should`/`should_not` from the curated blueprint. This removes most of the circularity risk (a spec generating both its inputs AND its criteria would only confirm it agrees with itself).
 4. **Build as registry tooling, not an install-time hook.** With 9 first-party specs, auto-generation inside `install_method_spec` is premature (YAGNI) and would couple harmonica-mcp to LLM keys it doesn't have. The runner works from the spec directly, so it covers `single` specs too (install only handles `chain`). Install wiring is deferred until third-party installs are real.
-5. **Eval-gate classification:** cold start → **Synthetic shape** (fresh turn generated from the stage prompt). The judge has zero labels on day one, so per the load-bearing calibration gate its output is **smoke-grade**: every report is labelled uncalibrated / needs-calibration and must not gate any user-visible decision or be published as a pass rate. Calibration comes later via expert labels (HAR-968, HAR-1397).
+5. **Eval-gate classification:** cold start → **Synthetic shape** (fresh turn generated from the stage prompt). The judge has zero labels on day one, so per the load-bearing calibration gate its output is **smoke-grade**: every report is labelled uncalibrated / needs-calibration and must not gate any user-visible decision or be published as a pass rate. Calibration comes later via expert labels.
 6. **Graduation rule** (from `generate-synthetic-data` skill): once a method has 100+ representative real traces, retire its synthetic set from active use (keep the file, flip it to historical).
 
-Related: HAR-1068 (synthetic files stay weval-grammar-compatible — extra top-level fields are additive), HAR-1179 (this runner is the substrate a future conformance API certifies with, *after* calibration), HAR-1472 (Pro-side synthetic-only fixtures — same discipline, different surface).
+Related constraints: synthetic files stay weval-grammar-compatible because extra top-level fields are additive; this runner is the substrate a future conformance API can certify after calibration; Pro-side synthetic-only fixtures follow the same discipline on a different surface.
 
 ## Global Constraints
 
@@ -28,7 +28,6 @@ Related: HAR-1068 (synthetic files stay weval-grammar-compatible — extra top-l
 - Judge + generation models pinned to exact snapshots; defaults `gpt-4o-mini-2024-07-18`, overridable via `EVAL_MODEL` / `EVAL_JUDGE_MODEL`. `OPENAI_API_KEY` from env (`node --env-file=../evals/.env` works; key already lives at `OFL/evals/.env`).
 - Every synthetic blueprint carries `provenance: synthetic` and `reviewed: false` until a human reviews it; every runner report carries the uncalibrated-judge disclaimer verbatim (Task 6).
 - Synthetic scenario files are `evals/<stage-id>.synthetic.yaml` — the curated `evals/<stage-id>.yaml` files are never overwritten.
-- Branch: `artem/har-1470-a-newly-installed-ofl-method-spec-has-zero-traces-no-way-to` (Linear's branch name). Commit per task.
 - Repo commands: `npm run validate`, `npm run check`, `npm test` before every commit.
 
 ---
@@ -119,7 +118,7 @@ export async function chat({
 ```
 
 - [ ] **Step 4: Run test to verify it passes** — `npx vitest run tests/llm.test.mjs` → PASS
-- [ ] **Step 5: Commit** — `git add scripts/lib/llm.mjs tests/llm.test.mjs && git commit -m "feat: offline-testable OpenAI chat helper for eval tooling (HAR-1470)"`
+- [ ] **Step 5: Commit** — `git add scripts/lib/llm.mjs tests/llm.test.mjs && git commit -m "feat: add offline-testable OpenAI chat helper for eval tooling"`
 
 ---
 
@@ -202,7 +201,7 @@ export function deriveDimensions({ curatedBlueprint, domains }) {
 ```
 
 - [ ] **Step 4: Run to verify it passes** → PASS
-- [ ] **Step 5: Commit** — `git commit -m "feat: derive synthetic-eval dimensions from a spec's curated blueprint (HAR-1470)"`
+- [ ] **Step 5: Commit** — `git commit -m "feat: derive synthetic-eval dimensions from a spec's curated blueprint"`
 
 ---
 
@@ -288,7 +287,7 @@ export function buildTuples(dimensions, cap = 8) {
 ```
 
 - [ ] **Step 4: Run to verify it passes** → PASS. If the coverage or variation assertions fail, adjust the `_order` weights until they hold — the contract is the test, not the formula.
-- [ ] **Step 5: Commit** — `git commit -m "feat: deterministic capped tuple builder for synthetic eval sets (HAR-1470)"`
+- [ ] **Step 5: Commit** — `git commit -m "feat: add deterministic capped tuple builder for synthetic eval sets"`
 
 ---
 
@@ -505,7 +504,7 @@ if (!write) console.log('\nRe-run with --write after confirming the tuples are r
 ```
 
 - [ ] **Step 6: Run tests + validate** — `npx vitest run tests/syntheticSet.test.mjs && npm run validate` → PASS / all specs valid (no synthetic files exist yet, so nothing changes)
-- [ ] **Step 7: Commit** — `git commit -m "feat: generate-eval-set CLI — spec-shaped synthetic scenarios with human tuple review (HAR-1470)"`
+- [ ] **Step 7: Commit** — `git commit -m "feat: add spec-shaped synthetic scenarios with human tuple review"`
 
 ---
 
@@ -615,7 +614,7 @@ representative real traces, retire its synthetic set from active use.
 ```
 
 - [ ] **Step 6: Run full suite** — `npx vitest run && npm run validate && npm run check` → all green
-- [ ] **Step 7: Commit** — `git commit -m "feat: validate synthetic eval blueprints; document format (HAR-1470)"`
+- [ ] **Step 7: Commit** — `git commit -m "feat: validate synthetic eval blueprints and document format"`
 
 ---
 
@@ -874,7 +873,7 @@ console.log(`\nreport: ${path.relative(root, base)}.md`);
 
 - [ ] **Step 6: Run offline tests** — `npx vitest run tests/stagePrompt.test.mjs tests/judge.test.mjs` → PASS; then `npx vitest run` (whole suite) → PASS
 - [ ] **Step 7: Add `eval-reports/` to `.gitignore`, npm scripts to `package.json`**
-- [ ] **Step 8: Commit** — `git commit -m "feat: run-evals CLI — execute spec blueprints against a real LLM, smoke-grade reports (HAR-1470)"`
+- [ ] **Step 8: Commit** — `git commit -m "feat: execute spec blueprints against a real LLM with smoke-grade reports"`
 
 ---
 
@@ -915,21 +914,21 @@ Ground rules:
   blueprint and vary only the participant inputs (stance × domain × pressure).
 - Results are **smoke-grade**: the judge is uncalibrated (no labelled sets exist per method).
   They test whether the method behaves as specified, not whether the method is any good.
-- A set stays `reviewed: false` until a human confirms the scenarios are realistic
-  (expert bench: HAR-968 / HAR-1397). Flip the field in the file when reviewed.
+- A set stays `reviewed: false` until an expert confirms the scenarios are realistic.
+  Flip the field in the file when reviewed.
 - Graduation: at 100+ representative real traces for a method, retire its synthetic set
   from active runs and switch to stratified sampling of real traces.
 ```
 
 - [ ] **Step 6: Full suite + registry checks** — `npx vitest run && npm run validate && npm run check && npm run guard` → all green
-- [ ] **Step 7: Commit + PR** — commit generated files + README; open PR from the task branch to `main`; link HAR-1470.
+- [ ] **Step 7: Commit + PR** — commit generated files + README; open a PR from the task branch to `main`.
 
 ---
 
 ## Explicitly out of scope (v1)
 
 - **Install-time wiring** (`install_method_spec` triggering generation/runs) — deferred until third-party installs exist; harmonica-mcp untouched.
-- **Judge calibration** — needs expert labels (HAR-968/HAR-1397); until then everything is smoke-grade by construction.
+- **Judge calibration** — needs expert labels; until then everything is smoke-grade by construction.
 - **Running through the real Harmonica runtime** (`harmonica-synthetic-chain-test` skill does this manually) — the runner composes the same stage prompt the runtime installs, which is the portable 90%; full-runtime replay is a follow-up if composition drift is observed.
 - **CI-scheduled LLM runs** — runs are manual and local (LLM cost + key handling); CI stays offline.
 - **Backfilling synthetic sets for all 9 methods** — pilot is `retrospective` only; sweep the rest after the pilot's review confirms the generator output is worth committing.
