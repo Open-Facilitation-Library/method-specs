@@ -1,0 +1,14 @@
+name: Documentation branch links
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  branch-links:
+    uses: Open-Facilitation-Library/.github/.github/workflows/clickable-branch-references.yml@main
