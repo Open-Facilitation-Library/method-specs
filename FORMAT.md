@@ -30,7 +30,9 @@ methods/<method-id>/
 | `composes[]` | optional; building-block specs this one is built from (`id` or `id@version`). See [Composition](#composition). |
 | `hold` | optional; a non-empty reason string. Presence keeps the spec out of the public repo (it lives in the private staging repo until cleared). |
 
-`context_mode` is one of `none` / `previous_summary` / `all_summaries` / `custom` — how much prior-stage context carries into a stage (Harmonica's terms).
+`context_mode` is one of `none` / `previous_summary` / `all_summaries` — how much prior-stage context carries into a stage (Harmonica's terms). It describes context *within* one run; there is no value for reading a previous run of the same method.
+
+`custom` is **not** a valid value. It was documented here previously, but the reference runtime rejects it outright (`context_mode "custom" is not supported`), so a spec using it will not run.
 
 ## Body
 
