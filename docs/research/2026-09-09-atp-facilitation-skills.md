@@ -124,7 +124,15 @@ The input-vs-final-call separation in stage 5 maps onto role definition in a cha
 
 ## Framework: task conflict vs. relationship conflict
 
-The episode's central framework, from academic research on team dynamics. **The named citation is not given on the page and is behind the paywall — it needs verifying before any spec cites it.** (A plausible lead is Karen Jehn's intragroup-conflict work, but this is unverified and must not be asserted as the source without checking.)
+The episode's central framework, from academic research on team dynamics. The page does not name the citation and the transcript is paywalled, but it resolved (via OpenAlex, 2026-09-09) to:
+
+- **Jehn, K. A. (1995).** A multimethod examination of the benefits and detriments of intragroup conflict. *Administrative Science Quarterly*. https://doi.org/10.2307/2393638 — 4,048 citations. Origin of the task/relationship split and of the "task conflict can be beneficial" claim.
+
+**A caveat the episode does not mention, and which matters more than the citation itself:**
+
+- **De Dreu, C. K. W., & Weingart, L. R. (2003).** Task versus relationship conflict, team performance, and team member satisfaction: A meta-analysis. *Journal of Applied Psychology*. https://doi.org/10.1037/0021-9010.88.4.741 — 3,069 citations. **Found both kinds of conflict negatively correlated with performance.**
+
+So the *distinction* is well-founded and is the useful part. The episode's *valorisation* of task conflict — "task conflict is good," its absence indicates poor psychological safety — is contested by the leading meta-analysis in the field. Anything that treats the presence of task conflict as a health signal is building on the weaker half of this, and should cite De Dreu & Weingart alongside Jehn.
 
 **The distinction:**
 - **Task conflict** — we disagree about *how to do the work*.
@@ -142,6 +150,8 @@ The episode's central framework, from academic research on team dynamics. **The 
 **Task conflict is good.** It is how teams get to better problem solving. **Its absence is a warning, not a win** — "if there's none at all, that's likely a psychological safety problem, not a harmony win."
 
 This inverts a metric worth flagging for anyone building session-health scoring: a session that reaches easy consensus with no disagreement may be *failing*, and a judge that rewards consensus would be scoring the wrong thing.
+
+**But do not invert it all the way.** Per De Dreu & Weingart above, treating *more task conflict* as the health signal is not supported either — they found both kinds negatively correlated with performance. The defensible reading is narrower: frictionless consensus is not by itself evidence of a good session, so it should not be scored as one. That is weaker than "disagreement is good," and it is the version to build on.
 
 ---
 
