@@ -16,9 +16,9 @@
       "has_evals": true,
       "source_method": "Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987)",
       "source_rights": {
-        "class": "unknown",
-        "name_status": "not checked",
-        "note": "Academic in origin (Cooperrider and Srivastva, 1987) and widely published, but neither the name's status nor a source licence has been established. Resolve before naming it in a conformance profile."
+        "class": "public-domain",
+        "name_status": "no registered mark found (checked 2026-09-18)",
+        "note": "Originated in academic publication (Cooperrider and Srivastva, 1987) and taught openly; the Appreciative Inquiry Commons at Champlain College publishes and invites shared resources. No body licenses the name. The originators' books remain copyrighted; this spec is written independently."
       },
       "tags": [
         "appreciative-inquiry",
@@ -104,9 +104,9 @@
       "has_evals": true,
       "source_method": "Dynamic Facilitation (Jim Rough, Center for Wise Democracy)",
       "source_rights": {
-        "class": "unknown",
-        "name_status": "not checked",
-        "note": "Originated by Jim Rough at the Center for Wise Democracy, which trains and certifies practitioners. Check the name's status and any policy on describing the method before naming it in a conformance profile."
+        "class": "public-domain",
+        "name_status": "no registered mark found (checked 2026-09-18)",
+        "note": "Developed by Jim Rough, whose Center for Wise Democracy trains and certifies practitioners. Certification is not a licence on the name, and no trademark claim or policy restricting descriptions was found. His books remain copyrighted; this spec is written independently. Revisit if the Center asserts a mark."
       },
       "lenses": [
         "problem-statements",
@@ -120,35 +120,6 @@
         "emergent",
         "complex-questions",
         "small-group"
-      ]
-    },
-    {
-      "id": "focused-conversation",
-      "title": "Focused Conversation (ORID)",
-      "version": "0.1.0",
-      "status": "draft",
-      "summary": "A structured conversation that moves a group through four levels of question — Objective, Reflective, Interpretive, Decisional — so a decision rests on shared facts, surfaced reactions, and considered meaning rather than the first opinion voiced.",
-      "license": "CC0-1.0",
-      "runtime": {
-        "artifact": "single"
-      },
-      "roles_count": 1,
-      "stages_count": 4,
-      "has_evals": true,
-      "source_method": "The Focused Conversation Method / ORID (Institute of Cultural Affairs, Technology of Participation)",
-      "source_rights": {
-        "class": "unknown",
-        "name_status": "not checked",
-        "note": "From the Institute of Cultural Affairs' Technology of Participation, a name the ICA asserts. The ORID structure itself is widely published. Check both before naming it in a conformance profile."
-      },
-      "tags": [
-        "focused-conversation",
-        "orid",
-        "reflection",
-        "debrief",
-        "convergent",
-        "single-session",
-        "building-block"
       ]
     },
     {
