@@ -26,6 +26,7 @@ Full format: [`FORMAT.md`](./FORMAT.md).
 |---|---|---|---|---|---|
 | [`appreciative-inquiry`](./methods/appreciative-inquiry) | draft | CC0-1.0 | appreciative-inquiry, strengths-based, generative, divergent, multi-session, organizational-change | 5 | Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987) |
 | [`consent-decision-making`](./methods/consent-decision-making) | draft | CC0-1.0 | decision-making, consent, convergent, governance, objections, small-group | 5 | Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest) |
+| [`delphi`](./methods/delphi) | draft | CC0-1.0 | expert-panel, forecasting, anonymous, asynchronous, convergence, rounds | 3 | The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer) |
 | [`dynamic-facilitation`](./methods/dynamic-facilitation) | draft | CC0-1.0 | choice-creating, divergent, emergent, complex-questions, small-group | 4 | Dynamic Facilitation (Jim Rough, Center for Wise Democracy) |
 | [`focused-conversation`](./methods/focused-conversation) | draft | CC0-1.0 | focused-conversation, orid, reflection, debrief, convergent, single-session, building-block | 4 | The Focused Conversation Method / ORID (Institute of Cultural Affairs, Technology of Participation) |
 | [`governance-meeting`](./methods/governance-meeting) | draft | CC0-1.0 | governance, meeting, decision-making, consent, composed, recurring | 6 | Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest) |

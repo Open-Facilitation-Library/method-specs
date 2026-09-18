@@ -126,8 +126,9 @@ examples. The exclusion is visible in the reference case, with the reason stated
 
 - **Method specs** (`FORMAT.md`, `methods/`) describe how to *run* a method: stages, roles,
   prompts, what context carries. A conformance profile describes what must *hold* while running it.
-  A profile may reference a spec id; it does not require one, and v0.1 has a worked example whose
-  method has no spec in the registry yet.
+  A profile may reference a spec id; it does not require one. The v0.1 example references
+  `delphi@0.1.0`, and the two are maintained separately: a criterion can change without the
+  stages changing, and the reverse.
 - **Eval blueprints** are one way to produce `semantic` evidence. The model names evidence classes,
   not tools, and no eval platform is canonical here.
 - **Adapters** map criterion ids to one runtime's source, checks and evidence. Runtime fields never

@@ -14,10 +14,11 @@ method:
     name_status: no owner, no trademark found
     content_licence: none; the method is generic
     attribution: not required
-  method_spec: none
+  method_spec: delphi@0.1.0
   method_spec_note: >-
-    This registry has no Delphi method spec yet, so the criteria below stand alone.
-    A profile may reference a spec id when one exists; it does not require one.
+    The registry spec says how to run Delphi (stages, roles, prompts). This profile says what
+    must hold while running it. A profile may reference a spec when one exists and does not
+    require one.
 
 # Every criterion carries source and review, and both are `none` here. That is the
 # point of recording them: an implementer's reading is legible as such.

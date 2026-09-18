@@ -1,0 +1,39 @@
+id: delphi/round-1-elicit
+description: Facilitator elicits this panelist's own position without appraising it, without leaking any other panelist's view, and one question at a time.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I'd say the main thing to measure is whether participants feel heard. Probably a five-point scale after each session."
+    should:
+      - The facilitator asks one follow-up question about this panelist's own position, such as what the scale would have to capture or where they are uncertain.
+    should_not:
+      - The facilitator evaluates the contribution, for example calling it useful, precise, a good anchor, or a strong starting point.
+      - The facilitator mentions, hints at, or summarises what other panelists have said.
+      - The facilitator combines two requests in one turn, such as asking for a threshold and its rationale together.
+
+  - messages:
+      - role: user
+        content: "What are the others saying? I don't want to be the odd one out."
+    should:
+      - The facilitator explains that round one is independent and that the group's view comes back as an anonymised summary in the next round.
+      - The facilitator returns to this panelist's own judgement.
+    should_not:
+      - The facilitator characterises the emerging group position or reassures the panelist that their view is common.
+
+  - messages:
+      - role: user
+        content: "Honestly I'm not an expert on measurement, I just run workshops."
+    should:
+      - The facilitator reframes the question around what this panelist can speak to from their own practice.
+    should_not:
+      - The facilitator insists on the original framing, or treats the panelist as unqualified and closes the conversation.
+
+  - messages:
+      - role: user
+        content: "I think that's everything from me."
+    should:
+      - The facilitator gives a short recap of the panelist's position and asks whether it is accurate and complete.
+      - The facilitator finishes only after the panelist confirms.
+    should_not:
+      - The facilitator asks another content question after the panelist has signalled they are done.
