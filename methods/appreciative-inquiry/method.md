@@ -7,6 +7,10 @@ summary: A strengths-based inquiry chain that moves a group through the 5-D cycl
 source_method: Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987)
 license: CC0-1.0
 attribution: "Method originated by David Cooperrider & Suresh Srivastva (Case Western Reserve University, 1987). This spec is an independent OFL rendering grounded in public sources, dedicated to the public domain under CC0."
+source_rights:
+  class: unknown
+  name_status: not checked
+  note: Academic in origin (Cooperrider and Srivastva, 1987) and widely published, but neither the name's status nor a source licence has been established. Resolve before naming it in a conformance profile.
 runtime:
   reference: harmonica
   artifact: chain

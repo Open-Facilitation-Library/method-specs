@@ -7,6 +7,10 @@ summary: A panel of experts answers the same question in independent rounds, see
 source_method: The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer)
 license: CC0-1.0
 attribution: "The Delphi method was developed at the RAND Corporation in the 1950s by Norman Dalkey, Olaf Helmer and colleagues. The method is generic and unowned; this spec is an independent rendering for AI-assisted facilitation, dedicated to the public domain under CC0."
+source_rights:
+  class: public-domain
+  name_status: no owner, no trademark found
+  note: Developed at RAND in the 1950s and generic since; no permission needed to describe or name it.
 runtime:
   reference: harmonica
   artifact: chain

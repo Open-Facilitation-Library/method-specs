@@ -7,6 +7,11 @@ summary: A team sets aside regular time to look back over a period of work, make
 source_method: Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest), adopting the five-phase structure of Agile Retrospectives (Esther Derby & Diana Larsen)
 license: CC0-1.0
 attribution: "Retrospective is a pattern in Sociocracy 3.0 by Bernhard Bockelbrink, Liliana David and James Priest (sociocracy30.org, CC BY-SA 4.0), which adopts the five-phase retrospective structure of Esther Derby and Diana Larsen (Agile Retrospectives, 2006). This spec is an independent rendering for AI-assisted facilitation, written from the public sources and dedicated to the public domain under CC0; the originators are credited above."
+source_rights:
+  class: open-licensed
+  source_licence: CC-BY-SA-4.0
+  name_status: no trademark claim found
+  note: The S3 pattern is CC BY-SA 4.0. The five-phase structure it adopts is Derby and Larsen's, published in a copyrighted book; this spec renders the structure independently and credits both.
 runtime:
   reference: harmonica
   artifact: single

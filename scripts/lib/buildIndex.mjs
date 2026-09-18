@@ -28,6 +28,7 @@ export function buildIndexJson(specs) {
         has_evals,
       };
       if (fm.source_method != null) entry.source_method = fm.source_method;
+      if (fm.source_rights != null) entry.source_rights = fm.source_rights;
       if (Array.isArray(fm.lenses) && fm.lenses.length) entry.lenses = fm.lenses;
       if (Array.isArray(fm.tags) && fm.tags.length) entry.tags = fm.tags;
       if (Array.isArray(fm.composes) && fm.composes.length) entry.composes = fm.composes;

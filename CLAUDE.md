@@ -40,5 +40,6 @@ Tooling (`scripts/` + `scripts/lib/`, plain ESM, `js-yaml` for frontmatter):
 ## Gotchas
 
 - **The README methods table is generated.** Never hand-edit between the `METHODS:START/END` markers; run `npm run build-index`. `npm run check` will fail CI if `index.json` or the table drift from the specs.
+- **Three things gate the public repo, not `status`: the licence allowlist, `hold`, and `source_rights.class`.** `license` covers this spec's text; `source_rights` covers the method it renders. A `proprietary` source method is blocked from the public repo whatever licence we give our own words — writing a description ourselves changes the copyright position of the text, not the trademark position of the name. `unknown` passes the guard but is not a basis for a named conformance profile. Open methods (public-domain, openly licensed) are where the registry's effort goes first. See `FORMAT.md` → Source rights.
 - **Licence allowlist + `hold` are the public-repo gate**, not `status`. A `-ND` spec or a `hold:"<reason>"` spec belongs in the private staging repo until cleared. Run `npm run guard` before assuming a spec can go public.
 - **Repo scaffolding + the format are CC0; each method keeps its own licence** (declared in frontmatter and its `LICENSE`). An adapted spec retains the source work's licence and attribution.

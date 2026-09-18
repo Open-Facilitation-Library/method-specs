@@ -7,6 +7,11 @@ summary: A facilitated citizens'-deliberation chain that takes a small mixed gro
 source_method: Facilitating Deliberation — A Practical Guide (Kimbra White, Nicole Hunter & Keith Greaves; MosaicLab, 2022)
 license: CC-BY-NC-4.0
 attribution: "Adapted from Facilitating Deliberation — A Practical Guide (MosaicLab, 2022), free to download at mosaiclab.com.au. An independent OFL encoding of the deliberative arc, licensed CC BY-NC 4.0; not endorsed by MosaicLab."
+source_rights:
+  class: open-licensed
+  source_licence: CC-BY-NC-4.0
+  name_status: no trademark claim found
+  note: Non-commercial condition carries into anything derived from this spec.
 runtime:
   reference: harmonica
   artifact: chain
