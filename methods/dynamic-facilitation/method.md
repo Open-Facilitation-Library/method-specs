@@ -8,9 +8,9 @@ source_method: Dynamic Facilitation (Jim Rough, Center for Wise Democracy)
 license: CC0-1.0
 attribution: "Method originated by Jim Rough / Center for Wise Democracy (wisedemocracy.org). This spec is an independent rendering grounded in public sources and the OFL benchmark session, dedicated to the public domain under CC0."
 source_rights:
-  class: unknown
-  name_status: not checked
-  note: Originated by Jim Rough at the Center for Wise Democracy, which trains and certifies practitioners. Check the name's status and any policy on describing the method before naming it in a conformance profile.
+  class: public-domain
+  name_status: no registered mark found (checked 2026-09-18)
+  note: Developed by Jim Rough, whose Center for Wise Democracy trains and certifies practitioners. Certification is not a licence on the name, and no trademark claim or policy restricting descriptions was found. His books remain copyrighted; this spec is written independently. Revisit if the Center asserts a mark.
 runtime:
   reference: harmonica
   artifact: single

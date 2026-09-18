@@ -8,9 +8,9 @@ source_method: Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case 
 license: CC0-1.0
 attribution: "Method originated by David Cooperrider & Suresh Srivastva (Case Western Reserve University, 1987). This spec is an independent OFL rendering grounded in public sources, dedicated to the public domain under CC0."
 source_rights:
-  class: unknown
-  name_status: not checked
-  note: Academic in origin (Cooperrider and Srivastva, 1987) and widely published, but neither the name's status nor a source licence has been established. Resolve before naming it in a conformance profile.
+  class: public-domain
+  name_status: no registered mark found (checked 2026-09-18)
+  note: Originated in academic publication (Cooperrider and Srivastva, 1987) and taught openly; the Appreciative Inquiry Commons at Champlain College publishes and invites shared resources. No body licenses the name. The originators' books remain copyrighted; this spec is written independently.
 runtime:
   reference: harmonica
   artifact: chain
