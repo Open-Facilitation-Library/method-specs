@@ -28,6 +28,7 @@ methods/<method-id>/
 | `evals` | path to the `evals/` folder |
 | `tags[]` | optional free tags for catalog filtering (group size, divergent/convergent, time-box, domain) |
 | `composes[]` | optional; building-block specs this one is built from (`id` or `id@version`). See [Composition](#composition). |
+| `source_rights` | optional but expected wherever `source_method` is set; the rights position of the **method**, not of this spec's text. See [Source rights](#source-rights). |
 | `hold` | optional; a non-empty reason string. Presence keeps the spec out of the public repo (it lives in the private staging repo until cleared). |
 
 `context_mode` is one of `none` / `previous_summary` / `all_summaries` — how much prior-stage context carries into a stage (Harmonica's terms). It describes context *within* one run; there is no value for reading a previous run of the same method.
@@ -69,6 +70,34 @@ The index records both directions: a consuming spec carries `composes`, and each
 ## Versioning
 
 `version` is semver. One version per method folder (latest-in-folder); git history is the version log. Bump patch/minor for prompt-wording refinements, major for stage restructuring (adding, removing, or reordering stages, or changing roles/completion). There is no multi-version coexistence — pinning an old version means checking out an earlier commit.
+
+## Source rights
+
+`license` says what may be done with **this spec's text**. `source_rights` says what may be done with **the method it renders**, which is a different question and the one that decides whether a spec can be public at all. A method can be freely describable while our rendering is CC0 (Delphi); another can carry a registered name and a policy against explaining how it works, in which case no licence we choose for our own words makes it publishable.
+
+```yaml
+source_rights:
+  class: open-licensed          # public-domain | open-licensed | proprietary | unknown
+  source_licence: CC-BY-SA-4.0  # required when class is open-licensed
+  name_status: no trademark claim found
+  note: Conditions that carry into anything derived from it.
+```
+
+| Class | Meaning | Public repo? |
+|---|---|---|
+| `public-domain` | No owner. The method predates or sits outside any proprietary framework | Yes |
+| `open-licensed` | Published under an open licence, named in `source_licence`. Its conditions — attribution, share-alike, non-commercial — carry into anything derived from it | Yes |
+| `proprietary` | A registered name, an all-rights-reserved source, or a policy restricting descriptions of how the method works | **No.** Staging repo |
+| `unknown` | Not yet established | Yes, but see below |
+
+`publish-guard` blocks `proprietary` from the public repo regardless of what licence the spec gives its own text. `unknown` passes, because an unasked question is not a restriction — but it is not a basis for publishing a named conformance profile either, and should be resolved rather than left.
+
+**Open methods first.** The registry's initial work goes to public-domain and openly licensed methods. That is a choice about where effort is best spent, not a judgement about proprietary methods: a spec for one of those can be developed in the staging repo, and moves to the public repo only if its owner licenses that use.
+
+Two traps worth naming:
+
+- **A CC0 rendering does not launder a restricted method.** Writing the description in our own words changes the copyright position of our text, not the trademark position of the name, and not a policy that restricts explaining the method.
+- **Share-alike is inherited, not reset.** A spec derived from CC BY-SA material carries that condition even where the spec's own `license` field says otherwise; record it in `source_rights.note`.
 
 ## Publishing
 

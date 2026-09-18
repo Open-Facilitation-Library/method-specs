@@ -7,6 +7,10 @@ summary: A facilitator draws out and reflects every contribution onto four share
 source_method: Dynamic Facilitation (Jim Rough, Center for Wise Democracy)
 license: CC0-1.0
 attribution: "Method originated by Jim Rough / Center for Wise Democracy (wisedemocracy.org). This spec is an independent rendering grounded in public sources and the OFL benchmark session, dedicated to the public domain under CC0."
+source_rights:
+  class: unknown
+  name_status: not checked
+  note: Originated by Jim Rough at the Center for Wise Democracy, which trains and certifies practitioners. Check the name's status and any policy on describing the method before naming it in a conformance profile.
 runtime:
   reference: harmonica
   artifact: single

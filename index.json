@@ -15,6 +15,11 @@
       "stages_count": 5,
       "has_evals": true,
       "source_method": "Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987)",
+      "source_rights": {
+        "class": "unknown",
+        "name_status": "not checked",
+        "note": "Academic in origin (Cooperrider and Srivastva, 1987) and widely published, but neither the name's status nor a source licence has been established. Resolve before naming it in a conformance profile."
+      },
       "tags": [
         "appreciative-inquiry",
         "strengths-based",
@@ -38,6 +43,12 @@
       "stages_count": 5,
       "has_evals": true,
       "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "name_status": "no trademark claim found",
+        "note": "Sociocracy 3.0 patterns are published under CC BY-SA 4.0 at sociocracy30.org."
+      },
       "tags": [
         "decision-making",
         "consent",
@@ -64,6 +75,11 @@
       "stages_count": 3,
       "has_evals": true,
       "source_method": "The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer)",
+      "source_rights": {
+        "class": "public-domain",
+        "name_status": "no owner, no trademark found",
+        "note": "Developed at RAND in the 1950s and generic since; no permission needed to describe or name it."
+      },
       "tags": [
         "expert-panel",
         "forecasting",
@@ -87,6 +103,11 @@
       "stages_count": 4,
       "has_evals": true,
       "source_method": "Dynamic Facilitation (Jim Rough, Center for Wise Democracy)",
+      "source_rights": {
+        "class": "unknown",
+        "name_status": "not checked",
+        "note": "Originated by Jim Rough at the Center for Wise Democracy, which trains and certifies practitioners. Check the name's status and any policy on describing the method before naming it in a conformance profile."
+      },
       "lenses": [
         "problem-statements",
         "solutions",
@@ -115,6 +136,11 @@
       "stages_count": 4,
       "has_evals": true,
       "source_method": "The Focused Conversation Method / ORID (Institute of Cultural Affairs, Technology of Participation)",
+      "source_rights": {
+        "class": "unknown",
+        "name_status": "not checked",
+        "note": "From the Institute of Cultural Affairs' Technology of Participation, a name the ICA asserts. The ORID structure itself is widely published. Check both before naming it in a conformance profile."
+      },
       "tags": [
         "focused-conversation",
         "orid",
@@ -139,6 +165,12 @@
       "stages_count": 6,
       "has_evals": true,
       "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "name_status": "no trademark claim found",
+        "note": "Sociocracy 3.0 patterns are published under CC BY-SA 4.0 at sociocracy30.org."
+      },
       "tags": [
         "governance",
         "meeting",
@@ -167,6 +199,12 @@
       "stages_count": 6,
       "has_evals": true,
       "source_method": "Facilitating Deliberation — A Practical Guide (Kimbra White, Nicole Hunter & Keith Greaves; MosaicLab, 2022)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-NC-4.0",
+        "name_status": "no trademark claim found",
+        "note": "Non-commercial condition carries into anything derived from this spec."
+      },
       "tags": [
         "deliberation",
         "citizens-assembly",
@@ -189,6 +227,12 @@
       "stages_count": 4,
       "has_evals": true,
       "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "name_status": "no trademark claim found",
+        "note": "Sociocracy 3.0 patterns are published under CC BY-SA 4.0 at sociocracy30.org."
+      },
       "tags": [
         "sense-making",
         "drivers",
@@ -215,6 +259,12 @@
       "stages_count": 5,
       "has_evals": true,
       "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "name_status": "no trademark claim found",
+        "note": "Sociocracy 3.0 patterns are published under CC BY-SA 4.0 at sociocracy30.org."
+      },
       "tags": [
         "proposal-design",
         "divergent",
@@ -241,6 +291,12 @@
       "stages_count": 5,
       "has_evals": true,
       "source_method": "Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest), adopting the five-phase structure of Agile Retrospectives (Esther Derby & Diana Larsen)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "name_status": "no trademark claim found",
+        "note": "The S3 pattern is CC BY-SA 4.0. The five-phase structure it adopts is Derby and Larsen's, published in a copyrighted book; this spec renders the structure independently and credits both."
+      },
       "tags": [
         "retrospective",
         "reflection",

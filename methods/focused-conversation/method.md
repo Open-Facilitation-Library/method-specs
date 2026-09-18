@@ -7,6 +7,10 @@ summary: A structured conversation that moves a group through four levels of que
 source_method: The Focused Conversation Method / ORID (Institute of Cultural Affairs, Technology of Participation)
 license: CC0-1.0
 attribution: "Method developed by the Institute of Cultural Affairs (ICA) as part of the Technology of Participation; popularised by Brian Stanfield, The Art of Focused Conversation (ICA Canada, 2000). This spec is an independent OFL rendering grounded in public sources, dedicated to the public domain under CC0."
+source_rights:
+  class: unknown
+  name_status: not checked
+  note: From the Institute of Cultural Affairs' Technology of Participation, a name the ICA asserts. The ORID structure itself is widely published. Check both before naming it in a conformance profile.
 runtime:
   reference: harmonica
   artifact: single

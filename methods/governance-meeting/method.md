@@ -7,6 +7,11 @@ summary: A regular, facilitated meeting where a team governs its own work — op
 source_method: Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest)
 license: CC0-1.0
 attribution: "Governance Meeting is a pattern from Sociocracy 3.0 by Bernhard Bockelbrink, Liliana David and James Priest (sociocracy30.org), published under CC BY-SA 4.0. This spec is an independent rendering of the process for AI-assisted facilitation, written from the public pattern and dedicated to the public domain under CC0; the S3 authors are credited as originators of the method."
+source_rights:
+  class: open-licensed
+  source_licence: CC-BY-SA-4.0
+  name_status: no trademark claim found
+  note: Sociocracy 3.0 patterns are published under CC BY-SA 4.0 at sociocracy30.org.
 runtime:
   reference: harmonica
   artifact: chain

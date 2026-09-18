@@ -22,6 +22,28 @@ function good(overrides = {}) {
 const run = (g) => validateSpec(g.fm, g.body, g.ctx);
 
 describe('validateSpec', () => {
+  it('rejects an unrecognised source-rights class', () => {
+    const { errors } = run(good({ source_rights: { class: 'free-ish' } }));
+    expect(errors).toContainEqual(expect.stringMatching(/source_rights.class must be one of/));
+  });
+
+  it('requires a source licence when the class says open-licensed', () => {
+    const { errors } = run(good({ source_rights: { class: 'open-licensed' } }));
+    expect(errors).toContainEqual(expect.stringMatching(/source_licence is required/));
+  });
+
+  it('accepts a well-formed source-rights block', () => {
+    const { errors } = run(
+      good({ source_rights: { class: 'open-licensed', source_licence: 'CC-BY-SA-4.0' } }),
+    );
+    expect(errors).toEqual([]);
+  });
+
+  it('warns when a spec names a source method but not its rights', () => {
+    const { warnings } = run(good({ source_method: 'Some method (Someone, 1970)', attribution: 'Someone' }));
+    expect(warnings).toContainEqual(expect.stringMatching(/source_rights is missing/));
+  });
+
   it('accepts a well-formed spec', () => {
     const { errors } = run(good());
     expect(errors).toEqual([]);

@@ -1,5 +1,6 @@
 import { KNOWN_LICENSES, ATTRIBUTION_LICENSES } from './licenses.mjs';
 import { parseRef } from './composition.mjs';
+import { validateSourceRights } from './rights.mjs';
 
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.]+)?$/;
@@ -69,6 +70,11 @@ export function validateSpec(fm, bodyStageIds, ctx) {
     for (const bid of bodyStageIds) {
       if (!seen.has(bid)) errors.push(`body section "## Stage: ${bid}" has no matching frontmatter stage`);
     }
+  }
+
+  errors.push(...validateSourceRights(fm.source_rights).errors);
+  if (fm.source_rights === undefined && fm.source_method != null) {
+    warnings.push('source_method is set but source_rights is missing (see FORMAT.md, Source rights)');
   }
 
   if ('hold' in fm && (typeof fm.hold !== 'string' || fm.hold.trim() === '')) {
