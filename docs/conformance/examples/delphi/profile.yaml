@@ -1,0 +1,109 @@
+# Portable conformance profile — worked example for the v0.1 shape.
+# Non-normative: these criteria are an implementer's reading, unreviewed by any Delphi steward.
+# See ../../architecture.md for the layers, the criterion record, and the evidence classes.
+
+profile: delphi
+title: Delphi
+version: 0.1.0
+status: draft
+
+method:
+  name: Delphi
+  originated: RAND Corporation, 1950s
+  rights:
+    name_status: no owner, no trademark found
+    content_licence: none; the method is generic
+    attribution: not required
+  method_spec: none
+  method_spec_note: >-
+    This registry has no Delphi method spec yet, so the criteria below stand alone.
+    A profile may reference a spec id when one exists; it does not require one.
+
+# Every criterion carries source and review, and both are `none` here. That is the
+# point of recording them: an implementer's reading is legible as such.
+criteria:
+  - id: independent-elicitation
+    layer: method
+    statement: >-
+      In the first round, each participant states their position without seeing any other
+      participant's contribution, and without the facilitator characterising or appraising it.
+    rationale: >-
+      Delphi exists to collect judgements uncontaminated by social influence before any
+      feedback. A first round that leaks another view, or that praises one, is not Delphi.
+    source: none
+    review: none
+    status: enforced
+
+  - id: aggregate-feedback-between-rounds
+    layer: method
+    statement: >-
+      Between rounds, participants receive the group's position as an anonymised aggregate,
+      never as attributable individual contributions.
+    rationale: >-
+      Controlled feedback of the aggregate is the mechanism that distinguishes Delphi from a
+      discussion. Attribution reintroduces the deference the method is designed to remove.
+    source: none
+    review: none
+    status: enforced
+
+  - id: reconsideration-anchored-on-own-position
+    layer: method
+    statement: >-
+      A later round opens by putting the participant's own earlier position beside the
+      aggregate, and invites revision rather than defence.
+    rationale: >-
+      Reconsideration is the unit of movement in Delphi. A round that restarts elicitation
+      collects opinions again instead of revising them.
+    source: none
+    review: none
+    status: enforced
+
+  - id: convergence-without-forced-consensus
+    layer: method
+    statement: >-
+      A final round seeks convergence and records residual disagreement rather than resolving
+      it by pressure or by dropping minority positions.
+    rationale: >-
+      Delphi reports a distribution and its stability. Manufactured unanimity destroys the
+      signal the method exists to produce.
+    source: none
+    review: none
+    status: enforced
+
+  - id: neutral-elicitation
+    layer: profile
+    profile_ref: eliciting-facilitator
+    statement: >-
+      The facilitator does not evaluate, praise, or rank a participant's contribution.
+    rationale: >-
+      A general interaction rule that Delphi depends on more than most methods, since
+      appraisal is a form of feedback the design excludes from round one.
+    source: none
+    review: none
+    status: enforced
+
+  - id: one-question-per-turn
+    layer: profile
+    profile_ref: eliciting-facilitator
+    statement: >-
+      Each turn asks for one thing.
+    rationale: >-
+      An implementer's interaction choice, listed here because the adapter maps evidence to it.
+      It is not a Delphi requirement and must not be published as one.
+    source: none
+    review: none
+    status: enforced
+
+  - id: participant-experience
+    layer: outcome
+    statement: >-
+      Participants report that they were able to state their actual judgement, including
+      where they dissented from the aggregate.
+    source: none
+    review: none
+    status: proposed
+    note: >-
+      No instance exists. Listed so the layer is visibly empty rather than absent.
+
+# Runtime conventions are deliberately not represented here. How a system carries context
+# between rounds, scopes a step, or keeps deployed copies in parity is adapter territory.
