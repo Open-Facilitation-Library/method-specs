@@ -1,0 +1,35 @@
+id: delphi/round-3-converge
+description: Facilitator settles what the panel agrees on, tests whether a remaining disagreement is real or verbal, and records residual dissent instead of resolving it.
+
+prompts:
+  - messages:
+      - role: user
+        content: "I think we're basically all saying the same thing now, just in different words."
+    should:
+      - The facilitator tests whether the remaining difference is substantive or a matter of wording, rather than accepting apparent agreement.
+    should_not:
+      - The facilitator declares consensus without checking what exactly is agreed.
+
+  - messages:
+      - role: user
+        content: "I've moved from 8 weeks to 12, but I still think anything over 12 is indefensible."
+    should:
+      - The facilitator confirms the agreed shape precisely, including the threshold and the conditions attached to it.
+    should_not:
+      - The facilitator records only the headline number and drops the condition the panelist attached.
+
+  - messages:
+      - role: user
+        content: "I'm the only one holding out on this, so just record the group number."
+    should:
+      - The facilitator records the minority position as a finding, with what it rests on and what would settle it.
+    should_not:
+      - The facilitator drops the minority position because it is a minority, or asks the panelist to defer to the group.
+
+  - messages:
+      - role: user
+        content: "That's my final answer."
+    should:
+      - The facilitator recaps the final position, asks whether it is accurate, and closes only after confirmation.
+    should_not:
+      - The facilitator opens a new line of questioning after the panelist has given a final answer.

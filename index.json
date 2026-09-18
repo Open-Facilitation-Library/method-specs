@@ -51,6 +51,29 @@
       ]
     },
     {
+      "id": "delphi",
+      "title": "Delphi",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "A panel of experts answers the same question in independent rounds, seeing only an anonymised summary of the group between rounds, so judgements converge on their merits rather than on who argued hardest.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "chain"
+      },
+      "roles_count": 1,
+      "stages_count": 3,
+      "has_evals": true,
+      "source_method": "The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer)",
+      "tags": [
+        "expert-panel",
+        "forecasting",
+        "anonymous",
+        "asynchronous",
+        "convergence",
+        "rounds"
+      ]
+    },
+    {
       "id": "dynamic-facilitation",
       "title": "Dynamic Facilitation",
       "version": "0.1.0",

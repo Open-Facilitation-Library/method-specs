@@ -1,0 +1,151 @@
+# Reference-implementation adapter for the Delphi profile.
+# Maps portable criterion ids to one runtime's source, checks and evidence.
+# Non-normative. Nothing here belongs in profile.yaml: these are Harmonica's mechanisms,
+# not Delphi's requirements. See ../../architecture.md sections 1 and 3.
+
+adapter: harmonica
+profile: delphi@0.1.0
+version: 0.1.0
+status: draft
+
+implementation:
+  runtime: harmonica
+  artifact: chain template
+  template_id: delphi-panel-chain
+  stages: [round-1-elicit, round-2-reconsider, round-3-converge]
+  source_of_truth: >-
+    A side-effect-free module that both the deployment script and the checks import, so a
+    check reads the exact text the live system runs.
+
+# Runtime conventions this implementation adds. They are real requirements for this
+# runtime and carry no claim about Delphi.
+runtime_conventions:
+  - id: rt-private-1to1-framing
+    statement: Each round runs as a separate private conversation per participant.
+    note: >-
+      Serves independent-elicitation here, but is an architectural choice. A synchronous
+      runtime could satisfy the same criterion differently.
+  - id: rt-inherited-context-third-person
+    statement: >-
+      Inherited round summaries are presented in the third person and only as far as the
+      current question needs.
+  - id: rt-creation-input-consumption
+    statement: The host's framed question is used from session context, not re-asked.
+  - id: rt-source-parity
+    statement: >-
+      Deployed template rows are compared read-only against canonical source; drift is
+      reported, never auto-corrected.
+
+mappings:
+  - criterion: independent-elicitation
+    stages: [round-1-elicit]
+    implemented_by:
+      - Round 1 prompt states that each expert thinks independently.
+      - No inherited context is supplied to round 1.
+      - An appraisal check rejects evaluative language in facilitator turns.
+    evidence:
+      - class: deterministic
+        ref: static contract, private-1:1 and current-step invariants for round-1-elicit
+        date: 2026-09-15
+        scope: Required phrases present in the exact deployed prompt; forbidden group framing absent.
+      - class: semantic
+        ref: exact-prompt probe, opening kind
+        date: 2026-09-15
+        scope: One scripted opening scenario, one model. Not a sample of real sessions.
+      - class: production
+        ref: fresh chain created on the live system, round 1
+        date: 2026-09-15
+        scope: >-
+          One run, first stage only, synthetic participant. Private and brief-aware opening
+          confirmed. Later rounds not exercised: the automation surface cannot advance this chain.
+
+  - criterion: aggregate-feedback-between-rounds
+    stages: [round-2-reconsider, round-3-converge]
+    implemented_by:
+      - Each round inherits the prior round's anonymised summary as context.
+      - Prompts require opening on the aggregate finding, never on a named contributor.
+    evidence:
+      - class: deterministic
+        ref: static contract, hidden-context invariant for rounds 2 and 3
+        date: 2026-09-15
+        scope: Required inherited-context phrasing present in both round prompts.
+      - class: semantic
+        ref: exact-prompt probe, hidden-context kind
+        date: 2026-09-15
+        scope: One scripted scenario with inherited context, one model.
+      - class: production
+        ref: none
+        date: null
+        scope: Not exercised in production; rounds 2 and 3 are unreachable from the automation surface.
+
+  - criterion: reconsideration-anchored-on-own-position
+    stages: [round-2-reconsider, round-3-converge]
+    implemented_by:
+      - Round 2 opens on the participant's prior position plus one aggregate finding.
+      - Round 3 opens on their earliest-to-latest movement plus one aggregate tension.
+    evidence:
+      - class: deterministic
+        ref: static contract, current-step scope for rounds 2 and 3
+        date: 2026-09-15
+        scope: Opening instructions present verbatim.
+      - class: semantic
+        ref: none
+        date: null
+        scope: No probe kind targets reconsideration specifically. Gap.
+
+  - criterion: convergence-without-forced-consensus
+    stages: [round-3-converge]
+    implemented_by:
+      - Round 3 is declared as convergence and asks one responsive question at a time.
+    evidence:
+      - class: deterministic
+        ref: static contract, current-step scope for round-3-converge
+        date: 2026-09-15
+        scope: >-
+          Declares the round. Nothing checks that residual disagreement is preserved, which is
+          the substance of the criterion. Gap.
+
+  - criterion: neutral-elicitation
+    stages: [round-1-elicit, round-2-reconsider, round-3-converge]
+    implemented_by:
+      - A non-appraisal rule in the prompt, plus a detector over persisted facilitator turns.
+    evidence:
+      - class: production
+        ref: post-fix validation run, three synthetic participants
+        date: 2026-09-14
+        scope: >-
+          15 persisted facilitator turns, zero appraisal flags, after an earlier run failed the
+          same check. Synthetic participants; not evidence about real panels.
+
+  - criterion: one-question-per-turn
+    stages: [round-1-elicit, round-2-reconsider, round-3-converge]
+    implemented_by:
+      - Per-round one-question rules, including bans on pairing a choice with its rationale.
+    evidence:
+      - class: semantic
+        ref: exact-prompt probes, opening and inference kinds
+        date: 2026-09-15
+        scope: >-
+          Passed as scripted. A separate production run recorded one opening that combined a
+          classification trigger with its required response, logged as a quality observation.
+
+  - criterion: participant-experience
+    stages: []
+    implemented_by: []
+    evidence: []
+    note: No instance. The outcome layer is empty for this implementation.
+
+versions:
+  profile: 0.1.0
+  implementation_commit: 6d774436
+  model: >-
+    Semantic evidence ran against the production main-tier model as configured on the dates
+    given. Re-running against a different model version is a new measurement.
+  evidence_recorded: 2026-09-17
+
+limits:
+  - Only the first stage of a chain is reachable in production, so rounds 2 and 3 rest on
+    source parity and scripted probes.
+  - Every semantic entry is one scripted scenario per kind, not a sample.
+  - No criterion here has a source or a steward review, so this adapter is evidence about an
+    implementation and not about Delphi.
