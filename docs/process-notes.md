@@ -31,3 +31,14 @@ Append-only per-session log. Format: `## YYYY-MM-DD — [topic]` + Done / Decisi
 - **Decisions:** none; both are proposals for the stewards.
 - **State:** open, no replies yet.
 - **Next:** none.
+
+## 2026-10-01 — individual_memory in the format
+- **Done:**
+  - #35 adds the `individual_memory` stage field, the rule against a memory stage after a "not carried" output, the `context_mode: none` permission, and Delphi 0.2.0.
+  - #36 rejects the field on a `uses` stage.
+  - `7aeb16d` removes tracker IDs from tracked files, so `branch-links` passes.
+  - Filed #34 (Integral Claim Evaluation group-map fidelity) and commented on #33.
+  - Staging synced (`ff57015`, `6f1c9f6`).
+- **Decisions:** Brandon and Marty decide the Integral Claim Evaluation parts of #33 and #34. The format and the Delphi change didn't need them.
+- **State:** Public and staging tooling match (drift check clean). The ICE staging spec intentionally still says "not carried" until memory is turned on there.
+- **Next:** Apply the ICE parts once the authors agree.
