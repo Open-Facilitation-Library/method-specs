@@ -70,6 +70,26 @@ export function validateSpec(fm, bodyStageIds, ctx) {
     for (const bid of bodyStageIds) {
       if (!seen.has(bid)) errors.push(`body section "## Stage: ${bid}" has no matching frontmatter stage`);
     }
+
+    // individual_memory: optional boolean. A stage with memory on carries each
+    // participant's own earlier answers forward, so no earlier stage may still
+    // promise its output is "not carried" (FORMAT.md, context_mode section).
+    fm.stages.forEach((s, i) => {
+      if (!s || !('individual_memory' in s)) return;
+      if (typeof s.individual_memory !== 'boolean') {
+        errors.push(`stage "${s.id ?? i}" individual_memory must be true or false`);
+        return;
+      }
+      if (!s.individual_memory) return;
+      for (const earlier of fm.stages.slice(0, i)) {
+        if (earlier && typeof earlier.output === 'string' && /not carried/i.test(earlier.output)) {
+          errors.push(
+            `stage "${s.id}" sets individual_memory, but earlier stage "${earlier.id}" says its output is not carried; ` +
+              `say it is carried into the participant's own later stages instead`,
+          );
+        }
+      }
+    });
   }
 
   errors.push(...validateSourceRights(fm.source_rights).errors);

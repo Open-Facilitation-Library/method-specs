@@ -132,4 +132,28 @@ describe('validateSpec', () => {
     const g = good({ composes: ['orid'], stages: [{ id: 'one', uses: 'orid' }, { id: 'two' }] });
     expect(run(g).errors).toEqual([]);
   });
+
+  it('accepts individual_memory when no earlier stage promises its output is not carried', () => {
+    const g = good({ stages: [{ id: 'one', output: 'each answer' }, { id: 'two', individual_memory: true }] });
+    expect(run(g).errors).toEqual([]);
+  });
+
+  it('rejects a non-boolean individual_memory', () => {
+    const g = good({ stages: [{ id: 'one' }, { id: 'two', individual_memory: 'yes' }] });
+    expect(run(g).errors).toContainEqual(expect.stringMatching(/individual_memory must be true or false/));
+  });
+
+  it('rejects individual_memory after a stage that says its output is not carried', () => {
+    const g = good({
+      stages: [{ id: 'one', output: 'Not carried into later stages; visible to the host only' }, { id: 'two', individual_memory: true }],
+    });
+    expect(run(g).errors).toContainEqual(expect.stringMatching(/earlier stage "one" says its output is not carried/));
+  });
+
+  it('ignores a "not carried" output that comes after the memory stage, or when memory is off', () => {
+    const later = good({ stages: [{ id: 'one', individual_memory: true }, { id: 'two', output: 'not carried' }] });
+    const off = good({ stages: [{ id: 'one', output: 'not carried' }, { id: 'two', individual_memory: false }] });
+    expect(run(later).errors).toEqual([]);
+    expect(run(off).errors).toEqual([]);
+  });
 });
