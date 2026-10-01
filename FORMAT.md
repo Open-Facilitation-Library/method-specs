@@ -24,7 +24,7 @@ methods/<method-id>/
 | `runtime.reference`, `runtime.artifact` | reference runtime (`harmonica`) + artifact type (`chain` / `single`) |
 | `roles[]` | `slug` + `label` (map to runtime roles) |
 | `lenses[]` | optional cross-cutting lenses applied at every stage |
-| `stages[]` | `id`, `title`, `roles`, `assignment_strategy`, `context_mode`, `completion`, `output`, optional `uses` (compose a building block into the stage) |
+| `stages[]` | `id`, `title`, `roles`, `assignment_strategy`, `context_mode`, `completion`, `output`, optional `individual_memory` (see below), optional `uses` (compose a building block into the stage) |
 | `evals` | path to the `evals/` folder |
 | `tags[]` | optional free tags for catalog filtering (group size, divergent/convergent, time-box, domain) |
 | `composes[]` | optional; building-block specs this one is built from (`id` or `id@version`). See [Composition](#composition). |
@@ -34,6 +34,16 @@ methods/<method-id>/
 `context_mode` is one of `none` / `previous_summary` / `all_summaries` — how much prior-stage context carries into a stage (Harmonica's terms). It describes context *within* one run; there is no value for reading a previous run of the same method.
 
 `custom` is **not** a valid value. It was documented here previously, but the reference runtime rejects it outright (`context_mode "custom" is not supported`), so a spec using it will not run.
+
+`context_mode: none` has one more consequence: the stage uses no one else's output, so a runtime **may** let each participant start it as soon as they finish the previous stage, without waiting for the rest of the group. Stages that declare `previous_summary` or `all_summaries` must still wait, because they need the earlier stage summarised first. This is a permission, not a requirement, and the reference runtime does not do it yet.
+
+`individual_memory: true` (optional; default `false`) means that in this stage each participant's facilitator also sees **that participant's own** answers from earlier stages of the same run. It adds to `context_mode` rather than replacing it, and it is per participant: nobody sees anyone else's earlier answers through it. Use it where a stage asks people to revisit their own position, as Delphi's later rounds do.
+
+Memory can make an earlier stage's promise untrue. A stage that tells participants their answers stay with them ("not carried into later stages") is broken by any later stage with memory on, even though nothing reaches other participants. So:
+
+- If any stage sets `individual_memory: true`, no earlier stage's `output` may say `not carried`. The validator rejects the spec.
+- The earlier stage should say instead what actually happens: its answers are carried into the participant's own later stages and never shown to other participants. Its participant-facing disclosure in the body should say the same.
+- A shared building block keeps its own wording for methods without memory. The method that turns memory on overrides the disclosure in its own stage text.
 
 ## Body
 

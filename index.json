@@ -64,7 +64,7 @@
     {
       "id": "delphi",
       "title": "Delphi",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "draft",
       "summary": "A panel of experts answers the same question in independent rounds, seeing only an anonymised summary of the group between rounds, so judgements converge on their merits rather than on who argued hardest.",
       "license": "CC0-1.0",

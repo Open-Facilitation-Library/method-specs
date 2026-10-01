@@ -1,7 +1,7 @@
 ---
 id: delphi
 title: Delphi
-version: 0.1.0
+version: 0.2.0
 status: draft
 summary: A panel of experts answers the same question in independent rounds, seeing only an anonymised summary of the group between rounds, so judgements converge on their merits rather than on who argued hardest.
 source_method: The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer)
@@ -18,8 +18,8 @@ roles:
   - { slug: panelist, label: Panelist }
 stages:
   - { id: round-1-elicit, title: "Round 1: independent elicitation", roles: [panelist], assignment_strategy: all_participants, context_mode: none, completion: all_submitted, output: each panelist's own position, stated without sight of any other panelist's answer }
-  - { id: round-2-reconsider, title: "Round 2: feedback and reconsideration", roles: [panelist], assignment_strategy: all_participants, context_mode: previous_summary, completion: all_submitted, output: each panelist's revised position, with their reasons for moving or holding }
-  - { id: round-3-converge, title: "Round 3: convergence", roles: [panelist], assignment_strategy: all_participants, context_mode: all_summaries, completion: all_submitted, output: the panel's convergence, with residual disagreement recorded rather than resolved }
+  - { id: round-2-reconsider, title: "Round 2: feedback and reconsideration", roles: [panelist], assignment_strategy: all_participants, context_mode: previous_summary, individual_memory: true, completion: all_submitted, output: each panelist's revised position, with their reasons for moving or holding }
+  - { id: round-3-converge, title: "Round 3: convergence", roles: [panelist], assignment_strategy: all_participants, context_mode: all_summaries, individual_memory: true, completion: all_submitted, output: the panel's convergence, with residual disagreement recorded rather than resolved }
 evals: ./evals
 tags: [expert-panel, forecasting, anonymous, asynchronous, convergence, rounds]
 ---
