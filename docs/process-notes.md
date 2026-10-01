@@ -27,7 +27,7 @@ Append-only per-session log. Format: `## YYYY-MM-DD — [topic]` + Done / Decisi
 - **Next:** Four clearance asks are filed and unsent: #15 (Wille, Torres), #21 (Three Horizons licence version), #26 (ICA), #27 (Dark Matter Labs). Nothing in the conformance artifacts is sourced or expert-reviewed; that stays the honest gap.
 
 ## 2026-09-28 — two conformance proposals
-- **Done:** Filed #30 (evaluator declares `calibration_reference` and `liveness`) and #31 (criteria as typed questions over a transcript), prompted by TypeSafe Jev; linked from HAR-1413.
+- **Done:** Filed #30 (evaluator declares `calibration_reference` and `liveness`) and #31 (criteria as typed questions over a transcript), prompted by TypeSafe Jev; linked from the Harmonica tracker.
 - **Decisions:** none; both are proposals for the stewards.
 - **State:** open, no replies yet.
 - **Next:** none.
