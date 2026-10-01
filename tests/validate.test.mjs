@@ -150,6 +150,11 @@ describe('validateSpec', () => {
     expect(run(g).errors).toContainEqual(expect.stringMatching(/earlier stage "one" says its output is not carried/));
   });
 
+  it('rejects individual_memory on a stage that uses a building block', () => {
+    const g = good({ composes: ['orid'], stages: [{ id: 'one', uses: 'orid', individual_memory: true }, { id: 'two' }] });
+    expect(run(g).errors).toContainEqual(expect.stringMatching(/uses a building block, so it cannot set individual_memory/));
+  });
+
   it('ignores a "not carried" output that comes after the memory stage, or when memory is off', () => {
     const later = good({ stages: [{ id: 'one', individual_memory: true }, { id: 'two', output: 'not carried' }] });
     const off = good({ stages: [{ id: 'one', output: 'not carried' }, { id: 'two', individual_memory: false }] });

@@ -81,6 +81,12 @@ export function validateSpec(fm, bodyStageIds, ctx) {
         return;
       }
       if (!s.individual_memory) return;
+      if ('uses' in s) {
+        errors.push(
+          `stage "${s.id ?? i}" uses a building block, so it cannot set individual_memory; ` +
+            `set it on the block's own stage instead`,
+        );
+      }
       for (const earlier of fm.stages.slice(0, i)) {
         if (earlier && typeof earlier.output === 'string' && /not carried/i.test(earlier.output)) {
           errors.push(

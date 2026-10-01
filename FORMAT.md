@@ -44,6 +44,7 @@ Memory can make an earlier stage's promise untrue. A stage that tells participan
 - If any stage sets `individual_memory: true`, no earlier stage's `output` may say `not carried`. The validator rejects the spec.
 - The earlier stage should say instead what actually happens: its answers are carried into the participant's own later stages and never shown to other participants. Its participant-facing disclosure in the body should say the same.
 - A shared building block keeps its own wording for methods without memory. The method that turns memory on overrides the disclosure in its own stage text.
+- A stage that `uses` a building block may not set `individual_memory` itself; set it on the block's own stage. A composing stage expands into several runtime steps, and the field would be ambiguous across them. The validator rejects it.
 
 ## Body
 
