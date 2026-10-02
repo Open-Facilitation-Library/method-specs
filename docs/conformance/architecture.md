@@ -140,3 +140,9 @@ examples. The exclusion is visible in the reference case, with the reason stated
 Executable schema validation; registry integration for profiles; a chosen eval platform; any
 certification or paid conformance mechanism; and the criteria themselves for any method, which are
 a matter for stewards rather than for this document.
+
+## Research companions (non-normative)
+
+- [Evaluation reporting: EEE and Evaluation Cards](evaluation-reporting-notes.md) —
+  exchange/interpretation seams, documentation gaps, independent policy versions and lifecycle
+  ownership. These are proposals to shape, not amendments to the v0.1 contract or certification claims.
