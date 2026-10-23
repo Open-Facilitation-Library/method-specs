@@ -218,6 +218,12 @@ examples. The exclusion is visible in the reference case, with the reason stated
   steward review. An evaluator's `calibration_reference` describes its instrument reference; even
   `practitioner` or `steward` does not supply that criterion review or imply method endorsement.
 
+The non-normative [protocol mapping guide](protocol-mapping.md) applies these distinctions across
+stage/session design, tools, artifacts, context and progression. Its
+[Delphi companion](examples/delphi/protocol-mapping.md) separates declared wiring from historical
+evidence and proposed execution checks. Neither changes the artifact shapes or evidence classes
+defined here, or upgrades the historical v0.1 examples.
+
 ## 8. Out of scope for v0.2
 
 Executable schema validation; registry integration for profiles; a chosen eval platform; any
