@@ -4,6 +4,10 @@
 
 Sources: [Every Eval Ever](https://arxiv.org/abs/2606.14516v1), [Evaluation Cards](https://arxiv.org/abs/2606.09809v2). Both are EvalEval Coalition papers. Cards is an interpretation layer over existing evidence; its Appendix J surveys wider lifecycle practices, not only features of the deployed tool.
 
+The separately scoped [conformance v0.2 evaluator-record amendment](architecture.md#41-the-evaluator-record)
+defines calibration references and failure handling from issue #30. The research proposals below
+remain non-normative; the historical v0.1 contract is unchanged.
+
 ## Five additions worth shaping separately
 
 - **CARD-02 — Score hierarchy crosswalk.** Relate Cards' family/composite/benchmark/split/metric tree to method, stage, criterion and metric IDs. Keep `layer` and evidence class explicit. Composite summaries must retain their component paths; never merge participant outcomes into method-fidelity scores.
@@ -32,6 +36,8 @@ Sources: [Every Eval Ever](https://arxiv.org/abs/2606.14516v1), [Evaluation Card
 - CARD-09 source evidence for extracted fields: method-specs#39.
 - CARD-11 interpretation-policy history: method-specs#40.
 - LIFE-11 lifecycle ownership/triggers: method-specs#41.
-- Existing method-specs#28 and #30 received outcome-boundary and instrument-validity context; they remain open.
+- Existing method-specs#28 owns the outcome boundary; #30 owns the evaluator-record amendment.
 
-These are proposed work items, not approved amendments to conformance v0.1.
+These research proposals are not amendments to the conformance contract. Issue #30 is the separate
+evaluator-record amendment linked above; outcome criteria and the wider reporting proposals retain
+their own ownership and review paths.

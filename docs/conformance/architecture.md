@@ -1,7 +1,15 @@
-# Methodology conformance v0.1
+# Methodology conformance v0.2
 
-**Status:** normative for the artifacts in this folder. v0.1 fixes the shape; it does not certify any
+**Status:** normative for new artifacts in this folder. v0.2 fixes the shape; it does not certify any
 implementation and does not settle the criteria for any method.
+
+**v0.2 amendment (2026-10-23):** evaluator records now declare their calibration reference and
+failure-handling contract (§4), and reports distinguish those declarations from individual run
+results (§5). Profile and criterion shapes are unchanged. The
+[v0.1 contract](https://github.com/Open-Facilitation-Library/method-specs/blob/d78159a1d2716b89dcfa2513a4a5dec7af1bc494/docs/conformance/architecture.md)
+remains the interpretation of historical v0.1 artifacts; their missing evaluator metadata is not
+silently filled in or upgraded. Reports identify the conformance-model version independently of
+their profile and evaluator versions.
 
 A conformance profile says what a facilitation method requires, separately from how any one product
 chooses to converse and separately from how any one runtime is built. Without that separation,
@@ -86,12 +94,85 @@ Six things move separately and must be versioned separately: the **profile**, an
 evidence ran against, and the **evidence** itself. A report that pins only the profile version is
 not reproducible: the same profile over a newer model is a different measurement.
 
+### 4.1. The evaluator record
+
+Each v0.2 evaluator record carries its stable `id` and independent `version`, plus these fields:
+
+| Field | Required | Meaning |
+|---|---|---|
+| `calibration_reference` | yes | `practitioner` / `steward` / `model` / `none`: what reference the evaluator's reported scores or confidence were checked against |
+| `calibration_details` | yes | Reference identities, date, comparison record and scope as below; `null` when the declared reference is `none` |
+| `liveness` | yes | `fail_closed` / `unknown`: whether inability to evaluate yields no score for the evidenced failure-path scope |
+| `liveness_evidence` | yes | Scoped failure-path check references as below; an empty list is legal for `unknown` |
+
+For any reference other than `none`, `calibration_details` contains:
+
+- `against`: a nonempty list identifying the practitioners, stewards, or exact model versions whose
+  answers formed the reference. A label-set identifier may stand for people when its protected
+  provenance identifies them and their roles; names need not be published.
+- `date`: the date of the comparison, not the date the report was written.
+- `ref`: a durable pointer to the comparison record.
+- `scope`: what was compared, including the scored question or confidence quantity, domain and
+  limitations. Do not silently broaden calibration of labels into calibration of probabilities.
+
+These fields attribute a calibration claim; they do not establish a quality threshold, a
+statistical calibration method, or general validity. `model` means a model reference, even if
+several models agreed or their outputs were combined. Identify those versions and the combination
+in the referenced record. It does not imply agreement with practitioners or method stewards.
+Mixed references must be reported separately with their scopes, not collapsed into a more
+authoritative category. Use separate scoped evaluator records when needed.
+
+**`model` and `none` are legal and must stay visible.** `none` is an explicit declaration that no
+calibration reference is claimed. Missing historical metadata means **not recorded**, not `none`.
+A v0.2 record missing required fields, or claiming a reference without its details, is incomplete;
+do not invent identities, dates or calibration to make it complete.
+
+### 4.2. Failure handling is an instrument contract
+
+`fail_closed` requires nonempty `liveness_evidence`, with `ref`, `date`, and `scope` on each entry.
+The referenced checks identify the evaluator version, relevant model or route, failure paths
+exercised, and observed result. They must exercise failure handling and show no score; a configured
+flag or successful evaluation alone is insufficient. Examples of distinct paths are provider
+errors, timeouts, and malformed judge output. Evidence for one path does not establish the others.
+Declare `unknown` for an unevidenced broader scope, or keep the record explicitly scoped to what
+was checked. These pointers support the instrument contract; they add no criterion evidence class.
+
+An evaluator that cannot produce a measurement must return no score, represented as `null` in a
+report, with failure information. A fallback such as `0`, `0.5`, or `false` fabricates a measurement.
+`unknown` is an honest lack of established failure-path evidence, not a claim that the evaluator
+failed and not permission to use a default score. A completed evaluation may legitimately return
+zero or a false classification; the execution result must distinguish that from missing data.
+
+Calibration and liveness are independent: practitioner calibration cannot prove the error path
+works, and a fail-closed error path cannot establish practitioner agreement. Neither changes a
+criterion's `source`, `review`, layer, or status. Scoped attribution and failure references do not
+certify the evaluator, and do not turn its measurements into participant-outcome evidence.
+
+The [illustrative evaluator records](examples/evaluators/records.yaml) cover all four calibration
+references, unknown liveness, and fail-closed failure handling. Their synthetic placeholders are
+not calibration or failure-path evidence for a real instrument.
+
 ## 5. Report semantics
 
 A conformance report is a statement of the form:
 
 > Implementation *I* at version *v* satisfied criteria *C₁…Cₙ* of profile *P* at version *w*,
 > evidenced by classes *E*, on date *d*.
+
+For v0.2 reports, evaluator metadata (§4) stays visible alongside the result. A run identifies its
+versioned evaluator and relevant model, and records whether it `completed`, `failed`, or was
+`not_run`. An evaluator's `liveness` declaration does not say whether that particular run executed.
+
+- `completed`: retain the actual measurement, including a legitimate zero or false classification.
+- `failed`: retain `score: null` and failure information identifying the phase/reason and a durable
+  evidence pointer. A rejected or malformed output is not a completed measurement.
+- `not_run`: retain `score: null` and the reason no evaluation was attempted.
+
+Missing run metadata stays unrecorded/incomplete; it must not be presented as a completed run.
+These are result-reporting requirements, not a new runner or retry policy. Unknown liveness does
+not erase a valid completed measurement. Reports and aggregates must disclose missing measurements
+and their treatment; do not turn them into zeroes, passes, or failures. Use safe error information
+and controlled references rather than embedding credentials or participant material.
 
 It is not a certification, and this vocabulary deliberately has no word for one. Certification would
 require a steward of the method to accept the criteria, and someone accountable to stand behind the
@@ -133,9 +214,11 @@ examples. The exclusion is visible in the reference case, with the reason stated
   not tools, and no eval platform is canonical here.
 - **Adapters** map criterion ids to one runtime's source, checks and evidence. Runtime fields never
   appear in a portable profile because a particular runtime needs them.
-- **Calibration** is what moves `review` off `none`. It is a separate track and a later gate.
+- **Criterion review** moves `review` off `none` only through its own recorded practitioner or
+  steward review. An evaluator's `calibration_reference` describes its instrument reference; even
+  `practitioner` or `steward` does not supply that criterion review or imply method endorsement.
 
-## 8. Out of scope for v0.1
+## 8. Out of scope for v0.2
 
 Executable schema validation; registry integration for profiles; a chosen eval platform; any
 certification or paid conformance mechanism; and the criteria themselves for any method, which are
@@ -145,4 +228,5 @@ a matter for stewards rather than for this document.
 
 - [Evaluation reporting: EEE and Evaluation Cards](evaluation-reporting-notes.md) —
   exchange/interpretation seams, documentation gaps, independent policy versions and lifecycle
-  ownership. These are proposals to shape, not amendments to the v0.1 contract or certification claims.
+  ownership. Those research proposals remain non-normative; the evaluator-record amendment in
+  §§4–5 is the separately scoped v0.2 contract, not adoption of the companion's wider proposals.
