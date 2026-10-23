@@ -1,0 +1,87 @@
+# Non-normative illustrations of conformance v0.2 evaluator and result metadata.
+# Every identity, date, reference and outcome below is a synthetic placeholder.
+# No calibration, fault-injection test or model evaluation was run for these examples.
+# Do not cite these records as evidence for an actual evaluator or method.
+# Normative definitions: ../../architecture.md sections 4 and 5.
+
+conformance_version: '0.2'
+illustrative: true
+
+evaluators:
+  - id: example-practitioner-reference
+    version: 1.0.0
+    calibration_reference: practitioner
+    calibration_details:
+      against: ['example://practitioner-label-set@1']
+      date: '2026-10-01'
+      ref: example://calibration/practitioner-comparison@1
+      scope: >-
+        Illustration of comparing classifications with a practitioner label set
+        on one named question. This would not establish calibrated probabilities.
+    liveness: unknown
+    liveness_evidence: []
+
+  - id: example-steward-reference
+    version: 1.0.0
+    calibration_reference: steward
+    calibration_details:
+      against: ['example://steward-label-set@1']
+      date: '2026-10-01'
+      ref: example://calibration/steward-comparison@1
+      scope: >-
+        Illustration of comparing one instrument's classifications with a
+        method steward's labels, without implying review of the method criteria.
+    liveness: unknown
+    liveness_evidence: []
+
+  - id: example-model-reference
+    version: 1.0.0
+    calibration_reference: model
+    calibration_details:
+      against: ['example://reference-model-a@1', 'example://reference-model-b@1']
+      date: '2026-10-01'
+      ref: example://calibration/model-comparison-and-combination@1
+      scope: >-
+        Illustration of model-reference comparison. The referenced record would
+        explain how the two reference outputs were combined. No practitioner
+        alignment or confidence-calibration quality is implied.
+    liveness: unknown
+    liveness_evidence: []
+
+  - id: example-no-calibration-reference
+    version: 1.0.0
+    calibration_reference: none
+    calibration_details: null
+    liveness: fail_closed
+    liveness_evidence:
+      - ref: example://fault-checks/no-calibration-evaluator@1.0.0
+        date: '2026-10-01'
+        scope: >-
+          Illustration of version 1.0.0 on example://candidate-model@1 returning
+          no score for injected provider-error, timeout and malformed-output
+          paths. This is placeholder metadata, not an executed check.
+
+# These are illustrative reporting outcomes, not a runner configuration or measurements.
+results:
+  - id: example-timeout
+    evaluator: example-no-calibration-reference@1.0.0
+    model: example://candidate-model@1
+    status: failed
+    score: null
+    failure:
+      phase: provider_call
+      reason: timeout
+      ref: example://failures/timeout@1
+
+  - id: example-legitimate-zero
+    evaluator: example-no-calibration-reference@1.0.0
+    model: example://candidate-model@1
+    status: completed
+    score: 0
+
+  - id: example-not-attempted
+    evaluator: example-model-reference@1.0.0
+    model: example://candidate-model@1
+    status: not_run
+    score: null
+    reason: Evaluation was not requested for this illustrative case.
