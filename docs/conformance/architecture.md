@@ -232,6 +232,9 @@ a matter for stewards rather than for this document.
 
 ## Research companions (non-normative)
 
+- [Criterion targets, answer forms and structural evidence](criterion-targets-proposal.md) —
+  a draft extension beyond transcript targets, including isolated execution evidence. It proposes
+  future contract changes; v0.2 and historical evidence-class meanings remain as defined above.
 - [Evaluation reporting: EEE and Evaluation Cards](evaluation-reporting-notes.md) —
   exchange/interpretation seams, documentation gaps, independent policy versions and lifecycle
   ownership. Those research proposals remain non-normative; the evaluator-record amendment in
