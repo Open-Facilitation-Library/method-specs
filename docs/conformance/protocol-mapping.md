@@ -49,7 +49,8 @@ Keep product-specific controls in the adapter; do not turn them into portable me
 
 ## Match the claim to the check
 
-Keep the existing evidence-class limits: source inspection establishes declarations; a scripted
+Keep the [v0.3 evidence-class limits](architecture.md#3-evidence-classes): source inspection establishes declarations; isolated execution without fresh
+model inference establishes only exercised implementation paths; a scripted
 model scenario establishes the behavior it exercised; release comparison establishes artifact
 parity; a production run establishes its exercised live path; participant measures address outcomes.
 Correct prompt wording does not establish permissions, state transitions or artifact integrity.

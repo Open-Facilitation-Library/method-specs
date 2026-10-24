@@ -5,7 +5,8 @@
 Sources: [Every Eval Ever](https://arxiv.org/abs/2606.14516v1), [Evaluation Cards](https://arxiv.org/abs/2606.09809v2). Both are EvalEval Coalition papers. Cards is an interpretation layer over existing evidence; its Appendix J surveys wider lifecycle practices, not only features of the deployed tool.
 
 The separately scoped [conformance v0.2 evaluator-record amendment](architecture.md#41-the-evaluator-record)
-defines calibration references and failure handling from issue #30. The research proposals below
+defines calibration references and failure handling from issue #30. Conformance v0.3 retains those
+requirements and adds its separately scoped [record contract](record-contract-v0.3.md). The research proposals below
 remain non-normative; the historical v0.1 contract is unchanged.
 
 ## Five additions worth shaping separately

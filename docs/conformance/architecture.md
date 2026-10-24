@@ -1,15 +1,20 @@
-# Methodology conformance v0.2
+# Methodology conformance v0.3
 
-**Status:** normative for new artifacts in this folder. v0.2 fixes the shape; it does not certify any
+**Status:** normative for new v0.3 artifacts in this folder. v0.3 defines record shapes; it does not certify any
 implementation and does not settle the criteria for any method.
 
-**v0.2 amendment (2026-10-23):** evaluator records now declare their calibration reference and
-failure-handling contract (§4), and reports distinguish those declarations from individual run
-results (§5). Profile and criterion shapes are unchanged. The
+**v0.3 adoption (2026-10-24):** the [record contract](record-contract-v0.3.md) defines optional typed
+questions, portable subject requirements, concrete evaluator/adapter bindings and typed results.
+It adds the scoped `execution` evidence class while retaining source-only `deterministic` evidence.
+It defines no executable schema, runner, instrument capability or whole-process aggregation.
+
+The [v0.2 contract](https://github.com/Open-Facilitation-Library/method-specs/blob/379d8eb61d6066b363b8c0d7fb887e11ae027167/docs/conformance/architecture.md)
+and the
 [v0.1 contract](https://github.com/Open-Facilitation-Library/method-specs/blob/d78159a1d2716b89dcfa2513a4a5dec7af1bc494/docs/conformance/architecture.md)
-remains the interpretation of historical v0.1 artifacts; their missing evaluator metadata is not
-silently filled in or upgraded. Reports identify the conformance-model version independently of
-their profile and evaluator versions.
+remain the interpretations of their historical artifacts. Missing metadata stays missing; no
+score, evidence class or execution history is silently upgraded. v0.3 retains the v0.2 evaluator
+calibration and failure-handling requirements (§4). Reports identify the conformance-model version
+independently of profile, criterion, evaluator, implementation and model versions.
 
 A conformance profile says what a facilitation method requires, separately from how any one product
 chooses to converse and separately from how any one runtime is built. Without that separation,
@@ -52,6 +57,7 @@ method-shaped qualifier moves to the method layer.
 | Field | Required | Meaning |
 |---|---|---|
 | `id` | yes | Stable within the profile. Criterion ids are the join to every adapter and report |
+| `version` | yes | Independent criterion version, pinned by bindings and reports |
 | `layer` | yes | `method` / `profile` / `runtime` / `outcome` |
 | `statement` | yes | What must hold, in the method's own vocabulary, with no product nouns |
 | `rationale` | no | Why the method requires it |
@@ -60,6 +66,14 @@ method-shaped qualifier moves to the method layer.
 | `status` | yes | `enforced` / `held` / `proposed` |
 | `evidence` | no | Evidence entries (§3). Absent means the criterion is asserted and unchecked |
 | `applies_to` | no | Stage ids, where the criterion is stage-specific |
+| `question` | no | Text and typed answer form; optional even when status is enforced. See the record contract |
+| `subject_requirements` | for binding | Named target/context requirements, kind and coverage; required before a new binding can claim support |
+
+The [criterion fields](record-contract-v0.3.md#criterion-fields),
+[binding](record-contract-v0.3.md#evaluatoradapter-binding) and
+[result fields](record-contract-v0.3.md#result-fields) are normative parts of v0.3. A binding pins
+actual subjects, revisions, bounded selections and evaluator support separately from the portable
+criterion. A target is not interchangeable with the context needed to assess it.
 
 **`source: none` and `review: none` are legal and must stay visible.** A criterion derived from a
 model's familiarity with a named method is not thereby wrong, but it is not traceable either, and a
@@ -75,6 +89,7 @@ with its text.
 | Class | What it is | What it proves | What it does not |
 |---|---|---|---|
 | `deterministic` | A mechanical check over the implementation's own source | The instruction exists, or the forbidden form is absent | Nothing about behaviour |
+| `execution` | Isolated runtime/integration execution without fresh model inference | Observed behavior on the implementation paths and dependencies exercised | Unexercised paths, real-model behavior, live-system parity or participant benefit |
 | `semantic` | A scripted scenario run against a real model | The system behaved this way on that scenario, with that model, that day | Generalisation, or anything about unscripted inputs |
 | `release` | A comparison of shipped artifacts against their source | What runs matches what was reviewed | That what was reviewed is right |
 | `production` | A real run on the live system | The path works end to end for the part exercised | Anything about the parts not exercised |
@@ -84,7 +99,13 @@ Each entry carries `class`, `ref` (a durable pointer: commit, workflow run, docu
 `scope` (what was exercised, in plain words, including what was not). An evidence entry with no
 scope is treated as absent.
 
-**No count of the first four classes substitutes for the fifth.** Structural conformance says a
+Execution entries additionally pin implementation/check revisions, environment/configuration,
+fixtures/actors, substitutions and observed results as specified in the
+[record contract](record-contract-v0.3.md#structural-execution-evidence). Running a source-inspection
+script is not execution evidence. A mixed run uses separately scoped entries for its isolated,
+real-model and live-system checks; fresh-model work cannot be relabeled no-inference execution.
+
+**No combination of source, execution, model, release or live-path evidence substitutes for participant outcomes.** Structural conformance says a
 system does what its specification says. It says nothing about whether participants were served.
 
 ## 4. Independent versioning
@@ -94,9 +115,12 @@ Six things move separately and must be versioned separately: the **profile**, an
 evidence ran against, and the **evidence** itself. A report that pins only the profile version is
 not reproducible: the same profile over a newer model is a different measurement.
 
+v0.3 additionally pins the conformance-model version and immutable binding/selection references.
+Changing a binding's subjects, evaluator or answer contract creates a new reference/version.
+
 ### 4.1. The evaluator record
 
-Each v0.2 evaluator record carries its stable `id` and independent `version`, plus these fields:
+Each v0.3 evaluator record retains the v0.2 stable `id`, independent `version`, and these fields:
 
 | Field | Required | Meaning |
 |---|---|---|
@@ -124,7 +148,7 @@ authoritative category. Use separate scoped evaluator records when needed.
 
 **`model` and `none` are legal and must stay visible.** `none` is an explicit declaration that no
 calibration reference is claimed. Missing historical metadata means **not recorded**, not `none`.
-A v0.2 record missing required fields, or claiming a reference without its details, is incomplete;
+A v0.2 or v0.3 record missing required evaluator fields, or claiming a reference without its details, is incomplete;
 do not invent identities, dates or calibration to make it complete.
 
 ### 4.2. Failure handling is an instrument contract
@@ -137,8 +161,8 @@ errors, timeouts, and malformed judge output. Evidence for one path does not est
 Declare `unknown` for an unevidenced broader scope, or keep the record explicitly scoped to what
 was checked. These pointers support the instrument contract; they add no criterion evidence class.
 
-An evaluator that cannot produce a measurement must return no score, represented as `null` in a
-report, with failure information. A fallback such as `0`, `0.5`, or `false` fabricates a measurement.
+An evaluator that cannot produce a measurement must return no answer, represented as `null` in a
+v0.3 report, with failure information. A fallback such as `0`, `0.5`, or `false` fabricates a measurement.
 `unknown` is an honest lack of established failure-path evidence, not a claim that the evaluator
 failed and not permission to use a default score. A completed evaluation may legitimately return
 zero or a false classification; the execution result must distinguish that from missing data.
@@ -148,7 +172,7 @@ works, and a fail-closed error path cannot establish practitioner agreement. Nei
 criterion's `source`, `review`, layer, or status. Scoped attribution and failure references do not
 certify the evaluator, and do not turn its measurements into participant-outcome evidence.
 
-The [illustrative evaluator records](examples/evaluators/records.yaml) cover all four calibration
+The [historical v0.2 illustrative evaluator records](examples/evaluators/records.yaml) cover all four calibration
 references, unknown liveness, and fail-closed failure handling. Their synthetic placeholders are
 not calibration or failure-path evidence for a real instrument.
 
@@ -159,14 +183,20 @@ A conformance report is a statement of the form:
 > Implementation *I* at version *v* satisfied criteria *C₁…Cₙ* of profile *P* at version *w*,
 > evidenced by classes *E*, on date *d*.
 
-For v0.2 reports, evaluator metadata (§4) stays visible alongside the result. A run identifies its
-versioned evaluator and relevant model, and records whether it `completed`, `failed`, or was
-`not_run`. An evaluator's `liveness` declaration does not say whether that particular run executed.
+v0.3 reports declare `conformance_version: "0.3"`, retain evaluator metadata (§4), and identify
+the exact immutable binding and relevant implementation/model versions. The
+[result contract](record-contract-v0.3.md#result-fields) records `completed`, `failed`, or `not_run`
+separately from instrument support. An evaluator's liveness declaration does not say whether that
+particular run executed. Unsupported or unknown scope cannot produce a measurement.
 
-- `completed`: retain the actual measurement, including a legitimate zero or false classification.
-- `failed`: retain `score: null` and failure information identifying the phase/reason and a durable
+- `completed`: retain the actual typed `answer`, including a legitimate zero, false, or named choice.
+- `failed`: retain `answer: null` and failure information identifying the phase/reason and a durable
   evidence pointer. A rejected or malformed output is not a completed measurement.
-- `not_run`: retain `score: null` and the reason no evaluation was attempted.
+- `not_run`: retain `answer: null` and the reason no evaluation was attempted.
+
+Missing answers retain `missing_reason`; completed answers have a null missing reason. A check
+finding a criterion violation is a completed negative answer, not an evaluator failure. Historical
+v0.2 `score` fields retain their original contract; they are not renamed or coerced into v0.3 answers.
 
 Missing run metadata stays unrecorded/incomplete; it must not be presented as a completed run.
 These are result-reporting requirements, not a new runner or retry policy. Unknown liveness does
@@ -224,18 +254,20 @@ stage/session design, tools, artifacts, context and progression. Its
 evidence and proposed execution checks. Neither changes the artifact shapes or evidence classes
 defined here, or upgrades the historical v0.1 examples.
 
-## 8. Out of scope for v0.2
+## 8. Out of scope for v0.3
 
 Executable schema validation; registry integration for profiles; a chosen eval platform; any
 certification or paid conformance mechanism; and the criteria themselves for any method, which are
-a matter for stewards rather than for this document.
+a matter for stewards rather than for this document. Whole-process selector/aggregation contracts
+and verification that particular instruments support v0.3 targets/answers also remain separate work.
+Adopting record shapes supplies no instrument implementation or behavioral validation.
 
 ## Research companions (non-normative)
 
-- [Criterion targets, answer forms and structural evidence](criterion-targets-proposal.md) —
-  a draft extension beyond transcript targets, including isolated execution evidence. It proposes
-  future contract changes; v0.2 and historical evidence-class meanings remain as defined above.
+- [Criterion-target adoption note](criterion-targets-proposal.md) — design provenance, acceptance
+  mapping and the immutable pre-adoption proposal. The current record definitions are normative
+  in the separately linked v0.3 record contract; the examples remain illustrative.
 - [Evaluation reporting: EEE and Evaluation Cards](evaluation-reporting-notes.md) —
   exchange/interpretation seams, documentation gaps, independent policy versions and lifecycle
   ownership. Those research proposals remain non-normative; the evaluator-record amendment in
-  §§4–5 is the separately scoped v0.2 contract, not adoption of the companion's wider proposals.
+  §§4–5 retains the separately scoped v0.2 amendment, not adoption of the companion's wider proposals.

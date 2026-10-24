@@ -1,10 +1,11 @@
-# Non-normative review fixtures for ../criterion-targets-proposal.md.
+# Non-normative illustrations of ../record-contract-v0.3.md.
 # All identities, support claims, observations, dates and answers are stipulated.
 # No application, model, judge or fault-injection check was run to create this file.
 # example:// references name synthetic records; they grant no access and install no resolver.
 # Scenario/mutation vectors are review inputs, not an executable schema or passed test suite.
+# The pre-adoption draft remains pinned in ../criterion-targets-proposal.md.
 illustrative: true
-proposal_version: 0.3-proposal.1
+conformance_version: '0.3'
 
 criteria:
   example://criteria/privacy-declared@1.0.0:
@@ -154,7 +155,7 @@ bindings:
   example://bindings/declaration@1.0.0:
     id: declaration
     version: 1.0.0
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     profile_ref: example://profiles/private-collection-variant@1.0.0
     criterion_ref: example://criteria/privacy-declared@1.0.0
     evaluator_ref: example://evaluators/source-reader@1.0.0
@@ -165,7 +166,7 @@ bindings:
   example://bindings/isolation@1.0.0:
     id: isolation
     version: 1.0.0
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     profile_ref: example://profiles/private-collection-variant@1.0.0
     criterion_ref: example://criteria/private-context@1.0.0
     evaluator_ref: example://evaluators/context-inspector@1.0.0
@@ -176,7 +177,7 @@ bindings:
   example://bindings/minority@1.0.0:
     id: minority
     version: 1.0.0
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     profile_ref: example://profiles/private-collection-variant@1.0.0
     criterion_ref: example://criteria/position-preservation@1.0.0
     evaluator_ref: example://evaluators/position-comparator@1.0.0
@@ -188,7 +189,7 @@ bindings:
   example://bindings/unsupported-isolation@1.0.0:
     id: unsupported-isolation
     version: 1.0.0
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     profile_ref: example://profiles/private-collection-variant@1.0.0
     criterion_ref: example://criteria/private-context@1.0.0
     evaluator_ref: example://evaluators/latest-turn-only@1.0.0
@@ -201,7 +202,7 @@ bindings:
 
 results:
   - id: source-declaration-pass
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     binding_ref: example://bindings/declaration@1.0.0
     status: completed
     answer: true
@@ -209,7 +210,7 @@ results:
     failure: null
     evidence_refs: ['example://evidence/source-declaration@1']
   - id: exercised-isolation-violation
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     binding_ref: example://bindings/isolation@1.0.0
     status: completed
     answer: false
@@ -217,7 +218,7 @@ results:
     failure: null
     evidence_refs: ['example://evidence/leaking-contexts@1']
   - id: minority-omitted-valid-zero
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     binding_ref: example://bindings/minority@1.0.0
     model_ref: example://models/comparison-judge@1
     status: completed
@@ -226,7 +227,7 @@ results:
     failure: null
     evidence_refs: ['example://evidence/stipulated-comparison@1']
   - id: unsupported-target-no-measurement
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     binding_ref: example://bindings/unsupported-isolation@1.0.0
     status: not_run
     answer: null
@@ -234,7 +235,7 @@ results:
     failure: null
     evidence_refs: []
   - id: attempted-comparison-failed
-    conformance_version: 0.3-proposal.1
+    conformance_version: '0.3'
     binding_ref: example://bindings/minority@1.0.0
     model_ref: example://models/comparison-judge@1
     status: failed
