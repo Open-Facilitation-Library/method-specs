@@ -1,0 +1,353 @@
+# Non-normative review fixtures for ../criterion-targets-proposal.md.
+# All identities, support claims, observations, dates and answers are stipulated.
+# No application, model, judge or fault-injection check was run to create this file.
+# example:// references name synthetic records; they grant no access and install no resolver.
+# Scenario/mutation vectors are review inputs, not an executable schema or passed test suite.
+illustrative: true
+proposal_version: 0.3-proposal.1
+
+criteria:
+  example://criteria/privacy-declared@1.0.0:
+    id: privacy-declared
+    version: 1.0.0
+    layer: runtime
+    statement: The implementation source declares private collection.
+    source: none
+    review: none
+    status: proposed
+    question:
+      text: Does the selected source declare private collection?
+      answer_form: { kind: yes_no }
+    subject_requirements:
+      - id: declaration
+        kind: configuration
+        role: target
+        coverage: The source declaration only; not effective permissions or execution.
+
+  example://criteria/private-context@1.0.0:
+    id: private-context
+    version: 1.0.0
+    layer: method
+    statement: Before feedback, a participant receives no peer's contribution in their collection context.
+    source: none
+    review: none
+    status: proposed
+    question:
+      text: Did each observed participant context exclude the other participant's contribution?
+      answer_form: { kind: yes_no }
+    subject_requirements:
+      - id: delivered-contexts
+        kind: execution_trace
+        role: target
+        coverage: Both actors' delivered collection contexts, before feedback, on the exercised path.
+
+  example://criteria/position-preservation@1.0.0:
+    id: position-preservation
+    version: 1.0.0
+    layer: method
+    statement: The synthesis retains the distinct positions in the contributing inputs.
+    source: none
+    review: none
+    status: proposed
+    question:
+      text: Does the synthesis retain both distinct positions in this fixture?
+      answer_form:
+        kind: score
+        rubric_ref: example://rubrics/position-preservation@1.0.0
+    subject_requirements:
+      - id: synthesis
+        kind: artifact
+        role: target
+        coverage: The complete synthesis produced from the bound contributing inputs.
+      - id: contributing-positions
+        kind: artifact
+        role: context
+        coverage: Both contributing positions, including the minority position.
+
+rubrics:
+  example://rubrics/position-preservation@1.0.0:
+    allowed_values: [0, 1]
+    direction: higher_means_more_preservation
+    interpretation:
+      0: At least one distinct position was omitted or materially changed.
+      1: Both distinct positions were preserved.
+    note: Stipulated fixture rubric; not validated construct or practitioner calibration.
+
+answer_forms:
+  example://answers/coverage-choice@1.0.0:
+    kind: choice
+    options:
+      - { id: retained, meaning: Every contributing position remains distinguishable. }
+      - { id: omitted, meaning: At least one contributing position is absent. }
+
+# These records illustrate declarations only. None establishes actual evaluator capability.
+evaluators:
+  example://evaluators/source-reader@1.0.0: &uncalibrated
+    id: source-reader
+    version: 1.0.0
+    calibration_reference: none
+    calibration_details: null
+    liveness: unknown
+    liveness_evidence: []
+  example://evaluators/context-inspector@1.0.0:
+    <<: *uncalibrated
+    id: context-inspector
+  example://evaluators/position-comparator@1.0.0:
+    <<: *uncalibrated
+    id: position-comparator
+  example://evaluators/latest-turn-only@1.0.0:
+    <<: *uncalibrated
+    id: latest-turn-only
+
+artifacts:
+  example://artifacts/privacy-source@1:
+    revision: fixture-source-1
+    kind: configuration
+    value: { declared_visibility: private }
+  example://artifacts/leaking-contexts@1:
+    revision: fixture-trace-1
+    kind: execution_trace
+    value:
+      - { id: context-a, actor: a, phase: before_feedback, positions: [A_POSITION, B_POSITION] }
+      - { id: context-b, actor: b, phase: before_feedback, positions: [B_POSITION] }
+  example://artifacts/positions@1:
+    revision: fixture-inputs-1
+    kind: artifact
+    value:
+      - { id: a, position: Proceed with the proposal. }
+      - { id: b, position: Delay until the access concern is resolved. }
+  example://artifacts/omitting-synthesis@1:
+    revision: fixture-summary-1
+    kind: artifact
+    value: The panel favors proceeding with the proposal.
+
+# Fixture-only selection contracts. Production support would require a real versioned contract.
+selections:
+  example://selections/source-whole@1:
+    contract_ref: example://selectors/whole-object@1
+    value: whole_object
+  example://selections/both-contexts@1:
+    contract_ref: example://selectors/event-ids@1
+    value: [context-a, context-b]
+  example://selections/synthesis-whole@1:
+    contract_ref: example://selectors/whole-object@1
+    value: whole_object
+  example://selections/all-positions@1:
+    contract_ref: example://selectors/whole-object@1
+    value: whole_object
+
+execution_records:
+  example://environments/isolated-collector@1:
+    effective_configuration_ref: example://configurations/private-collection-effective@1
+    differences_from_live: [synthetic_actor_credentials, fixed_model_response]
+    implemented_path: Real collection-context routing for actors a and b before feedback.
+  example://fixtures/two-actor-collection@1:
+    actors: [{ id: a, role: panelist }, { id: b, role: panelist }]
+    positions: { a: A_POSITION, b: B_POSITION }
+    exercised_boundary: Context delivered to each authenticated actor before shared feedback.
+    untested: [host_surfaces, other_tools, later_rounds, live_identity_provider]
+  example://stubs/fixed-model-response@1:
+    response: Your contribution is recorded.
+    replaced: Model completion after context routing; routing itself is not replaced.
+
+bindings:
+  example://bindings/declaration@1.0.0:
+    id: declaration
+    version: 1.0.0
+    conformance_version: 0.3-proposal.1
+    profile_ref: example://profiles/private-collection-variant@1.0.0
+    criterion_ref: example://criteria/privacy-declared@1.0.0
+    evaluator_ref: example://evaluators/source-reader@1.0.0
+    answer_form_ref: example://criteria/privacy-declared@1.0.0#/question/answer_form
+    subjects:
+      - { requirement_id: declaration, ref: 'example://artifacts/privacy-source@1', revision: fixture-source-1, selection_ref: 'example://selections/source-whole@1' }
+    support: { status: supported, reason: null, evidence_refs: ['example://support/source-reader@1'] }
+  example://bindings/isolation@1.0.0:
+    id: isolation
+    version: 1.0.0
+    conformance_version: 0.3-proposal.1
+    profile_ref: example://profiles/private-collection-variant@1.0.0
+    criterion_ref: example://criteria/private-context@1.0.0
+    evaluator_ref: example://evaluators/context-inspector@1.0.0
+    answer_form_ref: example://criteria/private-context@1.0.0#/question/answer_form
+    subjects: &context_subjects
+      - { requirement_id: delivered-contexts, ref: 'example://artifacts/leaking-contexts@1', revision: fixture-trace-1, selection_ref: 'example://selections/both-contexts@1' }
+    support: { status: supported, reason: null, evidence_refs: ['example://support/context-inspector@1'] }
+  example://bindings/minority@1.0.0:
+    id: minority
+    version: 1.0.0
+    conformance_version: 0.3-proposal.1
+    profile_ref: example://profiles/private-collection-variant@1.0.0
+    criterion_ref: example://criteria/position-preservation@1.0.0
+    evaluator_ref: example://evaluators/position-comparator@1.0.0
+    answer_form_ref: example://criteria/position-preservation@1.0.0#/question/answer_form
+    subjects:
+      - { requirement_id: synthesis, ref: 'example://artifacts/omitting-synthesis@1', revision: fixture-summary-1, selection_ref: 'example://selections/synthesis-whole@1' }
+      - { requirement_id: contributing-positions, ref: 'example://artifacts/positions@1', revision: fixture-inputs-1, selection_ref: 'example://selections/all-positions@1' }
+    support: { status: supported, reason: null, evidence_refs: ['example://support/position-comparator@1'] }
+  example://bindings/unsupported-isolation@1.0.0:
+    id: unsupported-isolation
+    version: 1.0.0
+    conformance_version: 0.3-proposal.1
+    profile_ref: example://profiles/private-collection-variant@1.0.0
+    criterion_ref: example://criteria/private-context@1.0.0
+    evaluator_ref: example://evaluators/latest-turn-only@1.0.0
+    answer_form_ref: example://criteria/private-context@1.0.0#/question/answer_form
+    subjects: *context_subjects
+    support:
+      status: unsupported
+      reason: Latest-turn-only evaluation cannot assess the required execution trace.
+      evidence_refs: ['example://support/latest-turn-only-limit@1']
+
+results:
+  - id: source-declaration-pass
+    conformance_version: 0.3-proposal.1
+    binding_ref: example://bindings/declaration@1.0.0
+    status: completed
+    answer: true
+    missing_reason: null
+    failure: null
+    evidence_refs: ['example://evidence/source-declaration@1']
+  - id: exercised-isolation-violation
+    conformance_version: 0.3-proposal.1
+    binding_ref: example://bindings/isolation@1.0.0
+    status: completed
+    answer: false
+    missing_reason: null
+    failure: null
+    evidence_refs: ['example://evidence/leaking-contexts@1']
+  - id: minority-omitted-valid-zero
+    conformance_version: 0.3-proposal.1
+    binding_ref: example://bindings/minority@1.0.0
+    model_ref: example://models/comparison-judge@1
+    status: completed
+    answer: 0
+    missing_reason: null
+    failure: null
+    evidence_refs: ['example://evidence/stipulated-comparison@1']
+  - id: unsupported-target-no-measurement
+    conformance_version: 0.3-proposal.1
+    binding_ref: example://bindings/unsupported-isolation@1.0.0
+    status: not_run
+    answer: null
+    missing_reason: Required execution-trace scope is unsupported; no fallback was attempted.
+    failure: null
+    evidence_refs: []
+  - id: attempted-comparison-failed
+    conformance_version: 0.3-proposal.1
+    binding_ref: example://bindings/minority@1.0.0
+    model_ref: example://models/comparison-judge@1
+    status: failed
+    answer: null
+    missing_reason: The attempted comparison did not produce an answer.
+    failure: { phase: evaluator_call, reason: provider_error, ref: 'example://failures/comparison@1' }
+    evidence_refs: ['example://failures/comparison@1']
+
+evidence:
+  example://evidence/source-declaration@1:
+    class: deterministic
+    ref: example://observations/source-declaration@1
+    date: '2026-10-24'
+    scope: Source visibility declaration only; permissions and delivered contexts untested.
+  example://evidence/leaking-contexts@1:
+    class: execution
+    ref: example://observations/leaking-contexts@1
+    date: '2026-10-24'
+    scope: Two synthetic actors before feedback; real context routing, fixed model response; other paths untested.
+    implementation_ref: example://implementations/collector@1
+    test_ref: example://checks/context-routing@1
+    environment_ref: example://environments/isolated-collector@1
+    fixtures_ref: example://fixtures/two-actor-collection@1
+    substitutions:
+      - ref: example://stubs/fixed-model-response@1
+        scope: Model output fixed; no fresh model inference or model-quality claim.
+    observed_result: Actor a received both positions; actor b received only their own position.
+  example://evidence/stipulated-comparison@1:
+    class: semantic
+    ref: example://observations/one-artifact-judge-scenario@1
+    date: '2026-10-24'
+    scope: One fixed synthesis and both inputs supplied to the named model; no application generation, live path or participant outcome exercised.
+    model_ref: example://models/comparison-judge@1
+
+# These vectors describe paired review expectations, not additional executed results or bindings.
+scenario_vectors:
+  - id: privacy-isolated
+    inputs: { declared_visibility: private, delivered_to_a: [A_POSITION], delivered_to_b: [B_POSITION] }
+    expected: { declaration_answer: true, isolation_answer: true, status: completed }
+  - id: privacy-leak-despite-declaration
+    inputs: { declared_visibility: private, delivered_to_a: [A_POSITION, B_POSITION], delivered_to_b: [B_POSITION] }
+    expected: { declaration_answer: true, isolation_answer: false, status: completed }
+  - id: personal-memory-correct
+    inputs: { receiver: a, prior_position_owner: a, facilitator_wording: neutral }
+    expected: { routing_answer: true, status: completed }
+  - id: personal-memory-wrong-person
+    inputs: { receiver: a, prior_position_owner: b, facilitator_wording: neutral }
+    expected: { routing_answer: false, status: completed }
+  - id: all-submitted-barrier-held
+    inputs: { selected_variant: all_submitted, completed: 8, panel: 10, advance_attempt: rejected }
+    expected: { barrier_answer: true, status: completed }
+  - id: all-submitted-barrier-broken
+    inputs: { selected_variant: all_submitted, completed: 8, panel: 10, advance_attempt: accepted }
+    expected: { barrier_answer: false, status: completed }
+  - id: explicit-quorum-is-a-different-contract
+    inputs: { selected_variant: host_advances_at_80_percent, completed: 8, panel: 10, host_advance: accepted }
+    expected: { barrier_answer: true, status: completed, requires_separate_binding: true }
+  - id: minority-preserved
+    inputs: { positions_ref: 'example://artifacts/positions@1', synthesis: 'One position supports proceeding; another requests delay until the access concern is resolved.' }
+    expected: { preservation_score: 1, coverage_choice: retained, status: completed }
+  - id: minority-dropped
+    inputs: { positions_ref: 'example://artifacts/positions@1', synthesis_ref: 'example://artifacts/omitting-synthesis@1' }
+    expected: { preservation_score: 0, coverage_choice: omitted, status: completed }
+  - id: minority-inputs-absent-before-dispatch
+    inputs: { synthesis_ref: 'example://artifacts/omitting-synthesis@1', positions_ref: null }
+    expected: { answer: null, status: not_run, reason: Required contributing positions unavailable. }
+  - id: whole-process-unsupported
+    inputs: { requested_subject: linked_sessions_and_artifacts, evaluator_support: latest_turn_only }
+    expected: { support: unsupported, answer: null, status: not_run, reason: Whole-process scope unsupported. }
+  - id: support-unknown
+    inputs: { requested_subject: artifact_and_inputs, support_evidence: [] }
+    expected: { support: unknown, answer: null, status: not_run, reason: Support not established. }
+  - id: subject-unavailable-after-dispatch
+    inputs: { phase: resolve_subject, attempted: true, artifact_available: false }
+    expected: { answer: null, status: failed, reason: Required subject resolution failed. }
+
+# Mutation cases show invalid proposed records; they do not overwrite the base examples.
+invalid_record_vectors:
+  - id: fabricated-false-for-unsupported-target
+    base_result: unsupported-target-no-measurement
+    replace: { status: completed, answer: false, missing_reason: null }
+    expected_error: Unsupported scope cannot produce a measurement, even a false answer.
+  - id: fabricated-zero-after-provider-error
+    base_result: attempted-comparison-failed
+    replace: { answer: 0 }
+    expected_error: Failed evaluation retains a null answer; zero is a real score.
+  - id: missing-required-context
+    base_binding: example://bindings/minority@1.0.0
+    remove_subject_requirement: contributing-positions
+    expected_error: Target-only input cannot support the requested input-to-synthesis comparison.
+  - id: wrong-artifact-revision
+    base_binding: example://bindings/isolation@1.0.0
+    replace_subject_revision: stale-trace-revision
+    expected_error: Binding revision does not match the referenced observation.
+  - id: changed-criterion-answer-form
+    base_binding: example://bindings/isolation@1.0.0
+    replace_answer_form_ref: example://answers/coverage-choice@1.0.0
+    expected_error: A binding cannot override its criterion's declared answer form.
+  - id: choice-outside-options
+    answer_form_ref: example://answers/coverage-choice@1.0.0
+    answer: maybe
+    expected_error: Answer is not one of the named option ids.
+  - id: score-outside-rubric
+    rubric_ref: example://rubrics/position-preservation@1.0.0
+    answer: 0.5
+    expected_error: This named rubric permits only zero or one.
+  - id: fresh-model-run-relabeled-execution
+    claimed_class: execution
+    scope_contains_fresh_model_inference: true
+    expected_error: Fresh-model scenario cannot be represented as no-inference execution evidence.
+
+compatibility_vectors:
+  - { id: historical-source-only, conformance_version: '0.2', class: deterministic, expected: retain_source_only_meaning }
+  - { id: historical-score, conformance_version: '0.2', score: 0, expected: retain_score_field_and_original_contract }
+  - { id: historical-missing-binding, conformance_version: '0.1', expected: keep_new_fields_absent }
+  - { id: existing-scope-contract, scope_version: '0.1.0', expected: retain_transcript_selectors_and_numeric_measurement }
