@@ -1,93 +1,179 @@
 # Criterion targets, answer forms and structural evidence
 
-**Status:** non-normative design proposal for
+**Status:** non-normative **v0.3 proposal**, revision `0.3-proposal.1`, for
 [method-specs#31](https://github.com/Open-Facilitation-Library/method-specs/issues/31).
 It extends the transcript-only proposal to the activities identified by the
-[protocol mapping guide](protocol-mapping.md). This document does not amend conformance v0.2,
-introduce an executable schema or runner, or upgrade historical records. Adoption would need an
-explicitly versioned contract change.
+[protocol mapping guide](protocol-mapping.md). It does not amend conformance v0.2, introduce an
+executable schema or runner, or upgrade historical records. Adoption needs a versioned contract
+change. The fields below are proposed, not already accepted by registry tooling. The
+[worked fixtures](examples/criterion-targets-v0.3.yaml) are synthetic review inputs, not measurements.
 
 ## Three separate questions
 
 | Axis | Question | Examples |
 | --- | --- | --- |
 | Criterion and answer form | What must hold, and what answer is requested? | Independent elicitation; yes/no, named choice, rubric score |
-| Evaluation target | What subject is actually being assessed? | A turn, configuration, artifact, execution trace, participant response |
-| Instrument and evidence | How was it assessed, and what claim can that check support? | Source inspection, isolated runtime test, model scenario, live exercise, participant measure |
+| Evaluation target | What subject is actually being assessed? | Conversation, configuration, artifact, execution trace, participant response |
+| Instrument and evidence | How was it assessed, and what claim can that check support? | Source inspection, isolated runtime test, real-model scenario, live exercise, participant measure |
 
-A transcript is one possible target. A typed answer alone supplies neither evidence of runtime
-behavior nor comparability between instruments.
+A transcript is one possible target. A typed answer alone establishes neither runtime behavior
+nor comparability between instruments. Stage/session design, permissions, context routing, tools,
+artifacts and progression can each need their own subjects and checks.
 
-## Proposed criterion and binding contract
+## Proposed criterion fields
 
-Keep the portable criterion's `statement`, layer, source, review and status. An optional `question`
-would add text and an answer form:
+Keep the portable criterion's existing identity, statement, layer, source, review and status, and
+its independent version. Add these fields:
 
-- `yes_no`: a yes/no label. Any probability is separately identified and attributed; a deterministic
-  or human answer need not manufacture confidence. A probability field is not proof of calibration.
-- `choice`: one of explicitly named options, with their meanings.
-- `score`: a named rubric with its scale, direction and interpretation.
+| Field | Proposed rule |
+| --- | --- |
+| `question` | Optional, including for an `enforced` criterion. When present, contains nonempty `text` and `answer_form`. It follows the criterion's version. |
+| `question.answer_form.kind` | `yes_no`, `choice`, or `score`, defined below. |
+| `subject_requirements` | Nonempty list of `id`, `kind`, `role`, and `coverage` for an assessment. Required for a new binding; absence does not authorize inference from the statement. |
+| `subject_requirements[].id` | Unique within the criterion; joins the requirement to actual subjects in a binding. |
+| `subject_requirements[].kind` | `conversation`, `configuration`, `artifact`, `execution_trace`, or `participant_response`. |
+| `subject_requirements[].role` | `target` for a subject assessed, or `context` for material required to assess it. At least one target is required. |
+| `subject_requirements[].coverage` | Portable description of the required extent and boundaries. Runtime ids and storage paths do not belong here. |
 
-The criterion describes the **kind and coverage of subject needed** to answer it, in portable
-terms. The evaluator/adapter binding identifies the **actual target** using controlled references,
-relevant artifact versions and a bounded selection. Runtime ids, URLs and storage paths belong
-in that binding, not in the method requirement.
+Every listed subject requirement must be covered. Several subjects may inform one judgment;
+listing them defines neither aggregation of separate judgments nor a whole-process selector.
+A source declaration cannot substitute for effective configuration or execution when those are
+required. A synthesis can be the target while its contributing positions are required context.
+Configuration coverage must distinguish declared source from effective runtime configuration.
 
-Target kinds can include:
+Answer forms have these meanings:
 
-- **Conversation:** a turn, bounded window or whole transcript, with the scored target distinct
-  from contextual turns.
-- **Configuration:** the selected source or effective runtime configuration, identified separately;
-  a declared privacy setting does not establish enforced access control.
-- **Artifact:** a collected response, aggregate, board or final output, with its relevant input
-  references and transformation scope.
-- **Execution trace:** observations of permissions, tool actions, state transitions or handoffs,
-  with the tested environment, actors and exercised path identified.
-- **Participant response:** a recorded participant measure appropriate to an outcome claim.
+- `yes_no`: the answer value is a boolean, including a legitimate `false`.
+- `choice`: `options` is a nonempty list of unique `id` values and their nonempty `meaning`.
+  The answer is exactly one option id. No ordering or numeric conversion is implied.
+- `score`: `rubric_ref` pins a named rubric defining its scale, direction, allowed values and
+  interpretation. The answer is a number valid for that rubric, including a legitimate zero.
 
-These are proposed subject categories, not a selector grammar. Linked sessions and artifacts may
-be necessary for a criterion, but defining a whole-process selector/aggregation contract is a
-separate task. Do not substitute one transcript when the required subject is unavailable.
+Probability or confidence is separate and attributed, not the yes/no answer or rubric score.
+A human or deterministic answer need not manufacture confidence; a probability field establishes
+no calibration. Source/review and evaluator calibration remain separate.
 
-The binding identifies instrument support for the target and requested answer. Unsupported or
-unknown support yields no measurement, with a reason; it cannot silently fall back to a final
-turn or a keyword search. Preserve v0.2's distinction between completed, failed and unrun
-measurements, and its evaluator calibration/liveness declarations. Criterion review and evaluator
-calibration remain separate.
+## Proposed evaluator/adapter binding
+
+A binding is immutable for a measurement. Changing a subject, selection, instrument or answer
+contract creates a new binding reference/version; it does not alter a past result's meaning.
+
+| Field | Proposed rule |
+| --- | --- |
+| `id`, `version`, `conformance_version` | Identify the binding and contract it uses. Examples use `0.3-proposal.1`, not an adopted `0.3`. |
+| `profile_ref`, `criterion_ref`, `evaluator_ref` | Controlled references pinning each independent version. Evaluators retain v0.2 calibration and liveness declarations. |
+| `answer_form_ref` | Pins the criterion's answer form when a question exists. Otherwise pins an explicit evaluator output declaration; it supplies no missing method requirement. It cannot override a criterion question. |
+| `subjects` | Nonempty list of `requirement_id`, `ref`, `revision`, and `selection_ref`. Each required id has exactly one association; unknown or duplicate ids are invalid. |
+| `subjects[].ref`, `revision` | Controlled artifact/observation reference and immutable revision or content identity. A mutable URL alone is insufficient. |
+| `subjects[].selection_ref` | Versioned reference to the bounded selection requested. Its selector contract must be supported; an opaque label alone establishes no support. |
+| `support.status` | `supported`, `unsupported`, or `unknown` for this evaluator version, all required subjects/selections, and the answer form. |
+| `support.reason`, `support.evidence_refs` | For `supported`, null reason and nonempty support evidence. Otherwise a nonempty reason; unknown support may honestly have no evidence. These concern support, not calibration or criterion review. |
+
+Subjects and selections must resolve, match the required kind/coverage and remain within the
+referenced artifact. Missing context is not optional. Unsupported or unknown support yields no
+measurement, never a fallback to a final turn, keyword search or narrower instrument. A supported
+binding still needs an actual successful run.
+
+For conversations, reuse the explicit target/context distinction and zero-based absolute-index
+semantics in OFL evals' [scoring-scope 0.1.0](https://github.com/Open-Facilitation-Library/evals/blob/main/docs/scoring-scope.md).
+This does not widen that contract's transcript selectors or numeric `measurement.value` to accept
+other subjects or typed answers. Other selectors require an explicitly supported, versioned
+contract. The fixtures name synthetic selections for review; they install no resolver. Linked
+sessions and artifacts can be required, but whole-process selection and aggregation remain separate
+work. Do not substitute one transcript when the required subject is unavailable.
+
+## Proposed result fields
+
+| Field | Proposed rule |
+| --- | --- |
+| `id`, `conformance_version`, `binding_ref` | Identify the result, contract and exact immutable binding used. |
+| `implementation_ref`, `model_ref` | Retain independently pinned implementation/model identities when relevant to the claim, in the result or its versioned enclosing report. A binding or profile version does not replace them. |
+| `status` | `completed`, `failed`, or `not_run`, recording what actually happened. |
+| `answer` | Actual value matching the bound answer form for `completed`; null for `failed` or `not_run`. |
+| `missing_reason` | Null for a completed answer; nonempty when no measurement exists. |
+| `failure` | `phase`, safe `reason`, and durable `ref` when failed; null otherwise. |
+| `evidence_refs` | Durable pointers to observations. Completed measurements require evidence. Unattempted checks may have an empty list and must retain their reason. |
+
+A completed result requires supported scope, resolved required subjects and a well-formed answer.
+One subject association may select a bounded collection within an artifact; cross-artifact or
+whole-process selection needs its own supported contract rather than duplicate requirement ids.
+Finding an isolation violation is a completed negative answer, not an evaluator failure. Unsupported
+scope detected before dispatch is `not_run` with a null answer. A resolution error during an
+attempted run, provider error, timeout or malformed output is `failed`, with a null answer and
+failure information. Neither can become a default false, zero or 0.5.
+
+An absent historical result remains absent/incomplete; do not invent an attempted or unattempted
+run. Missing measurements remain visible, with no aggregate policy selected here. Proposed typed
+`answer` fields do not rename or coerce historical v0.2 `score` fields.
 
 ## Proposed structural-execution evidence
 
-In v0.2, `deterministic` explicitly means a mechanical check over implementation source and
-proves no behavior. Keep that historical meaning. A possible extension is a separate `execution`
-class for **isolated runtime/integration checks that execute implementation paths without fresh
-model inference**. A configuration file inspected by a script does not qualify merely because
-the inspection script ran.
+In v0.2, `deterministic` means mechanical inspection of implementation source and establishes no
+behavior. Preserve that meaning. A proposed additional class, `execution`, covers isolated runtime
+or integration checks that execute implementation paths **without fresh model inference**. Running
+a script that inspects configuration does not qualify. Mocking the access-control or routing
+function being assessed does not establish its real behavior.
 
-Such an entry would identify the implementation and test revisions, environment, fixture/actor
-scope, actual observed result, durable artifact and date. Recorded or stubbed model/tool responses
-must be disclosed, with the boundaries they leave untested. An access-control test can establish
-its exercised allow/deny behavior; it does not establish facilitator quality, all anonymity paths
-or participant benefit. Live exercises retain `production`; real-model scenarios retain their
-scoped `semantic` meaning. The same run can support distinct, explicitly scoped claims without
-collapsing them into one pass rate.
+Alongside existing `class`, `ref`, `date`, and nonempty `scope`, an execution entry carries:
 
-This is a proposed additional class, not a reinterpretation of `deterministic`. Targets do not
-automatically select an evidence class: an artifact can be inspected mechanically or interpreted
-by a human/judge, with different support and calibration requirements.
+| Field | Proposed rule |
+| --- | --- |
+| `implementation_ref`, `test_ref` | Pin implementation and check revisions. |
+| `environment_ref` | Controlled record of environment and relevant effective configuration identity, including differences from live execution. |
+| `fixtures_ref` | Pin inputs and actor/role scope, including receiving actors and exercised allow/deny paths. |
+| `substitutions` | Explicit list of fixed model/tool responses or replaced dependencies, with `ref` and `scope` on each. Empty means none, not unknown. |
+| `observed_result` | What actually happened, including any violation. A planned check or expected outcome is insufficient. |
 
-## Illustrative acceptance cases
+An access-control test establishes its exercised allow/deny behavior, not facilitator quality,
+all anonymity paths or participant benefit. Disclose substituted model/tool responses and the
+boundaries they leave untested. Target kind does not automatically select an evidence class.
 
-These are expected distinctions for contract review, not measurements or executed tests:
+| Class | Boundary retained or proposed |
+| --- | --- |
+| `deterministic` | Mechanical inspection of implementation source; no behavior established. |
+| `execution` | Proposed isolated implementation-path execution without fresh model inference, limited to exercised dependencies and paths. |
+| `semantic` | Scripted real-model scenarios; model/version and scenario limits remain visible. |
+| `release` | Shipped-artifact comparison against reviewed source; parity alone establishes no correctness. |
+| `production` | Live-system exercise, limited to the path exercised. Synthetic actors do not make it an outcome study. |
+| `outcome` | Participant measures appropriate to an outcome claim. |
 
-| Case | Target and check | Expected interpretation |
+A mixed run can produce distinct entries sharing an artifact. An execution entry must identify the
+no-inference path actually exercised; fresh-model work cannot be relabeled execution. A judge
+reading a recorded transcript does not establish execution of the application path that produced
+it. No combined pass rate is defined here.
+
+## Worked positive and negative fixtures
+
+The [YAML companion](examples/criterion-targets-v0.3.yaml) includes complete criterion, binding,
+result and execution-entry examples, paired scenario vectors, and invalid-record cases. All
+references, observations and answers are stipulated synthetic placeholders. Parsing them executes
+no application and establishes no real instrument support, calibration or liveness.
+
+| Case | Positive case | Negative case and interpretation |
 | --- | --- | --- |
-| Correct privacy wording; peer answer leaks | Source inspection plus an isolated two-actor access/context test | Source declaration can pass while exercised isolation fails; prompt wording cannot override the failure. |
-| Personal memory delivered to the wrong panelist | Participant-specific context observed in an isolated runtime test | The exercised routing fails even if every facilitator turn sounds appropriate. |
-| Progression before all submissions | State transition under a selected `all_submitted` variant | Check that the transition is rejected; a quorum variant needs a separate declared contract. |
-| A synthesis drops a minority position | Output artifact assessed against the contributing positions | Identify whether the instrument can assess preservation, and report only that target/scope. A fluent final turn supplies no substitute. |
-| Whole process requested; evaluator supports only the latest turn | Required linked-session/artifact subject is unsupported | No whole-process measurement; preserve the support gap and any separately valid turn measurement. |
+| Privacy declaration versus isolation | Declared-private source check returns true; isolated peer context remains absent. | The same source declaration can return true while an execution check returns false for a leak. Only the latter assesses exercised isolation. |
+| Participant-specific memory | Each receiving participant gets their own earlier position. | Another participant's history is delivered; routing is a completed negative answer even if wording is neutral. |
+| Completion barrier | An unfinished panelist blocks advancement under the selected all-submitted variant. | Advancement occurs anyway. A declared quorum variant needs a separate binding; difference alone is not a violation. |
+| Minority-view preservation | Synthesis retains the distinct position in contributing inputs. | Synthesis drops it. Missing inputs or unsupported interpretation yield no measurement, not preservation. |
+| Unsupported scope | A supported turn measurement retains its own scope. | Whole-process request to a latest-turn-only instrument: not-run, null answer, support reason retained. |
+| Missing measurements and types | Valid false, zero and named-choice answers remain actual measurements. | Missing subjects, provider errors, unknown choices and malformed output cannot become default values or completed measurements. |
 
-Before adopting the extension, agree the target/binding fields and evidence-class boundary,
-provide positive/negative fixtures, and verify backward compatibility and fail-closed missing
-measurements. Typed formats do not by themselves establish criterion validity, method endorsement,
-instrument interchangeability or outcome quality. This proposal selects no vendor or platform.
+## Adoption and historical records
+
+Adopting these fields and the additional evidence class needs a conformance-model version change,
+proposed as v0.3. Until adoption, `0.3-proposal.1` records remain non-normative. Registry method
+format, profile/criterion versions and evaluator versions remain independently identified.
+
+- Interpret v0.1/v0.2 records under their own contracts. Missing new fields remain missing; no
+  selectors, support, answers, calibration or execution history are backfilled.
+- Historical deterministic evidence remains source-only. An old integration log can support a new
+  execution entry only through a separately attributed record identifying the actual check,
+  revisions, environment, observations and limits. The old entry is not rewritten or upgraded.
+- Keep criterion source/review, evaluator calibration/liveness, implementation/model versions,
+  binding coverage and run status distinct. Documentation completeness is not practitioner review.
+- A future schema/adapter needs separate tests for unresolved references, absent context, invalid
+  types, unsupported scope and historical interpretation. These fixtures are review inputs, not
+  that implementation or a passed test suite.
+
+Typed formats establish neither criterion validity, method endorsement, instrument interchangeability
+nor outcome quality. This proposal selects no vendor or platform.
