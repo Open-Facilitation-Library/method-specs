@@ -39,8 +39,10 @@ Full format: [`FORMAT.md`](./FORMAT.md).
 
 ## Checking protocol conformance
 
-The [conformance model](./docs/conformance/architecture.md) separates method essentials,
+The [conformance model v0.3](./docs/conformance/architecture.md) separates method essentials,
 interaction choices, runtime conventions and participant outcomes. The
+[record contract](./docs/conformance/record-contract-v0.3.md) defines subjects, bindings, typed
+results and scoped execution evidence; it supplies no evaluator implementation. The
 [protocol mapping guide](./docs/conformance/protocol-mapping.md) connects requirements to
 stage/session design, roles, tools, artifacts, context and progression. The
 [Delphi worked mapping](./docs/conformance/examples/delphi/protocol-mapping.md) distinguishes

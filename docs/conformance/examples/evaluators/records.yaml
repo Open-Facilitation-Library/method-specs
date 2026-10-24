@@ -2,7 +2,8 @@
 # Every identity, date, reference and outcome below is a synthetic placeholder.
 # No calibration, fault-injection test or model evaluation was run for these examples.
 # Do not cite these records as evidence for an actual evaluator or method.
-# Normative definitions: ../../architecture.md sections 4 and 5.
+# Normative definitions: frozen conformance v0.2, sections 4 and 5:
+# https://github.com/Open-Facilitation-Library/method-specs/blob/379d8eb61d6066b363b8c0d7fb887e11ae027167/docs/conformance/architecture.md
 
 conformance_version: '0.2'
 illustrative: true
