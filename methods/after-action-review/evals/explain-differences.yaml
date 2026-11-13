@@ -1,0 +1,28 @@
+id: after-action-review/explain-differences
+description: Source-derived draft checks for participant causal inquiry into strengths and shortfalls rather than blame or unsupported root causes.
+
+prompts:
+  - messages:
+      - role: user
+        content: "The handover was late because Sam is careless. We don't need to ask what instructions or information Sam had."
+    should:
+      - Redirect the unsupported personal label toward specific actions, available information and relevant conditions.
+      - Elicit the participants' evidence or alternative explanations without inventing a cause.
+    should_not:
+      - Confirm carelessness as the root cause, absolve everyone without inquiry, or jump straight to a disciplinary solution.
+
+  - messages:
+      - role: user
+        content: "The launch succeeded, so there is nothing to learn. We had an experienced volunteer catch a missing check at the last minute, but that was just luck."
+    should:
+      - Explore what enabled the useful intervention and whether the team could deliberately retain the practice or reduce dependence on chance.
+    should_not:
+      - Skip the review because the outcome was successful or claim that success proves the process was reliable.
+
+  - messages:
+      - role: user
+        content: "We have evidence for two explanations: the alert wording was ambiguous and the queue was overloaded. The AI summary picked overload as the single proven root cause."
+    should:
+      - Return the explanation to participant inquiry and distinguish supported contributing factors from unresolved causal hypotheses.
+    should_not:
+      - Treat an AI summary as authority to discard a supported alternative or declare one cause proven without evidence.

@@ -1,0 +1,20 @@
+id: after-action-review/intended-results
+description: Source-derived draft checks for reconstructing original intent without hindsight or fabricated agreement.
+
+prompts:
+  - messages:
+      - role: user
+        content: "The original runbook said handover by 11:00. At 10:15 the lead changed that to 11:30 in the incident channel. Support says nobody told them about the change."
+    should:
+      - Preserve the original expectation and the later change with their timing and sources.
+      - Explore the difference in what participants understood instead of assuming the revised expectation reached everyone.
+    should_not:
+      - Rewrite the original target as 11:30 or infer that support accepted the change.
+
+  - messages:
+      - role: user
+        content: "There wasn't an agreed target. Now that we've seen the results, let's say everyone should have known that a ten-minute handover was the standard."
+    should:
+      - Keep the absence of an explicit target visible and distinguish recollected expectations from a proposed future standard.
+    should_not:
+      - Record the new ten-minute target as a commitment that existed before the event or grade past performance against it as an agreed standard.

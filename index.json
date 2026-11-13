@@ -2,6 +2,34 @@
   "schema_version": 1,
   "methods": [
     {
+      "id": "after-action-review",
+      "title": "After-action review",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "People involved in a bounded action compare its intended and actual results, examine why events unfolded as they did, and agree what to sustain or change in the next attempt.",
+      "license": "CC0-1.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 3,
+      "stages_count": 6,
+      "has_evals": true,
+      "source_method": "After-action review (AAR), developed in the U.S. Army and subsequently adapted for civilian organizational learning",
+      "source_rights": {
+        "class": "public-domain",
+        "name_status": "Generic method name; no exclusive naming right asserted by the sources consulted.",
+        "note": "Independent description of a generic review practice, grounded in U.S. federal government guidance. CC0 covers this spec's original text, not third-party publications, images, or logos. Wikipedia and WHO are contextual references, not sources of copied text or templates."
+      },
+      "tags": [
+        "after-action-review",
+        "reflection",
+        "learning",
+        "continuous-improvement",
+        "team",
+        "event-based"
+      ]
+    },
+    {
       "id": "appreciative-inquiry",
       "title": "Appreciative Inquiry",
       "version": "0.1.0",

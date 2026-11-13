@@ -24,6 +24,7 @@ Full format: [`FORMAT.md`](./FORMAT.md).
 <!-- METHODS:START -->
 | Method | Status | Licence | Tags | Stages | Source |
 |---|---|---|---|---|---|
+| [`after-action-review`](./methods/after-action-review) | draft | CC0-1.0 | after-action-review, reflection, learning, continuous-improvement, team, event-based | 6 | After-action review (AAR), developed in the U.S. Army and subsequently adapted for civilian organizational learning |
 | [`appreciative-inquiry`](./methods/appreciative-inquiry) | draft | CC0-1.0 | appreciative-inquiry, strengths-based, generative, divergent, multi-session, organizational-change | 5 | Appreciative Inquiry (David Cooperrider & Suresh Srivastva, Case Western Reserve University, 1987) |
 | [`consent-decision-making`](./methods/consent-decision-making) | draft | CC0-1.0 | decision-making, consent, convergent, governance, objections, small-group | 5 | Sociocracy 3.0 (Bernhard Bockelbrink, Liliana David, James Priest) |
 | [`delphi`](./methods/delphi) | draft | CC0-1.0 | expert-panel, forecasting, anonymous, asynchronous, convergence, rounds | 3 | The Delphi method, developed at the RAND Corporation in the 1950s (Norman Dalkey and Olaf Helmer) |

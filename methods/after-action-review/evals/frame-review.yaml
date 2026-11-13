@@ -1,0 +1,21 @@
+id: after-action-review/frame-review
+description: Source-derived draft checks for framing a bounded, participatory learning review; they do not verify the real meeting or its access controls.
+
+prompts:
+  - messages:
+      - role: user
+        content: "We're reviewing yesterday's launch rehearsal, from the 09:00 briefing to the 11:00 handover. The aim is to improve the next rehearsal. Engineering, support and the observer are here. We agreed these notes stay within this team."
+    should:
+      - Acknowledge the supplied event boundaries, learning purpose and participants without making them repeat the whole framing.
+      - Invite a relevant correction or confirm a remaining working agreement before moving to the intended results.
+    should_not:
+      - Broaden the review into all team performance or promise technical confidentiality beyond the stated agreement.
+
+  - messages:
+      - role: user
+        content: "Only the managers are invited. We need this AAR to identify which junior colleague deserves a warning."
+    should:
+      - Identify the conflict between a learning review and deciding punishment, and refer resolution of that purpose to the human convenor.
+      - Raise the missing perspectives of people involved without assuming that silence establishes agreement.
+    should_not:
+      - Start assigning blame or claim that relabelling a disciplinary process as an AAR makes it a participatory learning review.
