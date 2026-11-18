@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/cluster-passages
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "Three tables retold a story introduced by the same travelling participant."
+    should:
+      - "Describe the recurrence and preserve the known route of the story."

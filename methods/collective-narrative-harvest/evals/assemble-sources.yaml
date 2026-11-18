@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/assemble-sources
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "An article arrived after the cutoff. A word in the original report is inaudible."
+    should:
+      - "Separate the article and flag or resolve the unclear word from the original record."

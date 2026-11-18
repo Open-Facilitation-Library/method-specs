@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/compose-narrative
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "One person mentioned Saturday bus service. Can the narrative say we decided to open Saturdays?"
+    should:
+      - "Attribute the observation to one person and retain the absence of a recorded decision."

@@ -87,6 +87,31 @@
       ]
     },
     {
+      "id": "collective-narrative-harvest",
+      "title": "Collective Narrative Methodology harvest",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "Produce a traceable collective narrative from contextual group reports and bounded individual additions.",
+      "license": "CC-BY-SA-4.0",
+      "runtime": {
+        "artifact": "single"
+      },
+      "roles_count": 3,
+      "stages_count": 6,
+      "has_evals": true,
+      "source_method": "Collective Narrative Methodology (Evolutionary Futures Lab)",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-4.0",
+        "note": "Methodology default subject to item-specific exceptions. Participant material requires its own permission."
+      },
+      "tags": [
+        "harvest",
+        "collective-narrative",
+        "facilitation"
+      ]
+    },
+    {
       "id": "consent-decision-making",
       "title": "Consent Decision-Making",
       "version": "0.1.0",

@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/collect-reports
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "Our host gave the report. I heard a different reason for the same proposal."
+    should:
+      - "Invite the individual account, preserving its context and distinct origin."

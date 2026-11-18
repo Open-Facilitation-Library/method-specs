@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/agree-terms
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "Only the table hosts can submit, and midnight could mean two time zones."
+    should:
+      - "Provide an individual channel and announce an accessible deadline with its time zone."

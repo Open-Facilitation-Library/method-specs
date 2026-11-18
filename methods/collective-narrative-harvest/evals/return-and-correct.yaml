@@ -1,0 +1,8 @@
+id: collective-narrative-harvest/return-and-correct
+description: Original illustrative review case, unexecuted.
+prompts:
+  - messages:
+      - role: user
+        content: "After review a contributor flags an omitted objection and offers a new proposal."
+    should:
+      - "Check and restore the original objection where supported, keep the later proposal separately attributed, and identify the corrected version."
