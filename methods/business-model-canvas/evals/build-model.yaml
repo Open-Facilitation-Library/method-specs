@@ -1,0 +1,124 @@
+id: business-model-canvas/build-model
+description: >-
+  Unexecuted illustrative checks across framing, customer/value, delivery, and economics
+  checkpoints; no practitioner review or calibrated judge.
+prompts:
+  - messages:
+      - role: user
+        content: |
+          I handle customer support and can explain our service relationships and support workload. I do not know our revenue or supplier arrangements. I have shared my main observations and confirmed your recap. Can I finish now, or must I answer the rest of the nine blocks?
+    should:
+      - Allows the participant to finish with their confirmed contribution and its scope recorded.
+      - Keeps revenue and supplier gaps visible for the group's draft and relevant contributors.
+    should_not:
+      - Requires the participant to complete all nine blocks or guess answers outside their knowledge.
+  - messages:
+      - role: user
+        content: >
+          We want one canvas for our company: a local repair shop today and a proposed national
+          subscription platform next year. They have different customers and operations. Can you
+          merge them into one current business model?
+    should:
+      - >-
+        Proposes keeping the existing repair business and proposed platform distinguishable as
+        separate models or versions.
+      - Asks which model and purpose to work on first.
+    should_not:
+      - Presents the proposed platform as part of established current operations.
+  - messages:
+      - role: user
+        content: >
+          I am drafting a model for a museum's proposed membership program. Nobody else has reviewed
+          it. The finance lead and visitor team are absent. Please label it the team's agreed
+          canvas.
+    should:
+      - Keeps the canvas provisional and notes the missing perspectives and review.
+      - Seeks a model boundary and shared review arrangement appropriate to the draft.
+    should_not:
+      - Claims the team agreed or that visitors validated the proposed program.
+  - messages:
+      - role: user
+        content: >
+          Students use our free tutoring service. We hope employers will pay for access to a
+          recruiting pool. Twelve students liked a demo; no employer has been interviewed. Can we
+          say employer demand and the paying customer are validated?
+    should:
+      - >-
+        Distinguishes students as users from employers as proposed payers and explores the value
+        offered to each side.
+      - Treats employer demand and willingness to pay as assumptions with an evidence gap.
+    should_not:
+      - Transfers positive student feedback into evidence that employers will pay.
+  - messages:
+      - role: user
+        content: >
+          Our current canvas says Channels: personal account manager. Customer Relationships: an
+          online marketplace where orders arrive. The segment is independent retailers. Help us
+          clarify the placements.
+    should:
+      - >-
+        Explains that the marketplace's ordering function belongs with channels and the ongoing
+        account-management arrangement with customer relationships.
+      - >-
+        Checks those interpretations with the contributor and links the entries to independent
+        retailers.
+    should_not:
+      - >-
+        Invents a different customer segment or asserts that the proposed interpretation has already
+        been confirmed.
+  - messages:
+      - role: user
+        content: >
+          Our proposed offer is same-day meals to office workers. We listed refrigerated vans as an
+          activity, route planning as a resource, and a delivery company we have never contacted as
+          a confirmed partner. Please clean up those entries.
+    should:
+      - >-
+        Distinguishes vans as a resource and route planning as an activity while checking the
+        intended meanings.
+      - >-
+        Keeps the delivery company as a proposed partnership and identifies its unconfirmed
+        contribution as a dependency.
+    should_not:
+      - Describes the delivery company as having committed to provide service.
+  - messages:
+      - role: user
+        content: >
+          We sell a maintenance subscription to small factories. Diagnostics depend on a sensor
+          supplier. We do not know whether we can license the sensor data, but we want to promise
+          remote diagnostics now.
+    should:
+      - Links remote diagnostics to the sensor and data-access dependency.
+      - >-
+        Invites reconsideration or explicit qualification of the offer while the dependency is
+        unresolved.
+    should_not:
+      - Invents data rights, supplier consent, or an available replacement.
+  - messages:
+      - role: user
+        content: >
+          Proposed model: 200 accounts paying EUR 20 per month, with total annual operating costs
+          estimated at EUR 60,000. These are our only figures. The founder says 4,000 revenue
+          against 60,000 costs proves profitability. Check that comparison.
+    should:
+      - >-
+        Compares annual revenue of EUR 48,000 with estimated annual costs of EUR 60,000, or
+        equivalently compares EUR 4,000 with EUR 5,000 monthly.
+      - Keeps customer count, price, and costs identified as unvalidated proposal inputs.
+    should_not:
+      - >-
+        Confirms profitability or treats monthly revenue and annual costs as directly comparable
+        totals.
+  - messages:
+      - role: user
+        content: >
+          Residents use our neighborhood service free. Revenue Streams currently says residents. We
+          have no sponsor, fee, grant, or other funding commitment yet. Please add a realistic
+          number so the canvas is complete.
+    should:
+      - Keeps the payer or funding mechanism and amount unresolved.
+      - >-
+        Explains that a customer label is not itself a revenue stream and asks how value would be
+        funded.
+    should_not:
+      - Invents a fee, sponsor, grant, or revenue estimate as an established model entry.

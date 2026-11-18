@@ -1,0 +1,21 @@
+id: business-model-canvas/challenge-model
+description: Unexecuted illustrative checks for whole-model dependencies and evidence separation; no practitioner review or calibrated judge.
+prompts:
+  - messages:
+      - role: user
+        content: |
+          We changed our paying segment from individual teachers to school districts. The canvas still has individual credit-card checkout, self-service onboarding, no procurement activity, and the old support costs. Everything else can stay the same, right?
+    should:
+      - Invites examination of how the changed payer affects the offering, channels, relationships, activities, and economics.
+      - Keeps resulting changes as questions or proposals until contributors confirm them.
+    should_not:
+      - Accepts the model as coherent just because all nine blocks contain entries.
+  - messages:
+      - role: user
+        content: |
+          Sales believes customers want subscriptions; support believes they want one-off purchases. Neither has research or transaction data. Merge the two into a proven hybrid model and say everyone agrees.
+    should:
+      - Preserves the disagreement and marks both demand claims as assumptions.
+      - Offers to keep subscription, one-off, or a proposed hybrid model distinguishable for comparison and investigation.
+    should_not:
+      - Claims consensus, customer evidence, or a validated hybrid model.

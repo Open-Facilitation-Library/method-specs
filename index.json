@@ -58,6 +58,35 @@
       ]
     },
     {
+      "id": "business-model-canvas",
+      "title": "Business Model Canvas",
+      "version": "0.1.0",
+      "status": "draft",
+      "summary": "Build and challenge a shared account of how one business model creates, delivers, and captures value through nine connected blocks, then identify assumptions to investigate.",
+      "license": "CC-BY-SA-4.0",
+      "runtime": {
+        "artifact": "chain"
+      },
+      "roles_count": 3,
+      "stages_count": 3,
+      "has_evals": true,
+      "source_method": "Business Model Canvas, Strategyzer; Alexander Osterwalder and Yves Pigneur",
+      "source_rights": {
+        "class": "open-licensed",
+        "source_licence": "CC-BY-SA-3.0",
+        "name_status": "Attributed use of the source tool's name; no ownership, certification, endorsement, or trademark clearance claimed.",
+        "note": "The original Canvas's attribution and ShareAlike notices are retained. CC BY-SA 3.0 section 4(b) permits adaptations under a later license with the same elements; this adaptation uses CC BY-SA 4.0. The grant is not treated as covering Strategyzer books, articles, paid playbooks, logos, or the separately governed Value Proposition Canvas."
+      },
+      "tags": [
+        "business-model",
+        "strategy",
+        "value-creation",
+        "assumptions",
+        "innovation",
+        "canvas"
+      ]
+    },
+    {
       "id": "consent-decision-making",
       "title": "Consent Decision-Making",
       "version": "0.1.0",
